@@ -9,6 +9,7 @@ import SignUp from './components/SignUp/SignUp'
 import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 import Layout from './components/Layout/Layout'
 import VerifyCode from './components/VerifyCode/VerifyCode'
+import ResetPassword from './components/ResetPassword/ResetPassword'
 function App() {
 
   const queryClient = new QueryClient()
@@ -18,7 +19,8 @@ function App() {
       path: '', element: <Layout /> , children: [
       {path: 'forgetPassword', element: <ForgetPassword />},
       {path: 'signUp', element: <SignUp />},
-      {path: 'verifyCode', element: <VerifyCode />}
+      {path: 'verifyCode', element: <VerifyCode />},
+      {path: 'resetPass', element: <ResetPassword />}
 
     ]}
     
