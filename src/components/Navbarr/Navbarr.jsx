@@ -9,7 +9,7 @@ export default function Navbarr() {
   }
   return (
     <>
-      <Navbar fluid className='fixed top-0 left-0 right-0 z-10 shadow-md bg-gray-200  shadow-gray-400'>
+      <Navbar fluid className='fixed top-0 left-0 right-0 z-10 shadow-md bg-[#d9d9d9]  shadow-gray-400'>
         <Link to={'/resetPass'}>
           <Navbar.Brand>
             <img src="src/assets/Collage/Logo.png" className="mr-1 h-16 " alt="Flowbite React Logo" />
