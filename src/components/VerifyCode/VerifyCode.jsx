@@ -12,7 +12,6 @@ export default function VerifyCode() {
             </div>
                <h1 className='col-span-12 mt-3 text-2xl md:text-4xl lg:text-4xl text-white'>Get Code From Your Email</h1>
                <h2 className='col-span-12  text-white text-xl mt-6'>Your password will be reset by email Enter the code form Your Email e****@gmail.com</h2>
-               <h3 className='col-span-12  text-white text-xl mt-6'>Verification Code</h3>
                <div className="col-span-12 mb-5 mt-11">
                 <label htmlFor="verify" className="block mb-2 text-sm font-medium text-white dark:text-white"
                 >
