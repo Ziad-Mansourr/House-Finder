@@ -16,11 +16,6 @@ export default function SignUp() {
     <>
       <section className="bg-[#0c283c] min-h-screen">
         <div className="w-[90%] mx-auto px-[15px] items-center py-[30px] grid grid-cols-12">
-          <div className="w-[60%] md:w-[30%] lg:w-[15%] col-span-12">
-            <img src="src/assets/collage/logo.png" className="w-[50%]" alt="" />
-            <p className="text-[16px] font-bold text-white">House Finder</p>
-          </div>
-
           <div className="col-span-12 mb-5 lg:mb-0  text-center lg:text-start lg:col-span-7">
             <p className="text-[17px] md:text-3xl text-white font-normal mt-8 md:mt-14 mb-7">
               A leading real estate developer in Egypt
@@ -34,7 +29,7 @@ export default function SignUp() {
           </div>
           <div className="col-span-12  lg:col-span-5">
           <div className=" bg-[#d9d9d9] shadow-md shadow-gray-500 w-full  lg:w-[80%] px-8 lg:ml-10 py-9 rounded-xl ">
-            <h2 className="uppercase text-center text-4xl mb-5 tracking-wider font-semibold text-[#0c283c]">login</h2>
+            <h2 className="uppercase text-center text-4xl mb-5 tracking-wider font-semibold text-[#0c283c]">Sign Up</h2>
             <form className="max-w-sm md:max-w-lg  lg:max-w-sm mx-auto ">
               <div className="mb-5">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

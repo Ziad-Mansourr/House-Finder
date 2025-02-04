@@ -18,10 +18,10 @@ export default function ResetPassword() {
         <div className="w-[90%] md:w-[60%] lg:w-[40%] grid grid-cols-12 m-auto pt-48">
           <h1 className='col-span-12 text-center text-3xl md:text-4xl lg:text-6xl mb-10 text-white'>Forgot Password</h1>
 
-          <div className="mb-5 col-span-12 relative">
+          <div className="mb-5 col-span-12 relative ">
             <label
               htmlFor="password"
-              className="block mb-2 text-sm font-medium text-white dark:text-white"
+              className="block mb-2  text-sm font-medium text-white dark:text-white"
             >
               New password
             </label>
