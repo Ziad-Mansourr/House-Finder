@@ -15,9 +15,6 @@ export default function About() {
   return (
     <>
 {/* part one */}
-
-
-
  <div className="mt-8 relative h-[520px] flex flex-col justify-between items-center"
         style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover',  backgroundPosition: 'center',}}>
         <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
@@ -51,9 +48,6 @@ export default function About() {
           </div>
         </div>
   </div> 
-
-
-
 {/* part two */}
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
   <div>
