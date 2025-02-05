@@ -18,48 +18,46 @@ export default function About() {
 <div className="mt-8 relative h-[520px] flex flex-col justify-between items-center"
     style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
-        <h1 className="text-2xl mb-4">اكتشف بيتك الجديد للإيجار</h1>
-        <button className="bg-white text-[11px] px-9 py-4 rounded-lg text-[#054E98]">عقارات</button>
-
-        {/* الصندوق الرئيسي */}
+        <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>
+        <button className="bg-white  px-8 py-3 rounded-lg text-[#054E98] text-[14px]">Properties</button>
         <div className="max-w-4xl bg-white p-6 rounded-lg shadow-lg mt-8 w-3/4 self-center relative z-10">
 
-            {/* الحاوية الخاصة بالمدخلات */}
             <div className="grid grid-cols-3 gap-4 text-right items-center">
 
-                {/* في الشاشات الصغيرة: إظهار إدخال الموقع وزر البحث فقط */}
                 <div className="col-span-3 flex flex-col sm:hidden items-center gap-4">
-                    <input type="text" className="w-full p-2 border rounded text-black text-[12px]" dir="rtl" placeholder="أدخل الموقع" />
-                    <button className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-[12px]">بحث</button>
+                    <input type="text" className="w-full p-2 border rounded text-black text-[12px]"  placeholder="Enter location" />
+                    <button className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-[15px]">Search</button>
                 </div>
 
-                {/* في الشاشات الكبيرة */}
                 <div className="col-span-3 hidden sm:flex items-center justify-start gap-2">
-                    <button className="text-white px-20 py-4 rounded-lg bg-[#054E98] text-[10px] mr-5">بحث</button>
-                    <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[12px]" dir="rtl" placeholder="أدخل الموقع" />
-                    <span className="w-[80px] lg:w-[120px] text-[#054E98] text-[17px] pr-5">للإيجار</span>
+                <span className="w-[80px] lg:w-[120px] text-[#054E98] text-[23px] font-semibold pr-6">For Rent</span>
+
+                    <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[14px]"  placeholder="Enter location" />
+                    
+                    <button className="text-white px-14 py-4 rounded-lg bg-[#054E98] text-[11px] ml-5">Search</button>
+
                 </div>
 
-                {/* إخفاء باقي الحقول في الشاشات الصغيرة */}
                 <div className="sm:flex hidden">
-                    <select className="w-full p-2 border rounded z-10 text-black text-[12px] bg-white" dir="rtl">
-                        <option value="" disabled selected>سكني</option>
-                        <option value="شقة" className="text-[17px]">شقة</option>
-                        <option value="غرفة" className="text-[17px]">غرفة</option>
+                    <select className="w-full p-2 border rounded z-10 text-black text-[13px] bg-white">
+                        <option value="" disabled selected>Residential</option>
+                        <option value="Apartment" className="text-[17px]">Apartment</option>
+                        <option value="Room" className="text-[17px]">Room</option>
                     </select>
                 </div>
 
                 <div className="flex-col items-center sm:flex hidden">
-                    <input type="number" className="w-full p-2 border rounded z-10 text-black text-[12px]" placeholder="عدد الغرف & الحمامات" dir="rtl" />
+                    <input type="number" className="w-full p-2 border rounded z-10 text-black text-[13px]" placeholder="Number of rooms & bathrooms"  />
                 </div>
 
                 <div className="sm:flex hidden">
-                    <input type="number" className="w-full p-2 border rounded z-10 text-black text-[12px]" placeholder="السعر (بالدولار)" dir="rtl" />
+                    <input type="number" className="w-full p-2 border rounded z-10 text-black text-[13px]" placeholder="Price (in dollars)" />
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 {/* part two */}
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
@@ -124,54 +122,18 @@ export default function About() {
 </div>
 
 {/* part four */}
-<footer class=" bottom-0 left-0 z-20 w-full p-4 bg-[#054E98] shadow-sm md:flex md:items-center
+<footer className=" w-full pt-1 bg-[#054E98] shadow-sm md:flex md:items-center 
  md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-        <div className="flex pl-9">
-        <img src={play} alt="" className="w-24 h-auto" />
-        <img src={os} alt="" className="w-24 h-auto" />
-          </div>
-   
-    <div className="pr-9 text-[#DEDEDE] text-[15px] leading-[37px]">
-        <span className="pl-3">نبذة عنا</span> | <span className="pr-3 pl-3">اتصل بنا</span>| <span className="pl-3 pr-3">سياسة الخصوصية و الشروط</span>
-        <p className=" text-[13px] text-[#C1BFBF]">© 2024- 2025 HouseFinder.eg المنصة العقارية في مصر</p>
-      </div>
-</footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <div className="mx-auto overflow-hidden">
-  <div className="bg-[#054E98] flex justify-between mx-auto py-8 items-center">
-  <div className="flex items-center gap-1 pl-14">
-  <img src={play} alt="" className="w-24 h-auto" />
-  <img src={os} alt="" className="w-24 h-auto" />
-</div>
-    <div>
-      <h5 className="pr-14 text-[#DEDEDE] text-[15px] leading-[37px]">
-        <span className="pl-3">نبذة عنا</span> | <span className="pr-3 pl-3">اتصل بنا</span>| <span className="pl-3 pr-3">سياسة الخصوصية و الشروط</span>
-      </h5>
-      <h5 dir="rtl" className="pr-14 text-[15px] text-[#DEDEDE]">
-        الدولة : <span className="inline-block w-[16px] h-[11px] bg-[#D9D9D9] mr-2 ml-3"></span> مصر
-      </h5>
-      <p className="pr-14 text-[13px] text-[#C1BFBF]">© 2024- 2025 HouseFinder.eg المنصة العقارية في مصر</p>
+        <div className="flex pr-9 md:order-2">
+        <img src={play} alt="Google Play" className="w-28 h-auto" />
+        <img src={os} alt="App Store" className="w-28 h-auto ml-3" />
     </div>
-  </div>
-</div> */}
 
-
-
-
+    <div className="pl-9 text-[#DEDEDE] text-[15px] leading-[37px] md:order-1">
+        <span className="pl-3 w-[15px]">About Us</span> | <span className="pr-3 pl-3">Contact Us</span> | <span className="pl-3 pr-3">Privacy Policy & Terms</span>
+        <p className="text-[13px] text-[#C1BFBF]">© 2024-2025 HouseFinder.eg - The Real Estate Platform in Egypt</p>
+    </div>
+</footer>
 
   </>
   );
