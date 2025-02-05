@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import toast, { Toaster } from 'react-hot-toast';
 import "flowbite";
-import Home from './components/Home/Home'
 import About from './components/About/About'
 function App() {
 
@@ -17,8 +16,7 @@ function App() {
   ])
   return (
     <>
- {/* <Home/> */}
- <About/>
+<About/>
     </>
   )
 }
