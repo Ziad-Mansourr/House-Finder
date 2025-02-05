@@ -15,39 +15,52 @@ export default function About() {
   return (
     <>
 {/* part one */}
- <div className="mt-8 relative h-[520px] flex flex-col justify-between items-center"
-        style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover',  backgroundPosition: 'center',}}>
-        <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
-          <h1 className="text-2xl mb-4">اكتشف بيتك الجديد للإيجار</h1>
-          <button className="bg-white text-[11px] px-9 py-4 rounded-lg text-[#054E98]">عقارات</button>
-          <div className="max-w-4xl bg-white p-6 rounded-lg shadow-lg mt-8 w-3/4 self-center relative z-10">
-            <div className="grid grid-cols-3 gap-4 text-right items-center">
-              <div className="col-span-3 flex items-center justify-start gap-2">
-                <button className="text-white px-20 py-4 rounded-lg bg-[#054E98] text-[10px] mr-5">بحث</button>
-                <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[12px]" dir="rtl" placeholder="أدخل الموقع"/>
-                <span className="w-[80px] lg:w-[120px] text-[#054E98] text-[17px] pr-5">للإيجار</span>
-              </div>
-           
-             <div>
-               <select className="w-full p-2 border rounded z-10 text-black text-[12px] bg-white" dir="rtl">
-                 <option value="" disabled selected>سكني  </option>
-                 <option value="شقة" className="text-[17px]">شقة</option>
-                 <option value="غرفة" className="text-[17px]">غرفة</option>
-               </select>
-             </div>
+<div className="mt-8 relative h-[520px] flex flex-col justify-between items-center"
+    style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
+        <h1 className="text-2xl mb-4">اكتشف بيتك الجديد للإيجار</h1>
+        <button className="bg-white text-[11px] px-9 py-4 rounded-lg text-[#054E98]">عقارات</button>
 
-              <div className="flex flex-col items-center">
-                <input type="number" className="w-full p-2 border rounded z-10
-                 text-black text-[12px]" placeholder="عدد الغرف & الحمامات" dir="rtl"/>
-              </div>
-              <div>
-                <input type="number" className="w-full p-2 border rounded z-10
-                 text-black text-[12px] " placeholder="السعر (بالدولار)" dir="rtl"/>
-              </div>
+        {/* الصندوق الرئيسي */}
+        <div className="max-w-4xl bg-white p-6 rounded-lg shadow-lg mt-8 w-3/4 self-center relative z-10">
+
+            {/* الحاوية الخاصة بالمدخلات */}
+            <div className="grid grid-cols-3 gap-4 text-right items-center">
+
+                {/* في الشاشات الصغيرة: إظهار إدخال الموقع وزر البحث فقط */}
+                <div className="col-span-3 flex flex-col sm:hidden items-center gap-4">
+                    <input type="text" className="w-full p-2 border rounded text-black text-[12px]" dir="rtl" placeholder="أدخل الموقع" />
+                    <button className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-[12px]">بحث</button>
+                </div>
+
+                {/* في الشاشات الكبيرة */}
+                <div className="col-span-3 hidden sm:flex items-center justify-start gap-2">
+                    <button className="text-white px-20 py-4 rounded-lg bg-[#054E98] text-[10px] mr-5">بحث</button>
+                    <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[12px]" dir="rtl" placeholder="أدخل الموقع" />
+                    <span className="w-[80px] lg:w-[120px] text-[#054E98] text-[17px] pr-5">للإيجار</span>
+                </div>
+
+                {/* إخفاء باقي الحقول في الشاشات الصغيرة */}
+                <div className="sm:flex hidden">
+                    <select className="w-full p-2 border rounded z-10 text-black text-[12px] bg-white" dir="rtl">
+                        <option value="" disabled selected>سكني</option>
+                        <option value="شقة" className="text-[17px]">شقة</option>
+                        <option value="غرفة" className="text-[17px]">غرفة</option>
+                    </select>
+                </div>
+
+                <div className="flex-col items-center sm:flex hidden">
+                    <input type="number" className="w-full p-2 border rounded z-10 text-black text-[12px]" placeholder="عدد الغرف & الحمامات" dir="rtl" />
+                </div>
+
+                <div className="sm:flex hidden">
+                    <input type="number" className="w-full p-2 border rounded z-10 text-black text-[12px]" placeholder="السعر (بالدولار)" dir="rtl" />
+                </div>
             </div>
-          </div>
         </div>
-  </div> 
+    </div>
+</div>
+
 {/* part two */}
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
   <div>
@@ -111,13 +124,6 @@ export default function About() {
 </div>
 
 {/* part four */}
-
-
-
-
-
-
-
 <footer class=" bottom-0 left-0 z-20 w-full p-4 bg-[#054E98] shadow-sm md:flex md:items-center
  md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
         <div className="flex pl-9">
