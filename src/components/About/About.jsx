@@ -69,7 +69,7 @@ export default function About() {
 </div>
 
 {/* part three */}
-<div className="p-10 w-[88%] mx-auto" >
+<div className="p-10 w-[88%] mx-auto mb-9" >
   <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <div className="relative">
@@ -111,7 +111,41 @@ export default function About() {
 </div>
 
 {/* part four */}
-<div className="mx-auto overflow-hidden">
+
+
+
+
+
+
+
+<footer class=" bottom-0 left-0 z-20 w-full p-4 bg-[#054E98] shadow-sm md:flex md:items-center
+ md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+        <div className="flex pl-9">
+        <img src={play} alt="" className="w-24 h-auto" />
+        <img src={os} alt="" className="w-24 h-auto" />
+          </div>
+   
+    <div className="pr-9 text-[#DEDEDE] text-[15px] leading-[37px]">
+        <span className="pl-3">نبذة عنا</span> | <span className="pr-3 pl-3">اتصل بنا</span>| <span className="pl-3 pr-3">سياسة الخصوصية و الشروط</span>
+        <p className=" text-[13px] text-[#C1BFBF]">© 2024- 2025 HouseFinder.eg المنصة العقارية في مصر</p>
+      </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* <div className="mx-auto overflow-hidden">
   <div className="bg-[#054E98] flex justify-between mx-auto py-8 items-center">
   <div className="flex items-center gap-1 pl-14">
   <img src={play} alt="" className="w-24 h-auto" />
@@ -127,7 +161,12 @@ export default function About() {
       <p className="pr-14 text-[13px] text-[#C1BFBF]">© 2024- 2025 HouseFinder.eg المنصة العقارية في مصر</p>
     </div>
   </div>
-</div>
+</div> */}
+
+
+
+
+
   </>
   );
 }
