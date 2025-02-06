@@ -5,7 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import toast, { Toaster } from 'react-hot-toast';
 import "flowbite";
-import About from './components/About/About'
+import Footer from './components/footer/footer'
+import Home from './components/Home/Home'
 function App() {
 
   const queryClient = new QueryClient()
@@ -16,7 +17,8 @@ function App() {
   ])
   return (
     <>
-<About/>
+<Home/>
+<Footer/>
     </>
   )
 }
