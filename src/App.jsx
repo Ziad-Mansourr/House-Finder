@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import toast, { Toaster } from 'react-hot-toast';
 import "flowbite";
-import Footer from './components/footer/footer'
+import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
 function App() {
 
