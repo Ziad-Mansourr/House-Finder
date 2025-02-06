@@ -6,12 +6,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import toast, { Toaster } from 'react-hot-toast';
 import "flowbite";
 import Login from './components/Login/Login'
+import Apartment from './components/apartment/apartment'
 function App() {
 
   const queryClient = new QueryClient()
    
   let router = createHashRouter([
-      {index:true , element: <Login/>}
+      {index:true , element: <Apartment/>}
+      // {index:true , element: <Login/>}
   ])
   return (
     <>
