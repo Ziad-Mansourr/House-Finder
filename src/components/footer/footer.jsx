@@ -13,7 +13,7 @@ export default function Footer() {
       </div>
   
       <div className="pl-9 text-[#DEDEDE] text-[15px] leading-[37px] md:order-1">
-          <span className="pl-3 w-[15px]">About Us</span> | <span className="pr-3 pl-3">Contact Us</span> | <span className="pl-3 pr-3">Privacy Policy & Terms</span>
+          <span className="pr-3 w-[15px]">About Us</span> | <span className="pr-3 pl-3">Contact Us</span> | <span className="pl-3 pr-3">Privacy Policy & Terms</span>
           <p className="text-[13px] text-[#C1BFBF]">© 2024-2025 HouseFinder.eg - The Real Estate Platform in Egypt</p>
       </div>
   </footer>
