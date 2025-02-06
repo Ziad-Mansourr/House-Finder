@@ -19,14 +19,14 @@ export default function About() {
     style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
         <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>
-        <button className="bg-white  px-8 py-3 rounded-lg text-[#054E98] text-[14px]">Properties</button>
+        <button className="bg-white  px-8 py-3 rounded-lg text-[#054E98] text-[14px] hover:bg-blue-800  hover:text-white duration-300">Properties</button>
         <div className="max-w-4xl bg-white p-6 rounded-lg shadow-lg mt-8 w-3/4 self-center relative z-10">
 
             <div className="grid grid-cols-3 gap-4 text-right items-center">
 
                 <div className="col-span-3 flex flex-col sm:hidden items-center gap-4">
                     <input type="text" className="w-full p-2 border rounded text-black text-[12px]"  placeholder="Enter location" />
-                    <button className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-[15px]">Search</button>
+                    <button className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-[15px] hover:bg-blue-800 duration-300">Search</button>
                 </div>
 
                 <div className="col-span-3 hidden sm:flex items-center justify-start gap-2">
@@ -34,7 +34,7 @@ export default function About() {
 
                     <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[14px]"  placeholder="Enter location" />
                     
-                    <button className="text-white px-14 py-4 rounded-lg bg-[#054E98] text-[11px] ml-5">Search</button>
+                    <button className="text-white px-14 py-4 rounded-lg bg-[#054E98] text-[11px] ml-5 hover:bg-blue-800 duration-300">Search</button>
 
                 </div>
 
@@ -122,8 +122,8 @@ export default function About() {
 </div>
 
 {/* part four */}
-<footer className=" w-full pt-1 bg-[#054E98] shadow-sm md:flex md:items-center 
- md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+<footer className=" w-full p-4 bg-[#054E98] shadow-sm md:flex md:items-center 
+            md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
         <div className="flex pr-9 md:order-2">
         <img src={play} alt="Google Play" className="w-28 h-auto" />
         <img src={os} alt="App Store" className="w-28 h-auto ml-3" />
