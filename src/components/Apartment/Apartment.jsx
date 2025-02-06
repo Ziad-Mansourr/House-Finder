@@ -1191,7 +1191,7 @@ export default function Apartment() {
                   </h4>
                 </div>
                 <h4>
-                  <span className="font-bold">Area: </span>87 Sq.M
+                  <span className="font-bold pl-3">Area: </span>87 Sq.M
                 </h4>
               </div>
               <div className="flex items-center">
@@ -1279,7 +1279,7 @@ export default function Apartment() {
                   </h4>
                 </div>
                 <h4>
-                  <span className="font-bold">Area: </span>87 Sq.M
+                  <span className="font-bold pl-3">Area: </span>87 Sq.M
                 </h4>
               </div>
               <div className="flex items-center">
@@ -1367,7 +1367,7 @@ export default function Apartment() {
                   </h4>
                 </div>
                 <h4>
-                  <span className="font-bold">Area: </span>87 Sq.M
+                  <span className="font-bold  pl-3">Area: </span>87 Sq.M
                 </h4>
               </div>
               <div className="flex items-center">
@@ -1401,6 +1401,8 @@ export default function Apartment() {
           </div>
         </div>
       </section>
+
+      
     </>
   );
 }
