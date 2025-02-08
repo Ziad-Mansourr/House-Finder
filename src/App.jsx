@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import toast, { Toaster } from 'react-hot-toast';
 import "flowbite";
+import Footer from './components/Footer/Footer'
+import Home from './components/Home/Home'
 import Login from './components/Login/Login'
 import Apartment from './components/apartment/apartment'
 import SignUp from './components/SignUp/SignUp'
@@ -19,6 +21,7 @@ function App() {
   let router = createHashRouter([
     {
       path: '', element: <Layout /> , children: [
+      {index:true , element:<Home/>}
       {path: 'apartment', element: <Apartment/>}                         
       {path: 'forgetPassword', element: <ForgetPassword />},
       {path: 'login', element: <Login/>}
