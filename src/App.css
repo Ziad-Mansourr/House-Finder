@@ -41,5 +41,43 @@
 }
 
 .active{
-  color: #0c0;
+  color: #156faf;
+  position: relative;
+}
+.active::before{
+  content: "";
+  position: absolute;
+  width: 100% !important;
+  height: 2px;
+  background-color: #156faf;
+  bottom: -2px;
+}
+.actLink{
+  position: relative;
+}
+.actLink::before{
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #156faf;
+  bottom: -2px;
+  transition: all .5s;
+}
+.actLink:hover::before{
+  width: 100%;
+}
+.actLink:hover{
+  color: #156faf;
+}
+
+.vip button{
+   width: 44px;
+   height: 44px;
+   border-radius: 50%;
+  padding: 11px;
+}
+
+.ay button{
+   padding: 0; 
 }
