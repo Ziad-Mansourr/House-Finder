@@ -64,11 +64,11 @@ export default function Login() {
               >
                 Login
               </button>
-              <Link className="underline text-[#054E98] mb-3">Forget Password?</Link>
+              <Link to={'/forgetPassword'}  className="underline text-[#054E98] mb-3">Forget Password?</Link>
               <div className="flex ">
 
               <span className="mr-2">Don't have an account?</span> 
-              <Link className="underline text-[#054E98]">Sign Up</Link>
+              <Link to={'/SignUp'} className="underline text-[#054E98]">Sign Up</Link>
               </div>
 
               </div>

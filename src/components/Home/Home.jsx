@@ -9,11 +9,13 @@ import Aswan from "../../img/Aswan University.png"
 import Helwan  from "../../img/Helwan University.png"
 import NCT  from "../../img/New Cairo Technological University.png"
 import assiut  from "../../img/Assiut University.png"
+import { Link, NavLink } from "react-router-dom";
+
 export default function Home() {
   return (
     <>
 {/* part one */}
-<div className="mt-8 relative h-[520px] flex flex-col justify-between items-center"
+<div className="mt-0 relative h-[520px] flex flex-col justify-between items-center"
     style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
         <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>
@@ -24,7 +26,7 @@ export default function Home() {
 
                 <div className="col-span-3 flex flex-col sm:hidden items-center gap-4">
                     <input type="text" className="w-full p-2 border rounded text-black text-[12px]"  placeholder="Enter location" />
-                    <button className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-[15px] hover:bg-blue-800 duration-300">Search</button>
+                    <Link to={ '/apartment' } className="text-white w-full px- 5 py-4 rounded-lg bg-[#054E98] text-center text-[14px] hover:bg-blue-800 duration-300">Search</Link>
                 </div>
 
                 <div className="col-span-3 hidden sm:flex items-center justify-start gap-2">
@@ -32,13 +34,13 @@ export default function Home() {
 
                     <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[14px]"  placeholder="Enter location" />
                     
-                    <button className="text-white px-14 py-4 rounded-lg bg-[#054E98] text-[11px] ml-5 hover:bg-blue-800 duration-300">Search</button>
+                    <Link to={'/apartment'} className="text-white rounded-lg bg-[#054E98] px-10 py-3 text-[15px] ml-5 hover:bg-blue-800 duration-300">Search</Link>
 
                 </div>
 
                 <div className="sm:flex hidden">
                     <select className="w-full p-2 border rounded z-10 text-black text-[13px] bg-white">
-                        <option value="" disabled selected>Residential</option>
+                        <option value="f" disabled selected>Residential</option>
                         <option value="Apartment" className="text-[17px]">Apartment</option>
                         <option value="Room" className="text-[17px]">Room</option>
                     </select>

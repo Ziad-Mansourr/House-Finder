@@ -44,7 +44,7 @@ export default function Apartment() {
               placeholder="Enter location"
               className="px-8 rounded-md w-full "
             />
-            <i className="fa-solid fa-location-dot absolute top-3 left-3"></i>
+            <i className ="fa-solid fa-location-dot absolute top-3 left-3"></i>
           </div>
           <div className="flex border-2 border-gray-100  shadow-sm py-1 px-2 rounded-lg">
             <div>
@@ -1184,10 +1184,10 @@ export default function Apartment() {
                 <h4 className="border-r-2 pr-4 font-semibold">Villa </h4>
                 <div className="flex border-r-2 px-4">
                   <h4 className="pr-2">
-                    <i class="fa-solid fa-bed "></i> 2
+                    <i className="fa-solid fa-bed "></i> 2
                   </h4>
                   <h4>
-                    <i class="fa-solid fa-bath"></i> 3
+                    <i className="fa-solid fa-bath"></i> 3
                   </h4>
                 </div>
                 <h4>
@@ -1203,22 +1203,22 @@ export default function Apartment() {
               </h4>
               <div className="md:my-8 my-4 flex items-center">
                 <a
-                  href="tel:+"
+                  href="tel:+01155223832"
                   className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
                 >
-                  <i class="fa-solid fa-phone"></i> Call
+                  <i className="fa-solid fa-phone"></i> Call
                 </a>
                 <a
                   href="mailto:"
                   className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
                 >
-                  <i class="fa-regular fa-envelope"></i> Email
+                  <i className="fa-regular fa-envelope"></i> Email
                 </a>
                 <a
                   href=""
                   className="border-2 border-blue-500  py-1 px-6 rounded-xl mr-5 text-blue-900 text-2xl bg-slate-200"
                 >
-                  <i class="fa-brands fa-whatsapp"></i>{" "}
+                  <i className="fa-brands fa-whatsapp"></i>{" "}
                 </a>
               </div>
             </div>
@@ -1272,10 +1272,10 @@ export default function Apartment() {
                 <h4 className="border-r-2 pr-4 font-semibold">Villa </h4>
                 <div className="flex border-r-2 px-4">
                   <h4 className="pr-2">
-                    <i class="fa-solid fa-bed "></i> 2
+                    <i className="fa-solid fa-bed "></i> 2
                   </h4>
                   <h4>
-                    <i class="fa-solid fa-bath"></i> 3
+                    <i className="fa-solid fa-bath"></i> 3
                   </h4>
                 </div>
                 <h4>
@@ -1283,7 +1283,7 @@ export default function Apartment() {
                 </h4>
               </div>
               <div className="flex items-center">
-                <i class="fa-solid fa-location-dot pr-2"></i>
+                <i className="fa-solid fa-location-dot pr-2"></i>
                 <h4>New Cairo, Cairo</h4>
               </div>
               <h4 className="mr-2 md:mt-4 text-blue-700">
@@ -1294,19 +1294,19 @@ export default function Apartment() {
                   href="tel:+"
                   className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
                 >
-                  <i class="fa-solid fa-phone"></i> Call
+                  <i className="fa-solid fa-phone"></i> Call
                 </a>
                 <a
                   href="mailto:"
                   className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
                 >
-                  <i class="fa-regular fa-envelope"></i> Email
+                  <i className="fa-regular fa-envelope"></i> Email
                 </a>
                 <a
                   href=""
                   className="border-2 border-blue-500  py-1 px-6 rounded-xl mr-5 text-blue-900 text-2xl bg-slate-200"
                 >
-                  <i class="fa-brands fa-whatsapp"></i>{" "}
+                  <i className="fa-brands fa-whatsapp"></i>{" "}
                 </a>
               </div>
             </div>
@@ -1360,10 +1360,10 @@ export default function Apartment() {
                 <h4 className="border-r-2 pr-4 font-semibold">Villa </h4>
                 <div className="flex border-r-2 px-4">
                   <h4 className="pr-2">
-                    <i class="fa-solid fa-bed "></i> 2
+                    <i className="fa-solid fa-bed "></i> 2
                   </h4>
                   <h4>
-                    <i class="fa-solid fa-bath"></i> 3
+                    <i className="fa-solid fa-bath"></i> 3
                   </h4>
                 </div>
                 <h4>
@@ -1371,7 +1371,7 @@ export default function Apartment() {
                 </h4>
               </div>
               <div className="flex items-center">
-                <i class="fa-solid fa-location-dot pr-2"></i>
+                <i className="fa-solid fa-location-dot pr-2"></i>
                 <h4>New Cairo, Cairo</h4>
               </div>
               <h4 className="mr-2 md:mt-4 text-blue-700">
@@ -1382,19 +1382,19 @@ export default function Apartment() {
                   href="tel:+"
                   className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
                 >
-                  <i class="fa-solid fa-phone"></i> Call
+                  <i className="fa-solid fa-phone"></i> Call
                 </a>
                 <a
                   href="mailto:"
                   className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
                 >
-                  <i class="fa-regular fa-envelope"></i> Email
+                  <i className="fa-regular fa-envelope"></i> Email
                 </a>
                 <a
                   href=""
                   className="border-2 border-blue-500  py-1 px-6 rounded-xl mr-5 text-blue-900 text-2xl bg-slate-200"
                 >
-                  <i class="fa-brands fa-whatsapp"></i>{" "}
+                  <i className="fa-brands fa-whatsapp"></i>{" "}
                 </a>
               </div>
             </div>
@@ -1402,7 +1402,6 @@ export default function Apartment() {
         </div>
       </section>
 
-      
     </>
   );
 }

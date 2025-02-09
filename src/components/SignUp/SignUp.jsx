@@ -111,7 +111,7 @@ export default function SignUp() {
                   <Link className="border-[2px] w-[95%] mb-3 hover:bg-blue-400 border-blue-400 p-2 rounded-3xl text-center transition-all duration-200" > <i className="fa-brands fa-facebook mr-1 text-white"></i> Join With Facebook </Link>
                   <div className="flex ">
                     <span className="mr-2">Don't have an account?</span>
-                    <Link className="underline text-[#054E98]">Sign in</Link>
+                    <Link to={'/login'} className="underline text-[#054E98]">Sign in</Link>
                   </div>
                 </div>
               </form>
