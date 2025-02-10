@@ -13,6 +13,8 @@ import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 import Layout from './components/Layout/Layout'
 import VerifyCode from './components/VerifyCode/VerifyCode'
 import ResetPassword from './components/ResetPassword/ResetPassword'
+import Profile from './components/Profile/Profile.jsx'
+import Setting from './components/Setting/Setting.jsx'
 
 function App() {
 
@@ -27,7 +29,9 @@ function App() {
       {path: 'login', element: <Login />},
       {path: 'signUp', element: <SignUp />},
       {path: 'verifyCode', element: <VerifyCode />},
-      {path: 'resetPass', element: <ResetPassword />} 
+      {path: 'resetPass', element: <ResetPassword />} ,
+      {path: 'profile', element: <Profile/>},
+      {path: 'setting', element: <Setting/>},
 
     ]}
 
