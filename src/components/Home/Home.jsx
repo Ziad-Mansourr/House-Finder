@@ -19,17 +19,18 @@ export default function Home() {
     style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
         <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>
-        <button className="bg-white  px-8 py-3 rounded-lg text-[#054E98] text-[14px] hover:bg-blue-800  hover:text-white duration-300">Properties</button>
-        <div className="max-w-4xl bg-white p-6 rounded-lg shadow-lg mt-8 w-3/4 self-center relative z-10">
+        <button className="bg-white  px-8 py-3  text-[#054E98] text-[14px] rounded-tr-2xl rounded-bl-2xl">Properties</button>
+
+        <div className="max-w-4xl bg-white p-6 py-10 rounded-lg shadow-lg mt-8  self-center relative z-10 w-[90%]">
 
             <div className="grid grid-cols-3 gap-4 text-right items-center">
 
                 <div className="col-span-3 flex flex-col sm:hidden items-center gap-4">
                     <input type="text" className="w-full p-2 border rounded text-black text-[12px]"  placeholder="Enter location" />
-                    <Link to={ '/apartment' } className="text-white w-full px- 5 py-4 rounded-lg bg-[#054E98] text-center text-[14px] hover:bg-blue-800 duration-300">Search</Link>
+                    <Link to={ '/apartment' } className="text-white w-full px- 5 py-4 rounded-lg bg-[#054E98] text-center text-[14px] hover:bg-blue-900 duration-300">Search</Link>
                 </div>
 
-                <div className="col-span-3 hidden sm:flex items-center justify-start gap-2">
+                <div className="col-span-3 hidden sm:flex items-center justify-start gap-2 mb-3">
                 <span className="w-[80px] lg:w-[120px] text-[#054E98] text-[23px] font-semibold pr-6">For Rent</span>
 
                     <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[14px]"  placeholder="Enter location" />
@@ -80,7 +81,65 @@ export default function Home() {
 </div>
 
 {/* part three */}
-<div className="p-10 w-[88%] mx-auto mb-9" >
+
+<div className="p-10 w-[88%] mx-auto mb-9">
+  <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="relative group">
+      <img src={cairo} alt="Cairo University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div>
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Cairo University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={AinShams} alt="Ain Shams University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div> 
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Ain Shams University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={Alexandria} alt="Alexandria University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div>
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Alexandria University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={Aswan} alt="Aswan University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div> 
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Aswan University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={Helwan} alt="Helwan University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div> 
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Helwan University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={NCT} alt="New Cairo Technological University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div>
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        New Cairo Technological University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={assiut} alt="Assiut University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div> 
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Assiut University
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{/* <div className="p-10 w-[88%] mx-auto mb-9" >
   <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <div className="relative">
@@ -119,7 +178,7 @@ export default function Home() {
       <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Assiut University</div>
     </div>
   </div>
-</div>
+</div> */}
   </>
   );
 }
