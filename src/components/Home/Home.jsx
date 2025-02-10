@@ -136,49 +136,6 @@ export default function Home() {
     </div>
   </div>
 </div>
-
-
-
-{/* <div className="p-10 w-[88%] mx-auto mb-9" >
-  <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <div className="relative">
-      <img src={cairo} alt="Cairo University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Cairo University</div>
-    </div>
-    <div className="relative">
-      <img src={AinShams} alt="Ain Shams University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div> 
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Ain Shams University</div>
-    </div>
-    <div className="relative">
-      <img src={Alexandria} alt="Alexandria University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Alexandria University</div>
-    </div>
-    <div className="relative">
-      <img src={Aswan} alt="Aswan University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div> 
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Aswan University</div>
-    </div>
-    <div className="relative">
-      <img src={Helwan} alt="Helwan University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div> 
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Helwan University</div>
-    </div>
-    <div className="relative">
-      <img src={NCT} alt="New Cairo Technological University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">New Cairo Technological University</div>
-    </div>
-    <div className="relative">
-      <img src={assiut} alt="Assiut University" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black opacity-50"></div> 
-      <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">Assiut University</div>
-    </div>
-  </div>
-</div> */}
   </>
   );
 }
