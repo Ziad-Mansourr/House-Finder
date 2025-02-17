@@ -5,21 +5,56 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import toast, { Toaster } from 'react-hot-toast';
 import "flowbite";
+
 import Details from './components/Details/Details'
+import Home from './components/Home/Home'
+import Apartment from './components/Apartment/Apartment.jsx'
+import Login from './components/Login/Login'
+import SignUp from './components/SignUp/SignUp'
+import ForgetPassword from './components/ForgetPassword/ForgetPassword'
+import Layout from './components/Layout/Layout'
+import VerifyCode from './components/VerifyCode/VerifyCode'
+import ResetPassword from './components/ResetPassword/ResetPassword'
+
+import Profile from './components/Profile/Profile.jsx'
+import Setting from './components/Setting/Setting.jsx'
+
+
+import Sell from './components/sell/sell.jsx'
+
+>>>>>>> main
 function App() {
 
   const queryClient = new QueryClient()
    
   let router = createHashRouter([
     {
-    }
+    path: '', element: <Layout /> , children: [
+      {index: true , element:<Home />},
+      {path: 'apartment', element: <Apartment />},                 
+      {path: 'sell', element: <Sell />},
+      {path: 'forgetPassword', element: <ForgetPassword />},
+      {path: 'login', element: <Login />},
+      {path: 'signUp', element: <SignUp />},
+      {path: 'verifyCode', element: <VerifyCode />},
+      {path: 'resetPass', element: <ResetPassword />} ,
+
+      {path: 'profile', element: <Profile/>},
+      {path: 'setting', element: <Setting/>},
+//       {path: 'apartmentDetailes', element:  <ApartmentDetails/>},
+// {path: 'favourites', element:  <Favourites/>},
+    ]}
+
   ])
+
   return (
     <>
-    <ApartmentDetails/>
-    <Favourites/>
+
+    
+
+        <RouterProvider router={router}></RouterProvider>
+
     </>
   )
 }
-
 export default App
