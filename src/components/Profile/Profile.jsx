@@ -4,133 +4,112 @@ import hom from "../../img/home2.jpeg";
 import home from "../../img/home3.peg.jpeg";
 import ho from "../../img/home4.jpg";
 import R from "../../img/R.jpeg";
-import profile from "../../img/Profile.jpeg";
 
 export default function Profile() {
- const [count, setCount] = useState(0)
- function incress(){
-  setCount(count+1)
- }
- function dicress(){
-  setCount(count-1)
- }
+  const [count, setCount] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const images = [R, oip, home, hom, oip, ho, home];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const increase = () => setCount(count + 1);
+  const decrease = () => count > 0 && setCount(count - 1);
+
   return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto w-[80%] my-10 gap-4">
-
-        <div className="max-w-sm border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700 rounded-2xl">
-          <div className="carousel w-full h-60">
-            <div className="carousel-item w-full h-full">
-              <img
-                src={R}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item w-full h-full">
-              <img
-                src={oip}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item w-full h-full">
-              <img
-                src={home}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item w-full h-full">
-              <img
-                src={hom}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item w-full h-full">
-              <img
-                src={oip}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item w-full h-full">
-              <img
-                src={ho}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item w-full h-full mb-0">
-              <img
-                src={home}
-                className="w-full h-full object-cover rounded-t-2xl"
-                alt=""
-              />
-            </div>
-          </div>
-      <div className='p-4'>
-  <div className="flex items-center justify-between">
-    <h2 className="text-[20px] font-bold">EGP 7,500,00</h2>
-    
-
-       <div className="flex items-center space-x-3">
-        <i className="fa-solid fa-edit text-xl text-blue-600 cursor-pointer"></i>
-        <i className="fa-solid fa-trash text-xl text-red-600 cursor-pointer"></i>
-    </div>
-  </div>
-
-  <h3 className="text-[18px] leading-[16px] font-semibold pt-3">View your villa in New Zayed</h3>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto w-[80%] my-10 gap-4">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
   
-  <div className="flex mt-4">
-    <span className="pr-5 font-semibold text-xl">
-      <i className="fa-solid fa-bed pr-2"></i>5
-    </span>
-    <span className="font-semibold text-xl">
-      <i className="fa-solid fa-bath pr-2 " ></i>4
-    </span>
-    <h4 className="ml-8 font-bold text-[19px]">60 sqm</h4>
-  </div>
-  <div className="flex pt-8">
-    <h5 className="text-[25px] leading-[16px]">The remaining beds</h5>
-    <div className="flex justify-between items-center ml-5">
-      <i className="fa-solid fa-circle-plus text-xl pr-3" onClick={incress} ></i>
-      <h4 className="font-semibold text-xl">{count}</h4>
-      <i className="fa-solid fa-circle-minus text-xl pl-3" onClick={dicress}></i>
-    </div>
-  </div>
-
-  <h5 className="text-[19px] mt-7 font-semibold leading-[16px]">3 days ago</h5>
-</div>
-
-
-
-
-
-
-
-          {/* <div className='p-4'>
-            <h2 className='text-[20px] font-bold' >EGP 7,500,00</h2>
-            <h3 className='text-[17px] font-semibold pt-2'>View your villa in New Zayed</h3>
-            <div className='flex mt-3'>
-              <span className='pr-5 font-semibold text-xl'><i className="fa-solid fa-bed pr-2"></i>5</span>
-              <span className='font-semibold text-xl'><i className="fa-solid fa-bath pr-2"></i>4</span>
-              <h4 className='ml-8 font-bold text-[19px] '>60 sqm</h4>
+        <div className="relative w-full h-60 overflow-hidden">
+          {images.map((img, index) => (
+            <div key={index}
+              className={`absolute inset-0 w-full h-full transition-transform duration-500 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
+                }`}>
+              <img src={img} alt="" className="w-full h-full object-cover" />
             </div>
-            <div className='flex pt-8'>
-              <h5 className='text-[25px] leading-[16px]'>The remaining beds</h5>
-              <div className='flex justify-between items-center ml-5'>
-              <i class="fa-solid fa-circle-plus text-xl pr-3"></i>
-           <h4 className='font-semibold text-xl '> 1</h4>
-              <i class="fa-solid fa-circle-minus text-xl pl-3"></i>
-              </div>
-            </div>
-            <h5 className='text-[19px] mt-7 font-semibold leading-[16px]'>3 day ago</h5>
-          </div> */}
+          ))}
+
+    
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50
+             text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-300" >
+            ❮
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50
+             text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-300">
+            ❯
+          </button>
+
+      
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-4">
+            {images.map((_, index) => (
+              <span
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 
+                ${index === currentSlide ? "bg-white border border-white scale-110" : "bg-gray-400"}`}/>
+            ))}
+          </div>
         </div>
 
+        <div className="p-4 ">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold text-gray-800">EGP 7,500,00</h2>
+            <div className="flex items-center space-x-3">
+              <i className="fa-solid fa-edit text-xl text-blue-600 cursor-pointer
+               hover:text-blue-700 transition-colors duration-300"></i>
+              <i className="fa-solid fa-trash text-xl text-red-600 cursor-pointer
+               hover:text-red-700 transition-colors duration-300"></i>
+            </div>
+          </div>
+
+
+          <h3 className="text-lg font-semibold text-gray-700 mt-2">
+            View your villa in New Zayed
+          </h3>
+          <div className="flex items-center mt-4 space-x-4">
+            <span className="flex items-center text-gray-600">
+              <i className="fa-solid fa-bed text-lg mr-2"></i>5
+            </span>
+            <span className="flex items-center text-gray-600">
+              <i className="fa-solid fa-bath text-lg mr-2"></i>4
+            </span>
+            <span className="flex items-center text-gray-600">
+              <i className="fa-solid fa-ruler-combined text-lg mr-2"></i>60 sqm
+            </span>
+          </div>
+    
+          <div className="flex items-center justify-between mt-6">
+            <h5 className="text-lg font-semibold text-gray-700">
+              The remaining beds
+            </h5>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={increase}
+                className="text-blue-600 hover:text-blue-700 transition-colors duration-300">
+                <i className="fa-solid fa-circle-plus text-xl"></i>
+              </button>
+              <span className="text-xl font-semibold text-gray-800">{count}</span>
+              <button
+                onClick={decrease}
+                className="text-red-600 hover:text-red-700 transition-colors duration-300" >
+                <i className="fa-solid fa-circle-minus text-xl"></i>
+              </button>
+            </div>
+          </div>
+
+          <h5 className="text-lg text-gray-500 mt-4">3 days ago</h5>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

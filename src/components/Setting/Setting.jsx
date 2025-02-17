@@ -34,13 +34,10 @@ export default function ProfileSettings() {
         {/* Name Input */}
         <div className="mb-8">
           <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-          <input
-            type="text"
-            value={name}
+          <input type="text" value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Name"
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
         </div>
 
         <div className="mb-8">
@@ -50,49 +47,37 @@ export default function ProfileSettings() {
           <div className="mb-6">
             <div className="flex items-center mb-2 w-full"> {/* Added w-full here */}
               <div className="inline-flex items-center w-full"> {/* Added w-full here */}
-                <span className="bg-gray-100 px-3 py-3 border-y border-l border-gray-300 text-gray-500 rounded-l-md">
-                  +20
-                </span>
-                <input
-                  type="tel"
-                  value={phone}
+                <span className="bg-gray-100 px-3 py-3 border-y border-l border-gray-300 text-gray-500 rounded-l-md">+20</span>
+                <input type="tel" value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Enter Phone Number"
                   className="w-full p-3 border border-gray-300 rounded-r-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" // Changed flex-1 to w-full
                   pattern="[0-9]{10}"
-                  title="Please enter a 10-digit phone number"
-                />
+                  title="Please enter a 10-digit phone number" />
               </div>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              This is the number for buyers contacts, reminders, and other notifications.
-            </p>
+              This is the number for buyers contacts, reminders, and other notifications.</p>
           </div>
 
           {/* Email Input */}
           <div className="mb-6">
-            <input
-              type="email"
-              value={email}
+            <input type="email"  value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Email Address"
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
             <p className="text-sm text-gray-500 mt-2">
               We won't reveal your email to anyone else nor use it to send you spam
             </p>
           </div>
         </div>
 
-
-        {/* Save Profile Button */}
+        {/* Save Profile  */}
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium"
-          >
-            Save changes
-          </button>
+            className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium">
+            Save changes</button>
         </div>
       </form>
 
@@ -103,13 +88,10 @@ export default function ProfileSettings() {
         {/* Password Inputs */}
         <div className="mb-8">
           <label className="block text-sm font-medium text-gray-700 mb-2">Enter Password</label>
-          <input
-            type="password"
-            value={password}
+          <input type="password"  value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="New Password"
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
           <p className="mt-2 text-sm text-gray-500">
             Use a minimum of 8 characters with at least 1 number, 1 special character, 1 letter
           </p>
@@ -117,25 +99,20 @@ export default function ProfileSettings() {
 
         <div className="mb-8">
           <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
-          <input
-            type="password"
-            value={confirmPassword}
+          <input type="password" value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
         </div>
 
-        {/* Password Update Button */}
+        {/* Password Update  */}
         <div className="flex justify-end mb-12">
-          <button
-            type="submit"
+          <button type="submit"
             className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium">
-            Update Password
-          </button>
+            Update Password</button>
         </div>
 
-        {/* Account Deletion Section */}
+        {/*  Deletion Section */}
         <div className="border-t border-gray-200 pt-8">
           <h2 className="text-xl font-bold text-gray-800 mb-4">Delete Account</h2>
           <p className="text-sm text-gray-600 mb-4">
@@ -143,23 +120,20 @@ export default function ProfileSettings() {
           </p>
 
           <div className="flex items-center gap-3 mb-4">
-            <input
-              type="checkbox"
+            <input type="checkbox"
               checked={isDeleteConfirmed}
               onChange={(e) => setIsDeleteConfirmed(e.target.checked)}
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
-            />
+              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"/>
             <span className="text-sm text-gray-700">
               I understand that all my data will be permanently deleted
             </span>
           </div>
 
-          <button
-            type="button"
+          <button type="button"
             onClick={handleDeleteAccount}
             disabled={!isDeleteConfirmed}
-            className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+            className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 
+            transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed">
             Delete Account
           </button>
         </div>
