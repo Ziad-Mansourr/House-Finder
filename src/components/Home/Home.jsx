@@ -12,10 +12,12 @@ import assiut  from "../../img/Assiut University.png"
 import { Link, NavLink } from "react-router-dom";
 
 export default function Home() {
+
+  
   return (
     <>
 {/* part one */}
-<div className="mt-0 relative h-[520px] flex flex-col justify-between items-center"
+<div id="home" className="mt-0 relative h-[520px] flex flex-col justify-between items-center"
     style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
         <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>
@@ -61,7 +63,7 @@ export default function Home() {
 
 
 {/* part two */}
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
+<div id="about" className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
   <div>
 <div className="flex pt-16">
 <img src={logo} className="w-[45px] h-[46px]" alt="" />
@@ -82,7 +84,7 @@ export default function Home() {
 
 {/* part three */}
 
-<div className="p-10 w-[88%] mx-auto mb-9">
+<div id="develop" className="p-10 w-[88%] mx-auto mb-9">
   <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <div className="relative group">
