@@ -5,8 +5,8 @@ export default function ForgetPassword() {
   return (
     <>
          <section className="bg-[#0c283c] min-h-screen">
-            <div className="w-[90%] md:w-[60%] lg:w-[40%] grid grid-cols-12 m-auto pt-56">
-               <h1 className='col-span-12 text-center text-3xl md:text-4xl lg:text-6xl text-white'>Forgot Your Password?</h1>
+            <div className="w-[90%] md:w-[60%] lg:w-[40%] grid grid-cols-12 m-auto pt-28">
+               <h1 className='col-span-12 text-center text-3xl md:text-4xl lg:text-5xl text-white'>Forgot Your Password?</h1>
                <h2 className='col-span-12 text-center text-white text-xl mt-6'>Your password will be reset by email</h2>
                <div className="col-span-12 mb-5 mt-11">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-white dark:text-white"
