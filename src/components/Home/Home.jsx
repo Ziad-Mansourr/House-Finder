@@ -12,8 +12,11 @@ import assiut from "../../img/Assiut University.png"
 import { Link, NavLink } from "react-router-dom";
 
 export default function Home() {
+
+  
   return (
     <>
+
       {/* part one */}
       <div className="mt-0 relative h-[520px] flex flex-col justify-between items-center"
         style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -22,6 +25,14 @@ export default function Home() {
           <button className="bg-white px-8 py-3 text-[#054E98] text-[14px] rounded-none rounded-tr-2xl rounded-bl-2xl">
             Properties
           </button>
+
+{/* part one */}
+<div id="home" className="mt-0 relative h-[520px] flex flex-col justify-between items-center"
+    style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
+        <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>
+        <button className="bg-white  px-8 py-3  text-[#054E98] text-[14px] rounded-tr-2xl rounded-bl-2xl">Properties</button>
+
 
           <div className="max-w-4xl bg-white p-6 py-10 rounded-lg shadow-lg mt-8  self-center relative z-10 w-[90%]">
 
@@ -59,6 +70,50 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+
+    </div>
+</div>
+
+
+{/* part two */}
+<div id="about" className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
+  <div>
+<div className="flex pt-16">
+<img src={logo} className="w-[45px] h-[46px]" alt="" />
+<h1 className="text-[35px] md:text-[49px]  text-[#054E98] font-title">About House Finder</h1>
+</div>
+    <p className="text-[21px] text-[#054E98] pt-4 font-title font-normal max-w-[580px]">This project aims to create an innovative digital platform that
+      directly connects students from outside their hometowns in
+      Egypt with property owners near various universities. The goal is to
+      simplify the search for housing that fits their needs and budgets.
+      The platform provides detailed information about available apartments
+      in a clear and accessible way, eliminating the need for intermediaries or
+      external parties.</p>
+  </div>
+  <div className="pt-11 pb-11">
+    <img src={aboutImage} className="w-[460px] mx-auto object-cover" alt="" />
+  </div>
+</div>
+
+{/* part three */}
+
+<div id="develop" className="p-10 w-[88%] mx-auto mb-9">
+  <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="relative group">
+      <img src={cairo} alt="Cairo University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div>
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Cairo University
+      </div>
+    </div>
+    <div className="relative group">
+      <img src={AinShams} alt="Ain Shams University" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div> 
+      <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">
+        Ain Shams University
+
       </div>
 
       {/* part two */}

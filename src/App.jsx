@@ -13,8 +13,12 @@ import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 import Layout from './components/Layout/Layout'
 import VerifyCode from './components/VerifyCode/VerifyCode'
 import ResetPassword from './components/ResetPassword/ResetPassword'
+
 import Profile from './components/Profile/Profile.jsx'
 import Setting from './components/Setting/Setting.jsx'
+
+
+import Sell from './components/sell/sell.jsx'
 
 function App() {
 
@@ -25,13 +29,16 @@ function App() {
     path: '', element: <Layout /> , children: [
       {index: true , element:<Home />},
       {path: 'apartment', element: <Apartment />},                 
+      {path: 'sell', element: <Sell />},
       {path: 'forgetPassword', element: <ForgetPassword />},
       {path: 'login', element: <Login />},
       {path: 'signUp', element: <SignUp />},
       {path: 'verifyCode', element: <VerifyCode />},
       {path: 'resetPass', element: <ResetPassword />} ,
+
       {path: 'profile', element: <Profile/>},
       {path: 'setting', element: <Setting/>},
+
 
     ]}
 
