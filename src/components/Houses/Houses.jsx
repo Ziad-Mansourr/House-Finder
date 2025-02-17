@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 export default function Houses() {
   const [addFav, setAddFav] = useState(false);
@@ -22,7 +23,8 @@ export default function Houses() {
   return (
     <>
       <div className="col-span-12 md:col-span-7">
-          <div className=" shadow-md rounded-lg flex-wrap bg-[rgb(249,249,249)] flex mt-6 md:mt-8 lg:mt-10 mb-7  ">
+        <Link to={'/apartmentDetailes'} >
+          <div  className=" shadow-md rounded-lg flex-wrap bg-[rgb(249,249,249)] flex mt-6 md:mt-8 lg:mt-10 mb-7  ">
             <div className="lg:w-[40%] h-[340px] w-[100%] relative ">
               <div onClick={addWish}>
                 <i
@@ -119,6 +121,7 @@ export default function Houses() {
               </div>
             </div>
           </div>
+        </Link>
           <div className=" shadow-md flex-wrap bg-[rgb(249,249,249)] flex  mb-10  ">
             <div className="lg:w-[40%] h-[340px] w-[100%] ">
               <Slider {...settings}>

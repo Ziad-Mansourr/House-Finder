@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
+  
   function show() {
     showPass ? setShowPass(false) : setShowPass(true);
   }
@@ -60,14 +61,14 @@ export default function Login() {
                     onClick={() => show()}
                     className="p-0 bg-transparent absolute top-9 right-3"
                   >
-                    {" "}
+                   
                     <i
                       className={
                         showPass
                           ? "fa-regular fa-eye"
                           : "fa-regular fa-eye-slash"
                       }
-                    ></i>{" "}
+                    ></i>
                   </button>
                 </div>
                 <div className="flex flex-col justify-center items-center">

@@ -1,21 +1,67 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Navigation, Pagination } from 'swiper/modules';
-
-export default function Details() {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+export default function ApartmentDetails() {
   return (
-    <div className="container mx-auto p-6">
-      {/* Image Gallery */}
-      <div className="gallery flex gap-6 overflow-x-auto py-4 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
-        <img src="11.png" alt="Property Image" className="w-3/4 rounded-lg shadow-lg transform hover:scale-110 transition duration-300 ease-in-out" />
-        <div className="flex flex-col gap-2 w-1/4">
-          <img src="22.png" alt="Additional Image" className="rounded-lg shadow-md transform hover:scale-110 transition duration-300" />
-          <img src="33.png" alt="Additional Image" className="rounded-lg shadow-md transform hover:scale-110 transition duration-300" />
-          <img src="44.png" alt="Additional Image" className="rounded-lg shadow-md transform hover:scale-110 transition duration-300" />
-          <img src="55.png" alt="Additional Image" className="rounded-lg shadow-md transform hover:scale-110 transition duration-300" />
+    <div className="container  mx-auto p-6">
+      { /* Image Gallery */ }
+      <div className="gallery flex gap-6 overflow-x-auto py-4 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">  
+        <div className="h-[300px] lg:w-3/4 w-full rounded-md sm:h-64 xl:h-80 2xl:h-[500px] relative">
+          <Swiper
+            modules={[Navigation]}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            loop={true}
+            className="h-full rounded-md"
+          >
+            <SwiperSlide>
+              <div className="flex h-full items-center justify-center bg-gray-400">
+                <img
+                  src="11.png"
+                  alt="Property Image"
+                  className="w-full rounded-lg h-[300px] md:h-[500px] shadow-lg transform hover:scale-110 transition duration-300 ease-in-out"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex h-full items-center justify-center bg-gray-400">
+                <img
+                  src="11.png"
+                  alt="Property Image"
+                  className="w-full rounded-lg shadow-lg transform hover:scale-110 transition duration-300 ease-in-out"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex h-full items-center justify-center bg-gray-400">
+                <img
+                  src="11.png"
+                  alt="Property Image"
+                  className="w-full rounded-lg shadow-lg transform hover:scale-110 transition duration-300 ease-in-out"
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+
+          {/* أزرار التنقل المخصصة */}
+          <button className="swiper-button-prev absolute left-2 top-1/2 -translate-y-1/2 bg-transparent text-white rounded-full w-8 h-8 flex items-center justify-center">
+            <ChevronLeft size={20}  />
+          </button>
+          <button className="swiper-button-next absolute right-2 top-1/2 -translate-y-1/2 bg-transparent text-white rounded-full w-8 h-8 flex items-center justify-center">
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        <div className="lg:flex flex-col gap-8 hidden  overflow-hidden w-1/4">
+          <img src="22.png" alt="Additional Image" className="rounded-lg h-[230px] shadow-md transform hover:scale-110 transition duration-300" />
+          <img src="33.png" alt="Additional Image" className="rounded-lg h-[230px] shadow-md transform hover:scale-110 transition duration-300" />
+          {/* <img src="44.png" alt="Additional Image" className="rounded-lg shadow-md transform hover:scale-110 transition duration-300" />
+          <img src="55.png" alt="Additional Image" className="rounded-lg shadow-md transform hover:scale-110 transition duration-300" /> */}
         </div>
       </div>
 

@@ -280,17 +280,17 @@ export default function Sell() {
             Furnished <span className="text-red-700">*</span>
           </label>
 
-          <div className="flex gap-3">
-            <div className="flex  md:items-center items-center px-5 border border-gray-200 rounded-xl dark:border-gray-700">
+          <div className="flex gap-3 lg:ml-5 ml-0">
+            <div className="flex  md:items-center items-center px-5 border border-gray-200 rounded-xl">
               <input
-                id="bordered-radio-1"
+                id="furnished-1"
                 type="radio"
                 defaultValue
-                name="bordered-radio"
+                name="furnished"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
               />
               <label
-                htmlFor="bordered-radio-1"
+                htmlFor="furnished-1"
                 className="w-full py-4  ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 YES
@@ -299,14 +299,14 @@ export default function Sell() {
             <div className="flex  md:items-center items-center px-5 border border-gray-200 rounded-xl dark:border-gray-700">
               <input
                 defaultChecked
-                id="bordered-radio-2"
+                id="furnished-2"
                 type="radio"
                 defaultValue
-                name="bordered-radio"
+                name="furnished"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label
-                htmlFor="bordered-radio-2"
+                htmlFor="furnished-2"
                 className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 NO
