@@ -97,13 +97,13 @@ export default function Profile() {
             <div className="flex items-center space-x-3">
               <button
                 onClick={increase}
-                className="text-blue-600 p-0 hover:text-blue-700 transition-colors duration-300">
+                className="text-blue-600 p-0 bg-transparent hover:text-blue-700 transition-colors duration-300">
                 <i className="fa-solid fa-circle-plus text-xl"></i>
               </button>
               <span className="text-xl font-semibold text-gray-800">{count}</span>
               <button
                 onClick={decrease}
-                className="text-red-600 p-0 hover:text-red-700 transition-colors duration-300" >
+                className="text-red-600 p-0 hover:text-red-700 bg-transparent transition-colors duration-300" >
                 <i className="fa-solid fa-circle-minus text-xl"></i>
               </button>
             </div>

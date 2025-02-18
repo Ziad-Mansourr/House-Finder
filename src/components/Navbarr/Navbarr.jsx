@@ -9,12 +9,12 @@ export default function Navbarr() {
   function logout() {
     navigate("/login");
   }
-  
+
   const [activeNav, setActiveNav] = useState("home");
   let x = useLocation();
-  useMemo(()=>{
+  useMemo(() => {
     (x.pathname === '/') ? setActiveNav(activeNav) : setActiveNav('');
-  } , [x])
+  }, [x])
   function active(x) {
     setActiveNav(x);
     navigate('/');
@@ -58,6 +58,7 @@ export default function Navbarr() {
 
               </lnk.Link>
               <Dropdown
+                
                 arrowIcon={false}
                 inline
                 label={
@@ -69,14 +70,18 @@ export default function Navbarr() {
                   <span className="block truncate text-lg font-medium mr-14">House Finder</span>
                 </Dropdown.Header>
                 <div className="flex ay flex-col py-[4px] ">
-                  <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
-                    <img className='w-6' src="src/assets/building-check-svgrepo-com.svg" alt="" />
-                    <lnk.Link to={'/profile'} className=''>My Ads</lnk.Link>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
-                    <img className='w-6' src="src/assets/setting-4-svgrepo-com.svg" alt="" />
-                    <lnk.Link to={'/setting'}>Settings</lnk.Link>
-                  </div>
+                  <lnk.Link to={'/profile'} className=''>
+                    <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
+                      <img className='w-6' src="src/assets/building-check-svgrepo-com.svg" alt="" />
+                      My Ads
+                    </div>
+                  </lnk.Link>
+                  <lnk.Link to={'/setting'}>
+                    <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
+                      <img className='w-6' src="src/assets/setting-4-svgrepo-com.svg" alt="" />
+                      Settings
+                    </div>
+                  </lnk.Link>
                   <div className=" flex items-center gap-2 px-4 hover:bg-gray-100 transition-all duration-200">
                     <img className='w-6' src="src/assets/logout-2-svgrepo-com.svg" alt="" />
                     <button className='bg-transparent p-0' onClick={logout}>Logout</button>
@@ -135,27 +140,27 @@ export default function Navbarr() {
               </Dropdown.Header>
               <div className="flex ay flex-col py-[4px] ">
                 <lnk.Link to={'/profile'}>
-                <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
-                  <img
-                    className="w-6"
-                    src="src/assets/building-check-svgrepo-com.svg"
-                    alt=""
-                  />
-                 
+                  <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
+                    <img
+                      className="w-6"
+                      src="src/assets/building-check-svgrepo-com.svg"
+                      alt=""
+                    />
+
                     My Ads
-                  
-                </div>
+
+                  </div>
 
                 </lnk.Link>
                 <lnk.Link to={'/setting'}>
-                <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
-                  <img
-                    className="w-6"
-                    src="src/assets/setting-4-svgrepo-com.svg"
-                    alt=""
-                  />
-                  Settings
-                </div>
+                  <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
+                    <img
+                      className="w-6"
+                      src="src/assets/setting-4-svgrepo-com.svg"
+                      alt=""
+                    />
+                    Settings
+                  </div>
                 </lnk.Link>
                 <div className=" flex items-center gap-2 px-4 hover:bg-gray-100 transition-all duration-200">
                   <img
