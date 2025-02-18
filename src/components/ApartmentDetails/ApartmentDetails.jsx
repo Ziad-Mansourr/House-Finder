@@ -76,10 +76,10 @@ export default function ApartmentDetails() {
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row-reverse gap-6 mt-6">
         {/* Sidebar */}
-        <aside className="w-full lg:w-1/4 p-6 rounded-lg order-1 lg:-order-1 self-start flex lg:flex-col gap-6">
+        <aside className="w-full lg:w-1/4 p-6 rounded-lg order-1 lg:-order-1 self-start flex flex-col md:flex-row lg:flex-col gap-6">
           {/* Real estate agent card */}
 
-          <div className="w-[35%] lg:w-full h-52 lg:h-64  max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm ">
+          <div className=" w-full md:w-[35%]  lg:w-full h-52 lg:h-64  max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm ">
             <div className="flex  flex-col pt-4 items-center pb-10 ">
               <div className="w-[60px] h-[60px] mb-3 rounded-full bg-gray-300 flex justify-center items-center text-2xl font-semibold text-blue-800 ">
                 Z

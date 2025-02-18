@@ -1,5 +1,6 @@
 import React from "react";
 import aboutImage from "../../img/Homee.jpg";
+import img from "../../img/about.jpg";
 import logo from "../../img/Logo.png"
 import cairo from "../../img/Cairo University.png"
 import AinShams from "../../img/Ain Shams University.png"
@@ -16,7 +17,8 @@ export default function Home() {
   return (
     <>
 {/* part one */}
-<div id="home" className={"mt-0 relative h-[520px] bg-[url(Collage/about.jpg)] bg-cover bg-center flex flex-col justify-between items-center" }
+<div id="home" className={"mt-0 relative h-[520px]  flex flex-col justify-between items-center"}
+     style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
     <div className="absolute w-full h-full flex flex-col items-center justify-center text-white">
         <h1 className="text-2xl mb-4">Discover Your New Rental Home</h1>

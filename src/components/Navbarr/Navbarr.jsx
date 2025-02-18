@@ -134,24 +134,29 @@ export default function Navbarr() {
                 </span>
               </Dropdown.Header>
               <div className="flex ay flex-col py-[4px] ">
+                <lnk.Link to={'/profile'}>
                 <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
                   <img
                     className="w-6"
                     src="src/assets/building-check-svgrepo-com.svg"
                     alt=""
                   />
-                  <Link to={""} className="">
+                 
                     My Ads
-                  </Link>
+                  
                 </div>
+
+                </lnk.Link>
+                <lnk.Link to={'/setting'}>
                 <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
                   <img
                     className="w-6"
                     src="src/assets/setting-4-svgrepo-com.svg"
                     alt=""
                   />
-                  <Link to={""}>Settings</Link>
+                  Settings
                 </div>
+                </lnk.Link>
                 <div className=" flex items-center gap-2 px-4 hover:bg-gray-100 transition-all duration-200">
                   <img
                     className="w-6"
