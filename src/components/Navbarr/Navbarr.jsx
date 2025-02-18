@@ -109,7 +109,7 @@ export default function Navbarr() {
 
         <Navbar.Collapse>
           <div className="md:hidden flex justify-end mb-4">
-            <Link to={"/wishList"} className="mr-3">
+            <lnk.Link to={"/wishList"} className="mr-3">
               <button
                 type="button"
                 class="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white "
@@ -120,7 +120,7 @@ export default function Navbarr() {
                   20
                 </div>
               </button>
-            </Link>
+            </lnk.Link>
 
             <Dropdown
               arrowIcon={false}
