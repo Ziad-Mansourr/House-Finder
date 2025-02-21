@@ -44,11 +44,11 @@ button {
 }
 
 button {
-  background-color: rgb(240, 239, 239);
+  background-color: rgb(226, 226, 226);
 }
 
 @media (prefers-color-scheme: dark) {
   button {
-    background-color: rgb(240, 239, 239);
+    background-color: rgb(226, 226, 226);
   }
 }

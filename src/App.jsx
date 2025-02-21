@@ -15,6 +15,8 @@ import Profile from './components/Profile/Profile.jsx'
 import Setting from './components/Setting/Setting.jsx'
 import Sell from './components/sell/sell.jsx'
 import Wishlist from './components/Wishlist/Wishlist.jsx';
+import Admin from './components/Admin/Admin.jsx'
+import DashBoard from './components/DashBoard/DashBoard.jsx'
 function App() {
 
   const queryClient = new QueryClient()
@@ -36,7 +38,9 @@ function App() {
         {path: 'wishlist', element:  <Wishlist/>},
   
       ]
-    }
+    },
+    {path: 'admin', element: <Admin/>},                 
+    {path: 'dashBoard', element: <DashBoard/>},   
 
   ])
 

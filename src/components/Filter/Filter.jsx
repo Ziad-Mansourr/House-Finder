@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Drawer, Button } from "flowbite-react";
+import { useFormik } from "formik";
 export default function Filter() {
   const [filterRes, setFilterRes] = useState("Residential");
   const options = ["1", "2", "3", "4", "5", "6", "7", "8+"];
@@ -22,6 +23,18 @@ export default function Filter() {
   function filBat(word) {
     setActiveBt(word);
   }
+  function handlePrice(values){
+     console.log(values);
+     
+  }
+  let formik = useFormik({
+      initialValues :{
+        start : 0,
+        end : 0
+      },
+      onSubmit:(values)=>handlePrice(values), 
+      
+  })
   return (
     <>
       {/* Filter Laptop */}
@@ -160,9 +173,10 @@ export default function Filter() {
               dismissOnClick={false}
               className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-80 lg:w-96"
             >
-              <div className="p-3">
+              <form className="p-3" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
                 <div className="flex items-center">
                   <input
+                    value={formik.values.start} onChange={ formik.handleChange} onBlur={formik.handleBlur}
                     name="start"
                     type="number"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5"
@@ -170,6 +184,7 @@ export default function Filter() {
                   />
                   <span className="mx-2 text-gray-500">to</span>
                   <input
+                    value={formik.values.end} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     name="end"
                     type="number"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5"
@@ -178,18 +193,18 @@ export default function Filter() {
                 </div>
 
                 <div className="flex justify-evenly mt-7">
-                  <button className="px-4 py-2  hover:bg-gray-100 border-spacing-3 border-blue-800 w-[30%]">
+                  <button type="reset" className="px-4 py-2  hover:bg-gray-100 border-spacing-3 border-blue-800 w-[30%]" >
                     Reset
                   </button>
 
                   <button
-                    onClick={() => {}}
+                    type="submit"
                     className="px-4 py-2 text-white bg-blue-800 border-blue-900 w-[40%]"
                   >
                     Done
                   </button>
                 </div>
-              </div>
+              </form>
             </Dropdown>
           </div>
           <div className="ml-6">

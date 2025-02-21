@@ -1,9 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import * as yp from 'yup';
+import { useFormik } from 'formik';
 export default function SignUp() {
   const [showPass, setShowPass] = useState(false);
   const [showPass1, setShowPass1] = useState(false);
+
+  let validationSchema = yp.object().shape(
+    {
+    name: yp.string().min(3, 'name minlengh is 3').max(50, 'name maxlengh is 50').required('name is required'),
+    email: yp.string().email('email invalid').required('email is required'),
+    phone: yp.string().matches(/^01[0125][0-9]{8}$/, 'phone is invalid').required('phone is required'),
+    password: yp.string().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/, 'Password should be start with capital letter and min length is 8 chars').required('password is required'),
+    rePassword: yp.string().oneOf([yp.ref('password')], 'password is invalid').required('Password is required')
+  }
+);
+
+
+
+  function handleRegister(values) {
+    console.log(values);
+
+  }
+
+  let formik = useFormik(
+    {
+      
+      initialValues: {
+        name: '',
+        email: '',
+        phone: '',
+        password: '',
+        rePassword: '',
+      },
+      onSubmit:()=> handleRegister(formik.values),
+      validationSchema: validationSchema
+      
+    }
+  )
+
+
   function show(i) {
     if (!i) {
       showPass ? setShowPass(false) : setShowPass(true);
@@ -31,7 +67,7 @@ export default function SignUp() {
               <h2 className="uppercase text-center text-4xl mb-5 tracking-wider font-semibold text-[#0c283c]">
                 Sign Up
               </h2>
-              <form className="max-w-sm md:max-w-lg  lg:max-w-sm mx-auto ">
+              <form className="max-w-sm md:max-w-lg  lg:max-w-sm mx-auto " onSubmit={formik.handleSubmit}>
                 <div className="mb-5">
                   <label
                     htmlFor="name"
@@ -40,11 +76,17 @@ export default function SignUp() {
                     Full Name
                   </label>
                   <input
+                    value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type="text"
                     id="name"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Ex: Fatma Ahmed"
                   />
+                  
+                  {formik.errors.name != null && formik.touched.name ?
+                    <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                      <span className="font-medium">{formik.errors.name}</span>
+                    </div> : null}
                 </div>
                 <div className="mb-5">
                   <label
@@ -54,11 +96,17 @@ export default function SignUp() {
                     Your email
                   </label>
                   <input
+                    value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@gmail.com"
                   />
+
+                  {formik.errors.email != null && formik.touched.email ?
+                    <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                      <span className="font-medium">{formik.errors.email}</span>
+                    </div> : null}
                 </div>
                 <div className="mb-5">
                   <label
@@ -68,11 +116,17 @@ export default function SignUp() {
                     Your Phone
                   </label>
                   <input
+                    value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type="text"
                     id="phone"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Phone Number"
                   />
+                  {formik.errors.phone != null && formik.touched.phone ?
+                    <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                      <span className="font-medium">{formik.errors.phone}</span>
+                    </div> : null}
+
                 </div>
                 <div className="mb-5 relative">
                   <label
@@ -81,13 +135,18 @@ export default function SignUp() {
                   >
                     Your password
                   </label>
+
+
                   <input
+                    value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type={showPass ? "text" : "password"}
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Password"
                   />
+
                   <button
+                    type="button"
                     onClick={() => show(0)}
                     className="p-0 bg-transparent absolute top-9 right-3"
                   >
@@ -100,6 +159,11 @@ export default function SignUp() {
                       }
                     ></i>{" "}
                   </button>
+
+                  {formik.errors.password != null && formik.touched.password ?
+                    <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                      <span className="font-medium">{formik.errors.password}</span>
+                    </div> : null}
                 </div>
                 <div className="mb-5 relative">
                   <label
@@ -109,12 +173,14 @@ export default function SignUp() {
                     Confirm password
                   </label>
                   <input
+                  value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type={showPass1 ? "text" : "password"}
-                    id="ConfPassword"
+                    id="rePassword"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Confirm Password"
                   />
                   <button
+                    type="button"
                     onClick={() => show(1)}
                     className="p-0 bg-transparent absolute top-9 right-3"
                   >
@@ -127,9 +193,13 @@ export default function SignUp() {
                       }
                     ></i>{" "}
                   </button>
+                  {formik.errors.rePassword != null && formik.touched.rePassword ?
+                    <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                      <span className="font-medium">{formik.errors.rePassword}</span>
+                    </div> : null}
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <button className="text-white  bg-blue-700  w-[60%] mb-4 py-2.5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <button type="submit" className="text-white  bg-blue-700  w-[60%] mb-4 py-2.5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Sign Up
                   </button>
                   <div className="flex ">

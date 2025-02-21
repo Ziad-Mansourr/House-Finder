@@ -64,6 +64,7 @@ export default function Navbarr() {
                 label={
                   <i className="fa-regular fa-user text-xl"></i>
                 }
+                className="rounded-br-3xl  rounded-tl-3xl "
               >
                 <Dropdown.Header>
                   <span className="block text-lg font-bold">Hello,</span>
