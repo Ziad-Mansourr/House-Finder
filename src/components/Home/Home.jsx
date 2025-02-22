@@ -214,13 +214,14 @@ export default function Home() {
       </div>
 
       {/* part two */}
+      
       <div id="about" className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
         <div>
           <div className="flex pt-16">
             <img src={logo} className="w-[45px] h-[46px]" alt="" />
-            <h1 className="text-[35px] md:text-[49px] text-[#054E98] font-title">About House Finder</h1>
+            <h1 className="text-[30px] md:text-[45px] text-[#054E98] font-title">About House Finder</h1>
           </div>
-          <p className="text-[19px] text-[#054E98] pt-4 font-title font-normal max-w-[580px]">
+          <p className="text-[16px] md:text-[19px] text-[#054E98] pt-4 font-title font-normal max-w-[580px]">
             This project aims to create an innovative digital platform that
             directly connects students from outside their hometowns in Egypt
             with property owners near various universities. The goal is to simplify
