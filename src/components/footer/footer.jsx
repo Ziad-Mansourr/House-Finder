@@ -137,7 +137,6 @@ export default function Footer() {
         </div>
       </div>
 
-
       <div className="text-center mt-8 text-gray-600 text-sm">
         <div className="flex justify-center space-x-4 mb-4">
           <a href="#" className="text-gray-600 hover:text-[#054689] text-xl"><FaFacebookF /></a>
