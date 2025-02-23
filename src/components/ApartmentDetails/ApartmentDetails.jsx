@@ -4,9 +4,18 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button, Modal } from "flowbite-react";
+import { useState } from "react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Link } from "react-router-dom";
 export default function ApartmentDetails() {
+  const [openModal, setOpenModal] = useState(false);
+  const [rate , setRate] = useState(0);
+  const addRate = (rate)=>{
+    setRate(rate);
+  }
   return (
-    <div className="   w-[92%] md:w-[87%] mx-auto pt-7">
+    <div className=" w-[92%] md:w-[87%] mx-auto pt-7">
       {/* Image Gallery */}
       <div className="gallery flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
         <div className="h-[300px] lg:w-3/4 w-full rounded-md md:h-[480px] relative">
@@ -55,6 +64,55 @@ export default function ApartmentDetails() {
           <button className="swiper-button-next absolute right-2 top-1/2 -translate-y-1/2 bg-transparent text-white rounded-full w-8 h-8 flex items-center justify-center">
             <ChevronRight size={20} />
           </button>
+
+          <Link
+            to={""}
+            className="absolute bottom-3 left-5 z-20 bg-black opacity-75 hover:opacity-60 text-white px-4 py-1 rounded-2xl"
+          >
+            <i className="fa-solid fa-location-dot mr-1"></i>Map
+          </Link>
+
+          <Link
+            to={""}
+            onClick={() => setOpenModal(true)}
+            className="absolute bottom-3 left-28 z-20 bg-blue-900 opacity-90 hover:opacity-80 text-white px-6 py-1 rounded-2xl"
+          >
+            <i className="fa-solid fa-star mr-1"></i>Add Rate
+          </Link>
+          <button
+            className="absolute bottom-3 right-4 z-20  text-red-600 text-3xl p-0 bg-transparent"
+          >
+            <i className="fa-solid fa-heart"></i>
+          </button>
+
+          <Modal
+            show={openModal}
+            size="md"
+            onClose={() => setOpenModal(false)}
+            popup
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <div className="text-center">
+                <h3 className="mb-5 text-lg  text-gray-500 dark:text-gray-400 font-semibold">
+                  Add your Rate
+                </h3>
+                <div className=" flex justify-center mb-5 items-center text-gray-700 text-lg">
+                  <i onClick={()=>addRate(1)} className={rate == 1 || rate == 2 || rate == 3 || rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
+                  <i onClick={()=>addRate(2)} className={rate == 2 || rate == 3 || rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
+                  <i onClick={()=>addRate(3)} className={rate == 3 || rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
+                  <i onClick={()=>addRate(4)} className={rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
+                  <i onClick={()=>addRate(5)} className={rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
+                </div>
+                <div className="flex justify-center gap-4">
+                  <Button color="blue" onClick={() => setOpenModal(false)}>
+                    {"Add my rate"}
+                  </Button>
+                
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
         </div>
 
         <div className="lg:flex flex-col gap-4 hidden overflow-hidden w-1/4">
@@ -78,7 +136,6 @@ export default function ApartmentDetails() {
         {/* Sidebar */}
         <aside className="w-full lg:w-1/4 p-6 rounded-lg order-1 lg:-order-1 self-start flex flex-col md:flex-row lg:flex-col gap-6">
           {/* Real estate agent card */}
-
           <div className=" w-full md:w-[35%]  lg:w-full h-52 lg:h-64  max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm ">
             <div className="flex  flex-col pt-4 items-center pb-10 ">
               <div className="w-[60px] h-[60px] mb-3 rounded-full bg-gray-300 flex justify-center items-center text-2xl font-semibold text-blue-800 ">
@@ -90,13 +147,14 @@ export default function ApartmentDetails() {
 
               <div className="flex mt-4 lg:mt-6">
                 <a
-                  href="#"
+                  href="https://wa.me/+201155223832"
+                  target="_blank"
                   className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white border-2 border-gray-200 rounded-lg hover:bg-gray-100"
                 >
                   <i className="fa-brands fa-whatsapp text-green-600 text-3xl "></i>
                 </a>
                 <a
-                  href="#"
+                  href="tel:+201206089893"
                   className="py-2 px-4 ms-2 text-lg font-medium text-gray-900 text-center focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 "
                 >
                   <i class="fa-solid fa-phone text-blue-800 pr-3"></i>
@@ -136,10 +194,21 @@ export default function ApartmentDetails() {
         <div className="flex-1  space-y-6">
           {/* Property Details */}
           <div className="property-details">
-            <h1 className="text-4xl font-bold mb-2  text-blue-900 ">
-              {" "}
-              <span className=" font-serif font-medium">EGP</span> 11,707,000
-            </h1>
+            <div className="flex  justify-between">
+              <h1 className="md:text-4xl text-3xl font-bold mb-2  text-blue-900 ">
+                {" "}
+                <span className=" font-serif font-medium">EGP</span> 11,707,000
+              </h1>
+              <div className=" flex justify-end items-center text-yellow-300 text-lg">
+                
+                  <i className="fa-solid fa-star ml-1" />
+                  <i className="fa-solid fa-star ml-1" />
+                  <i className="fa-solid fa-star ml-1" />
+                  <i className="fa-solid fa-star ml-1" />
+                  <i className="fa-solid fa-star ml-1" />
+                
+              </div>
+            </div>
             <p className="text-gray-800 font-sans font-semibold">
               Apartment for Sale in Uptown Cairo, Cairo
             </p>

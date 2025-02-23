@@ -27,7 +27,7 @@ export default function Navbarr() {
     <>
       <Navbar
         fluid
-        className="fixed top-0 left-0 right-0 z-20 shadow-md bg-[#f0efef]  shadow-gray-400"
+        className="fixed top-0 left-0 right-0 z-30 shadow-md bg-[#f0efef]  shadow-gray-400"
       >
         <button className="bg-transparent p-0 m-0 text-start" onClick={home}>
           <Navbar.Brand>

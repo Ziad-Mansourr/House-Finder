@@ -108,16 +108,17 @@ export default function Houses() {
                 <i className="fa-solid fa-phone"></i> Call
               </a>
               <a
-                href="mailto:"
+                href={"mailto:"}
                 className="border-2 border-blue-500  p-2 rounded-xl mr-5 text-blue-900 bg-slate-200"
               >
                 <i className="fa-regular fa-envelope"></i> Email
               </a>
               <a
-                href=""
+                href="https://wa.me/+201206089893"
+                target = "_blank"
                 className="border-2 border-blue-500  py-1 px-6 rounded-xl mr-5 text-blue-900 text-2xl bg-slate-200"
               >
-                <i className="fa-brands fa-whatsapp"></i>{" "}
+                <i className="fa-brands fa-whatsapp"></i>
               </a>
             </div>
           </div>
