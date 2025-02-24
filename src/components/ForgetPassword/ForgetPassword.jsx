@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import * as yp from 'yup';
 import { useFormik } from 'formik';
+import axiosInstance from '../../services/axiosInstance';
 export default function ForgetPassword() {
-
-
+  const navigate = useNavigate();
+  const [load, setLoad] = useState(false);
   let validationSchema = yp.object().shape({
     email: yp.string().email('email invalid').required('email is required'),
   });
@@ -12,8 +13,20 @@ export default function ForgetPassword() {
 
 
   function handleLogin(values) {
+    setLoad(true);
+    axiosInstance.post(`users/forgotPassword` , values)
+    .then(({data})=>{
+      console.log(data);
+      setLoad(false);
+      navigate('/resetPass');
+    })
+    .catch((errors)=>{
+      console.log(errors);
+      setLoad(false);
+       
+    })
     console.log(values);
-
+     
   }
 
   let formik = useFormik(
@@ -21,7 +34,7 @@ export default function ForgetPassword() {
       initialValues: {
         email: '',
       },
-      onSubmit: () => handleLogin(formik.values),
+      onSubmit: (values) => handleLogin(values),
       validationSchema: validationSchema
     }
   )
@@ -52,10 +65,10 @@ export default function ForgetPassword() {
               </div> : null}
           </div>
           <div className="col-span-12 flex justify-center items-center">
-            <button className='p-0 w-[40%] bg-blue-700  mb-5 py-2.5 hover:bg-blue-800 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' onClick={formik.handleSubmit}>
-              <Link className="text-white" to={'/verifyCode'}>
-                Submit
-              </Link>
+            <button className='p-0 w-[40%] bg-blue-700 text-white mb-5 py-2.5 hover:bg-blue-800 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' onClick={formik.handleSubmit}>
+              
+            {load ? <i className='fas fa-spinner fa-spin px-2' ></i> : 'Submit'}
+             
             </button>
 
           </div>

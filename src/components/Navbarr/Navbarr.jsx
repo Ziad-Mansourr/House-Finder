@@ -1,15 +1,23 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-scroll";
 import * as lnk from "react-router-dom";
+import { usersContext } from "../../context/userContext";
 
 export default function Navbarr() {
   let navigate = useNavigate();
+  const [token , setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):null);
+  let {name} =  useContext(usersContext)
   function logout() {
-    navigate("/login");
+    localStorage.removeItem('token');
+    setToken(null);
   }
-
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      setToken(localStorage.getItem('token'));
+    }
+  } , [localStorage.getItem('token')]);
   const [activeNav, setActiveNav] = useState("home");
   let x = useLocation();
   useMemo(() => {
@@ -46,6 +54,7 @@ export default function Navbarr() {
         </button>
 
         {
+          token !== null ?
           <div className="flex vip md:order-2 z-30">
             <div className="md:flex hidden">
               <lnk.Link to={'/wishList'} className='mr-3'>
@@ -68,7 +77,7 @@ export default function Navbarr() {
               >
                 <Dropdown.Header>
                   <span className="block text-lg font-bold">Hello,</span>
-                  <span className="block truncate text-lg font-medium mr-14">House Finder</span>
+                  <span className="block truncate text-lg font-medium mr-14"> {name}</span>
                 </Dropdown.Header>
                 <div className="flex ay flex-col py-[4px] ">
                   <lnk.Link to={'/profile'} className=''>
@@ -93,24 +102,24 @@ export default function Navbarr() {
 
             <Navbar.Toggle />
           </div>
+         :
+          <div className="flex vip md:order-2">
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={<i className="fa-regular fa-user text-xl"></i>}
+              className="rounded-br-3xl  rounded-tl-3xl "
+            >
+              <Dropdown.Header className="flex-col flex px-12  ">
+                <NavLink to={"login"} className={"mb-3"}>
+                  Login
+                </NavLink>
+                <NavLink to={"signUp"}>Sign Up</NavLink>
+              </Dropdown.Header>
+            </Dropdown>
 
-          // <div className="flex vip md:order-2">
-          //   <Dropdown
-          //     arrowIcon={false}
-          //     inline
-          //     label={<i className="fa-regular fa-user text-xl"></i>}
-          //     className="rounded-br-3xl  rounded-tl-3xl "
-          //   >
-          //     <Dropdown.Header className="flex-col flex px-12  ">
-          //       <NavLink to={"login"} className={"mb-3"}>
-          //         Login
-          //       </NavLink>
-          //       <NavLink to={"signUp"}>Sign Up</NavLink>
-          //     </Dropdown.Header>
-          //   </Dropdown>
-
-          //   <Navbar.Toggle />
-          // </div>
+            <Navbar.Toggle />
+          </div>
         }
 
         <Navbar.Collapse>
@@ -136,7 +145,7 @@ export default function Navbarr() {
               <Dropdown.Header>
                 <span className="block text-lg font-bold">Hello,</span>
                 <span className="block truncate text-lg font-medium mr-14">
-                  House Finder
+                  {name}
                 </span>
               </Dropdown.Header>
               <div className="flex ay flex-col py-[4px] ">

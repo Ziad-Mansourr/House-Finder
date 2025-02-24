@@ -3,13 +3,27 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import * as yp from 'yup';
 import { useFormik } from 'formik';
 export default function VerifyCode() {
-  let navigate =  useNavigate();
+  const navigate = useNavigate();
+  const [load, setLoad] = useState(false);
   let validationSchema = yp.object().shape({
     resetCode: yp.string().matches(/^[0-9]{6,8}$/, 'Code is invalid').min(5, 'min is 5').required('Code is required'),
 
   })
 
   async function handleVerify(values) {
+    setLoad(true);
+    axiosInstance.post(`users/login` , values)
+    .then(({data})=>{
+      console.log(data);
+      setLoad(false);
+      localStorage.setItem('token', data.token);
+      navigate('/');
+    })
+    .catch((errors)=>{
+      console.log(errors);
+      setLoad(false);
+       
+    })
     console.log(values);
   }
 
@@ -19,7 +33,7 @@ export default function VerifyCode() {
       initialValues: {
         resetCode: '',
       },
-      onSubmit:()=> handleVerify(formik.values),
+      onSubmit:(values)=> handleVerify(values),
       validationSchema: validationSchema
     }
   )

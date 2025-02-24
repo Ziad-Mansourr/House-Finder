@@ -17,6 +17,7 @@ import Sell from './components/sell/sell.jsx'
 import Wishlist from './components/Wishlist/Wishlist.jsx';
 import Admin from './components/Admin/Admin.jsx'
 import DashBoard from './components/DashBoard/DashBoard.jsx'
+import UserContextProvider from './context/userContext.jsx';
 function App() {
 
   const queryClient = new QueryClient()
@@ -48,8 +49,9 @@ function App() {
     <>
 
 
-
+      <UserContextProvider>
       <RouterProvider router={router}></RouterProvider>
+      </UserContextProvider>
 
     </>
   )
