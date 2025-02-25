@@ -290,7 +290,7 @@ export default function Profile() {
             <Link to={'/sell'}
               className=" text-white bg-gradient-to-r mr-10 mb-5 from-cyan-600 to-blue-600 hover:bg-gradient-to-bl   font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
             >
-              Post Now
+             Add House
             </Link>
     </div>
     </>

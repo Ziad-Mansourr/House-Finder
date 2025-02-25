@@ -103,12 +103,12 @@ export default function Navbarr() {
             <Navbar.Toggle />
           </div>
          :
-          <div className="flex vip md:order-2">
+          <div className="flex gap-3 vip md:order-2">
             <Dropdown
               arrowIcon={false}
               inline
               label={<i className="fa-regular fa-user text-xl"></i>}
-              className="rounded-br-3xl  rounded-tl-3xl "
+              className="rounded-br-3xl rounded-tl-3xl "
             >
               <Dropdown.Header className="flex-col flex px-12  ">
                 <NavLink to={"login"} className={"mb-3"}>
@@ -123,6 +123,9 @@ export default function Navbarr() {
         }
 
         <Navbar.Collapse>
+            
+            {
+              token !== null ?
           <div className="md:hidden flex justify-end mb-4">
             <lnk.Link to={"/wishList"} className="mr-3">
               <button
@@ -185,6 +188,8 @@ export default function Navbarr() {
               </div>
             </Dropdown>
           </div>
+          :null
+            }
 
           <button className="bg-transparent p-0 m-0">
             <Link
