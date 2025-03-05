@@ -18,6 +18,7 @@ import Wishlist from './components/Wishlist/Wishlist.jsx';
 import Admin from './components/Admin/Admin.jsx'
 import DashBoard from './components/DashBoard/DashBoard.jsx'
 import UserContextProvider from './context/userContext.jsx';
+import About from './components/About/About.jsx';
 function App() {
 
   const queryClient = new QueryClient()
@@ -37,6 +38,7 @@ function App() {
         { path: 'setting', element: <Setting /> },
         {path: 'apartmentDetailes', element:  <ApartmentDetails/>},
         {path: 'wishlist', element:  <Wishlist/>},
+        {path: 'about', element:  <About/>},
   
       ]
     },

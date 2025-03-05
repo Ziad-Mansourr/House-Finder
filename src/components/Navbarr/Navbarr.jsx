@@ -46,9 +46,9 @@ export default function Navbarr() {
             />
             <div className="block mt-2">
               <p className="text-[27px] leading-[20px] font-serif text-[#054E98]">
-                House
+                College
               </p>
-              <span className="font-serif text-lg text-[#286EBE]">Finder</span>
+              <span className="font-serif text-lg text-[#286EBE]">Housing</span>
             </div>
           </Navbar.Brand>
         </button>
@@ -207,19 +207,19 @@ export default function Navbarr() {
             </Link>
           </button>
           <button className="bg-transparent p-0 m-0">
-            <Link
+            <lnk.Link
               onClick={() => active("about")}
               className={
                 x.pathname == '/' && activeNav == "about"
                   ? "active text-lg actLink mb-3 md:mb-0"
                   : "text-lg actLink mb-3 md:mb-0"
               }
-              to={"about"}
+              to={"/about"} 
               smooth={true}
               duration={500}
             >
               About
-            </Link>
+            </lnk.Link>
           </button>
           <button className="bg-transparent p-0 m-0">
             <Link
