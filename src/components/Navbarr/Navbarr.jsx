@@ -233,7 +233,7 @@ export default function Navbarr() {
               smooth={true}
               duration={500}
             >
-              Development
+              Most Search
             </Link>
           </button>
           <button className="bg-transparent p-0 m-0">

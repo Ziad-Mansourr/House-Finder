@@ -56,7 +56,6 @@ export default function About() {
             </h2>
             <h3 className="text-lg text-gray-700 pb-2">Frontend Developer</h3>
           </div>
-
           <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
             <div className="relative">
               <img

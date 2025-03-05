@@ -213,31 +213,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* part two */}
-      
-      <div id="about" className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
-        <div>
-          <div className="flex pt-16">
-            <img src={logo} className="w-[45px] h-[46px]" alt="" />
-            <h1 className="text-[30px] md:text-[45px] text-[#054E98] font-title">About House Finder</h1>
-          </div>
-          <p className="text-[16px] md:text-[19px] text-[#054E98] pt-4 font-title font-normal max-w-[580px]">
-            This project aims to create an innovative digital platform that
-            directly connects students from outside their hometowns in Egypt
-            with property owners near various universities. The goal is to simplify
-            the search for housing that fits their needs and budgets. The platform
-            provides detailed information about available apartments in a clear and
-            accessible way, eliminating the need for intermediaries or external parties.
-          </p>
-        </div>
-        <div className="pt-11 pb-11">
-          <img src={aboutImage} className="w-[460px] mx-auto object-cover" alt="" />
-        </div>
-      </div>
-
       {/* part three */}
       <div id="develop" className="p-10 w-[88%] mx-auto mb-9">
-        <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
+        <h2 className="text-2xl font-semibold mb-6 uppercase ">Most search</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <div className="relative group">
             <img src={cairo} alt="Cairo University" className="w-full h-full object-cover" />
