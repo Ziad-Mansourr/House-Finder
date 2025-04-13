@@ -7,7 +7,7 @@ import R from "../../img/R.jpeg";
 import { Link } from "react-router-dom";
 
 export default function Wishlist() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [R, oip, home, hom, oip, ho, home];

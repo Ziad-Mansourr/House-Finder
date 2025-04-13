@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import aboutImage from "../../img/Homee.jpg";
+import { useState } from "react";
 import img from "../../img/about.jpg";
-import logo from "../../img/Logo.png";
 import cairo from "../../img/Cairo University.png";
 import AinShams from "../../img/Ain Shams University.png";
 import Alexandria from "../../img/Alexandria University.png";

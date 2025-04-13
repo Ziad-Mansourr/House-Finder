@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 
 import Filter from "../Filter/Filter";
 import Houses from "../Houses/Houses";

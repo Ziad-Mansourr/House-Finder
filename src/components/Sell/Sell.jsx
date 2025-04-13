@@ -1,22 +1,19 @@
-import React, {
+import {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
-import { Dropdown } from "flowbite-react";
 import { useFormik } from "formik";
-import { Description } from "@headlessui/react";
 import * as yp from "yup";
 export default function Sell() {
-  const [active, setActive] = useState("Residential");
-  const [filterRes, setFilterRes] = useState("Select Type");
+  // const [active, setActive] = useState("Residential");
+  // const [filterRes, setFilterRes] = useState("Select Type");
 
-  const filRes = (type) => {
-    setActive(type);
-    setFilterRes(type);
-  };
+  // const filRes = (type) => {
+  //   setActive(type);
+  //   setFilterRes(type);
+  // };
 
   const validationSchema = yp.object().shape({
     location_link: yp
@@ -146,7 +143,7 @@ export default function Sell() {
                 onClick={openFilePicker}
                 className="w-12 lg:col-span-2 col-span-3 mr-2 lg:mr-0  h-12 flex items-center justify-center border border-gray-400 rounded-md cursor-pointer bg-gray-200 hover:bg-gray-300"
               >
-                <i class="fa-solid fa-images"></i>
+                <i className="fa-solid fa-images"></i>
               </div>
 
               {/* عرض الصور */}

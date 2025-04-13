@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 export default function ApartmentDetails() {
   const [openModal, setOpenModal] = useState(false);
@@ -157,7 +156,7 @@ export default function ApartmentDetails() {
                   href="tel:+201206089893"
                   className="py-2 px-4 ms-2 text-lg font-medium text-gray-900 text-center focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 "
                 >
-                  <i class="fa-solid fa-phone text-blue-800 pr-3"></i>
+                  <i className="fa-solid fa-phone text-blue-800 pr-3"></i>
                   Call
                 </a>
               </div>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 export default function Houses() {
   const [addFav, setAddFav] = useState(false);
+  
   function addWish() {
     if (addFav) {
       setAddFav(false);
@@ -94,7 +95,7 @@ export default function Houses() {
               </h4>
             </div>
             <div className="flex items-center">
-              <i class="fa-solid fa-location-dot pr-2"></i>
+              <i className="fa-solid fa-location-dot pr-2"></i>
               <h4>New Cairo, Cairo</h4>
             </div>
             <h4 className="mr-2 md:mt-4 text-blue-700">

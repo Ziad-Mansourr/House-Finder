@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yp from 'yup';
 import { useFormik } from 'formik';
 import { Button, Modal } from "flowbite-react";
-import VerifyCode from "../VerifyCode/VerifyCode";
 import axiosInstance from "../../services/axiosInstance";
 export default function SignUp() {
   const navigate = useNavigate();
@@ -273,13 +272,13 @@ export default function SignUp() {
                   {load ? <i className='fas fa-spinner fa-spin px-2' ></i> : 'Sign Up'}
                   </button>
                   <div className="flex ">
-                    <span className="mr-2">Don't have an account?</span>
+                    <span className="mr-2">Don&apos;t have an account?</span>
                     <Link to={"/login"} className="underline text-[#054E98]">
                       Sign in
                     </Link>
                   </div>
                   <div className="flex justify-center items-center">
-                    <Link className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
+                    <Link to={'http://localhost:3000/api/users/login/google'} className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
                       {" "}
                       <i className="fa-brands fa-google  text-[#054E98]"></i>{" "}
                     </Link>

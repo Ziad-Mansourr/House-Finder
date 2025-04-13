@@ -1,8 +1,9 @@
-import { createContext, useContext, useState } from "react"
+import { createContext,  useState } from "react"
+import PropTypes from "prop-types";
 import axiosInstance from "../services/axiosInstance";
 export const usersContext = createContext();
 
-export default function UserContextProvider(props) {
+export default function UserContextProvider({children}) {
     const [name, setName] = useState('');
     // const [name, setName] = useState('');
     // const [name, setName] = useState('');
@@ -21,8 +22,11 @@ export default function UserContextProvider(props) {
     return (
         <>
             <usersContext.Provider value={{ name, login }}>
-                {props.children}
+                {children}
             </usersContext.Provider>
         </>
     )
 }
+UserContextProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};

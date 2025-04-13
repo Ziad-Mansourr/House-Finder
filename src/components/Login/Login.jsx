@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import  { useContext, useState } from "react";
+import { Link,  useNavigate } from "react-router-dom";
 import * as yp from 'yup';
 import { useFormik } from 'formik';
 import { usersContext } from "../../context/userContext";
@@ -15,7 +15,14 @@ export default function Login() {
   });
 
 
-
+// function handleLoginGoogle(){
+//   axiosInstance.get(`users/login/google`)
+//   .then((res)=>{
+//       console.log(res);
+//   }).catch((error)=>{
+//     console.log(error);
+//   })
+// }
 async function handleLogin(values) {
     setLoad(true);
     let data = await login(values);
@@ -131,13 +138,13 @@ async function handleLogin(values) {
                     Forget Password?
                   </Link>
                   <div className="flex ">
-                    <span className="mr-2">Don't have an account?</span>
+                    <span className="mr-2">Don&apos;t have an account?</span>
                     <Link to={"/SignUp"} className="underline text-[#054E98]">
                       Sign Up
                     </Link>
                   </div>
                   <div className="flex justify-center items-center">
-                    <Link className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
+                    <Link to={'http://localhost:3000/api/users/login/google'} className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
                       {" "}
                       <i className="fa-brands fa-google  text-[#054E98]"></i>{" "}
                     </Link>

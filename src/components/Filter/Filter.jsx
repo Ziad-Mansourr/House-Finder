@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import {
   Dropdown,
@@ -9,6 +9,7 @@ import {
   Popover,
 } from "flowbite-react";
 import { useFormik } from "formik";
+import { useState } from "react";
 export default function Filter() {
   const [filterRes, setFilterRes] = useState("Residential");
   const options = ["1", "2", "3", "4", "5", "6", "7", "8+"];
@@ -248,7 +249,7 @@ export default function Filter() {
             >
               <span className="text-blue-800 font-medium  flex items-center cursor-pointer">
                 Price (EGP)
-                <i class="fa-solid fa-angle-down ml-2"></i>
+                <i className="fa-solid fa-angle-down ml-2"></i>
               </span>
             </Popover>
           </div>
@@ -506,14 +507,14 @@ export default function Filter() {
             >
               <span className="text-blue-800 ml-1 font-semibold  text-base flex items-center">
                 Price (EGP)
-                <i class="fa-solid fa-angle-down ml-2"></i>
+                <i className="fa-solid fa-angle-down ml-2"></i>
               </span>
             </Popover>
           </div>
 
               <div className="ml-1 mt-5">
-                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-600 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white ">
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-600 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white ">
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
                     Search
                   </span>
                 </button>

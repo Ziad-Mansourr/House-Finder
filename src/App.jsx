@@ -1,6 +1,5 @@
 import './App.css'
-import { createBrowserRouter, createHashRouter, RouterProvider} from 'react-router-dom'
-import { QueryClient } from '@tanstack/react-query'
+import { createHashRouter, RouterProvider} from 'react-router-dom'
 import "flowbite";
 import Home from './components/Home/Home'
 import Apartment from './components/Apartment/Apartment.jsx'
@@ -21,7 +20,6 @@ import UserContextProvider from './context/userContext.jsx';
 import About from './components/About/About.jsx';
 function App() {
 
-  const queryClient = new QueryClient()
 
   let router = createHashRouter([
     {

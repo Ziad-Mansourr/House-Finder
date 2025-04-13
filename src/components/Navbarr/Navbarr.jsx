@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { Dropdown, Navbar } from "flowbite-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 import * as lnk from "react-router-dom";
 import { usersContext } from "../../context/userContext";
@@ -59,10 +59,10 @@ export default function Navbarr() {
             <div className="md:flex hidden">
               <lnk.Link to={'/wishList'} className='mr-3'>
 
-                <button type="button" class="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white ">
+                <button type="button" className="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white ">
                   <i className='fa-regular fa-heart text-2xl text-[#156faf] '></i>
-                  <span class="sr-only">Notifications</span>
-                  <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">20</div>
+                  <span className="sr-only">Notifications</span>
+                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">20</div>
                 </button>
 
               </lnk.Link>
@@ -130,11 +130,11 @@ export default function Navbarr() {
             <lnk.Link to={"/wishList"} className="mr-3">
               <button
                 type="button"
-                class="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white "
+                className="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white "
               >
                 <i className="fa-regular fa-heart text-2xl text-[#156faf] "></i>
-                <span class="sr-only">Notifications</span>
-                <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                <span className="sr-only">Notifications</span>
+                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
                   20
                 </div>
               </button>

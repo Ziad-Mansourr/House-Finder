@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 export default function ProfileSettings() {
   // Profile states
   const [name, setName] = useState('');
@@ -58,7 +58,7 @@ export default function ProfileSettings() {
               </div>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              This is the number for buyers' contacts, reminders, and other notifications.
+              This is the number for buyers&apos; contacts, reminders, and other notifications.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export default function ProfileSettings() {
               placeholder="Enter Email Address"
               className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
             <p className="text-sm text-gray-500 mt-2">
-              We won't reveal your email to anyone else nor use it to send you spam
+              We won&apos;t reveal your email to anyone else nor use it to send you spam
             </p>
           </div>
         </div>
