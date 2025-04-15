@@ -18,6 +18,7 @@ function App() {
     <>
     <ApartmentDetails/>
     <Favourites/>
+    <services/>
     </>
   )
 }
