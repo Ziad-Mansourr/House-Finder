@@ -6,6 +6,8 @@ import {
 } from "react";
 import { useFormik } from "formik";
 import * as yp from "yup";
+import toast from "react-hot-toast";
+import axios from "axios";
 export default function Sell() {
   // const [active, setActive] = useState("Residential");
   // const [filterRes, setFilterRes] = useState("Select Type");
@@ -14,7 +16,10 @@ export default function Sell() {
   //   setActive(type);
   //   setFilterRes(type);
   // };
-
+  const token = localStorage.getItem('token');
+  let headers = {
+    Authorization: `Bearer ${token}`,
+  }
   const validationSchema = yp.object().shape({
     location_link: yp
       .string()
@@ -23,16 +28,18 @@ export default function Sell() {
         "Please put location apartment link from Google Maps"
       ),
   });
-  const [lenImg , setLenImg] = useState(false);
+  const [lenImg, setLenImg] = useState(false);
   const fileInputRef = useRef(null);
   const imagesRef = useRef([]);
   const [previews, setPreviews] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
-  console.log(imagesRef);
+  const electricityBillRef = useRef([]);
+  const idCardRef = useRef([]);
+  // console.log(imagesRef);
   // console.log(previews);
   // console.log();
   const openFilePicker = useCallback(() => {
-    console.log("File input opened");
+    // console.log("File input opened");
     fileInputRef.current?.click();
   }, []);
   const handleImageChange = (event) => {
@@ -48,72 +55,92 @@ export default function Sell() {
     imagesRef.current = imagesRef.current.filter((_, i) => i !== index);
     setPreviews((prev) => prev.filter((_, i) => i !== index));
   };
-  useEffect(()=>{
-    if(imagesRef.current.length == 14){
+  useEffect(() => {
+    if (imagesRef.current.length == 14) {
       setLenImg(true);
-    }else{
+    } else {
       setLenImg(false)
     }
-  },[imagesRef.current.length])
-
-  // const uploadImages = async () => {
-  //   if (images.length === 0) {
-  //     alert("Please select at least one image.");
-  //     return;
-  //     }
-  //   }
-
-  /*
-    try {
-      const response = await fetch("https://your-api.com/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-      console.log("Upload successful:", result);
-      alert("Images uploaded successfully!");
-    } catch (error) {
-      console.error("Error uploading images:", error);
-      alert("Failed to upload images.");
-    }
-  };
-*/
-
-  const formData = new FormData();
-  imagesRef.current.forEach((image) => {
-    formData.append("images", image);
-  });
-  if (selectedFile != null) {
-    formData.append("Contract", selectedFile);
-  }
-  console.log(formData);
+  }, [imagesRef.current.length])
+  // console.log(formData);
   function handlePost(values) {
-    console.log(values);
-    formData.append("area", values.area);
+    if (imagesRef.current.length === 0) {
+      toast.error("Please upload at least one image");
+      return;
+    }
+    if (electricityBillRef.current.length === 0) {
+      toast.error("Please upload the electricity bill");
+      return;
+    }
+    if (!selectedFile) {
+      toast.error("Please upload the apartment contract");
+      return;
+    }
+    if (idCardRef.current.length === 0) {
+      toast.error("Please upload ID card files");
+      return;
+    }
+
+
+
+    const formData = new FormData();
+    // console.log(values);
+    formData.append("size", values.area);
     formData.append("bedrooms", values.bedrooms);
     formData.append("bathrooms", values.bathrooms);
-    formData.append("level", values.level);
+    formData.append('category', values.propertyType);
+    formData.append('furnished', values.furnished);
+    formData.append("monthlyPrice", values.monthly_Price);
+    formData.append("contactPhone", values.Phone_Number);
+    formData.append("whatsApp", values.WhatsApp_Number);
+    formData.append("propertyLevel", values.level);
+    formData.append("PropertyNumber", values.proNum);
     formData.append("title", values.title);
     formData.append("description", values.description);
-    formData.append("location", values.location);
-    formData.append("monthly_Price", values.monthly_Price);
-    formData.append("deposit", values.deposit);
+    formData.append("location", values.location_link);
+    formData.append("address", values.location);
     formData.append("insurance", values.insurance);
-    formData.append("name", values.name);
-    formData.append("Phone_Number", values.Phone_Number);
-    formData.append("WhatsApp_Number", values.WhatsApp_Number);
-    // formData.append('Contract' , fileInputRef.current[0]);
-    formData.forEach((value, key) => {
-      console.log(key, value);
+    formData.append("deposit", values.deposit);
+    imagesRef.current.forEach((image) => {
+      formData.append("images", image);
     });
+    electricityBillRef.current.forEach((file) =>
+      formData.append("electricityBill", file)
+    );
+    if (selectedFile != null) {
+      formData.append("titleDeed", selectedFile);
+    }
+    idCardRef.current.forEach((file) =>
+      formData.append("idCard", file)
+    );
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+    toast.loading('Post send to Admin...')
+    axios.post(`http://localhost:3000/api/units`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(({ data }) => {
+        console.log(data);
+        toast.dismiss();
+        toast.success('Post send to Admin successfuly')
+      }).catch((err) => {
+        toast.dismiss();
+        console.log("Error ❌", err);
+        toast.error('Post send to Admin failed');
+      });
   }
   let formik = useFormik({
     initialValues: {
+      propertyType: 'apartment',
       area: "",
       bedrooms: "",
       bathrooms: "",
       level: "",
+      proNum: '',
+      furnished: 'false',
       title: "",
       description: "",
       location: "",
@@ -121,7 +148,6 @@ export default function Sell() {
       monthly_Price: "",
       deposit: "",
       insurance: "",
-      name: "",
       Phone_Number: "",
       WhatsApp_Number: "",
     },
@@ -157,8 +183,8 @@ export default function Sell() {
                     alt="Uploaded"
                     className="w-full h-full object-cover rounded-md"
                   />
-                  {/* زر حذف الصورة */}
                   <button
+                    type="button"
                     onClick={() => removeImage(index)}
                     className="absolute hidden top-0 right-0 bg-transparent p-0 duration-500 transition-all  text-white rounded-full group-hover:flex items-center justify-center text-xs"
                   >
@@ -198,6 +224,46 @@ export default function Sell() {
               required
             />
           </div>
+
+          <div className="mb-10 flex flex-col md:flex-row items-center justify-start">
+            <label
+              htmlFor="electricityBill"
+              className="block mb-2 w-[100%] md:w-[35%] text-lg font-medium text-gray-900"
+            >
+              Electricity Bill <span className="text-red-700">*</span>
+            </label>
+            <input
+              type="file"
+              id="electricityBill"
+              multiple
+              accept=".pdf,.jpg,.png"
+              onChange={(e) =>
+                (electricityBillRef.current = Array.from(e.target.files).slice(0, 2))
+              }
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block md:w-[80%] w-[100%]"
+            />
+          </div>
+
+
+          <div className="mb-10 flex flex-col md:flex-row items-center justify-start">
+            <label
+              htmlFor="idCard"
+              className="block mb-2 w-[100%] md:w-[35%] text-lg font-medium text-gray-900"
+            >
+              ID Card <span className="text-red-700">*</span>
+            </label>
+            <input
+              type="file"
+              id="idCard"
+              multiple
+              accept=".pdf,.jpg,.png"
+              onChange={(e) =>
+                (idCardRef.current = Array.from(e.target.files).slice(0, 2))
+              }
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block md:w-[80%] w-[100%]"
+            />
+          </div>
+
           {/* Type */}
           <div className="mb-5 flex flex-col md:flex-row items-start md:items-center justify-start ">
             <label
@@ -213,8 +279,10 @@ export default function Sell() {
                   defaultChecked
                   id="bordered-radio-4"
                   type="radio"
-                  defaultValue
-                  name="bordered-radio"
+                  value={'Apartment'}
+                  name="propertyType"
+                  onChange={formik.handleChange}
+                  checked={formik.values.propertyType === 'apartment'}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
@@ -229,8 +297,10 @@ export default function Sell() {
                 <input
                   id="bordered-radio-2"
                   type="radio"
-                  defaultValue
-                  name="bordered-radio"
+                  value={'Room'}
+                  name="propertyType"
+                  onChange={formik.handleChange}
+                  checked={formik.values.propertyType === 'room'}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
                 />
                 <label
@@ -245,8 +315,10 @@ export default function Sell() {
                 <input
                   id="bordered-radio-1"
                   type="radio"
-                  defaultValue
-                  name="bordered-radio"
+                  value={'Villa'}
+                  name="propertyType"
+                  onChange={formik.handleChange}
+                  checked={formik.values.propertyType === 'villa'}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
                 />
                 <label
@@ -261,8 +333,10 @@ export default function Sell() {
                 <input
                   id="bordered-radio-3"
                   type="radio"
-                  defaultValue
-                  name="bordered-radio"
+                  value={'Duplex'}
+                  name="propertyType"
+                  onChange={formik.handleChange}
+                  checked={formik.values.propertyType === 'duplex'}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
                 />
                 <label
@@ -337,7 +411,7 @@ export default function Sell() {
               htmlFor="email"
               className="block mb-2 text-lg font-medium text-gray-900 "
             >
-              Level
+              Level <span className="text-red-700">*</span>
             </label>
             <input
               value={formik.values.level}
@@ -347,8 +421,30 @@ export default function Sell() {
               id="level"
               className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg block w-full md:w-[80%] p-2.5 "
               placeholder="Enter Level"
+              required
             />
           </div>
+
+          <div className="mb-10 flex flex-col md:flex-row items-center justify-start">
+            <label
+              htmlFor="email"
+              className="block mb-2 w-[100%] md:w-[35%]  text-lg font-medium text-gray-900 "
+            >
+              Property Number <span className="text-red-700">*</span>
+            </label>
+            <input
+              type="text"
+              id="proNum"
+              name="proNum"
+              value={formik.values.proNum}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg block md:w-[100%] w-[100%] "
+              placeholder="Property Number"
+              required
+            />
+          </div>
+
           {/* Furnished */}
           <div className="mb-5 flex flex-col md:flex-row md:items-center items-start justify-start ">
             <label
@@ -365,6 +461,8 @@ export default function Sell() {
                   type="radio"
                   defaultValue
                   name="furnished"
+                  onChange={formik.handleChange}
+                  checked={formik.values.furnished === 'true'}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
                 />
                 <label
@@ -379,8 +477,10 @@ export default function Sell() {
                   defaultChecked
                   id="furnished-2"
                   type="radio"
-                  defaultValue
+                  value={'false'}
                   name="furnished"
+                  onChange={formik.handleChange}
+                  checked={formik.values.furnished === 'false'}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
@@ -472,7 +572,7 @@ export default function Sell() {
               />
             </div>
             {formik.errors.location_link != null &&
-            formik.touched.location_link ? (
+              formik.touched.location_link ? (
               <div
                 className="p-4 text-sm w-full ml-[135px] md:w-[80%]  text-red-800 rounded-lg bg-red-50 "
                 role="alert"
@@ -554,7 +654,7 @@ export default function Sell() {
             </div>
           </div>
           {/* Name */}
-          <div className="mb-5 flex flex-col md:flex-row md:items-center items-start justify-start md:justify-between">
+          {/* <div className="mb-5 flex flex-col md:flex-row md:items-center items-start justify-start md:justify-between">
             <label
               htmlFor="name"
               className="block mb-2 text-lg font-medium text-gray-900 "
@@ -571,7 +671,7 @@ export default function Sell() {
               placeholder="Enter Name"
               required
             />
-          </div>
+          </div> */}
           {/* Phone Number */}
           <div className="mb-5 flex flex-col md:flex-row md:items-center items-start justify-start md:justify-between">
             <label
