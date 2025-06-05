@@ -1,16 +1,15 @@
-import { createContext,  useState } from "react"
+import { createContext } from "react"
 import PropTypes from "prop-types";
 import axiosInstance from "../services/axiosInstance";
 export const usersContext = createContext();
 
 export default function UserContextProvider({children}) {
-    const [name, setName] = useState('');
     // const [name, setName] = useState('');
     // const [name, setName] = useState('');
     function login(values) {
        return axiosInstance.post(`users/login`, values)
             .then(({ data }) => {
-                setName(data.body.user.fullName);
+                localStorage.setItem('name',data.body.user.fullName);
                 console.log(data.body.user.fullName);
                 return data;
             })
@@ -21,7 +20,7 @@ export default function UserContextProvider({children}) {
     }
     return (
         <>
-            <usersContext.Provider value={{ name, login }}>
+            <usersContext.Provider value={{ login }}>
                 {children}
             </usersContext.Provider>
         </>

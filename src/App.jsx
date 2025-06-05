@@ -1,5 +1,5 @@
 import './App.css'
-import { createHashRouter, RouterProvider} from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 import "flowbite";
 import Home from './components/Home/Home'
 import Apartment from './components/Apartment/Apartment.jsx'
@@ -18,9 +18,13 @@ import Admin from './components/Admin/Admin.jsx'
 import DashBoard from './components/DashBoard/DashBoard.jsx'
 import UserContextProvider from './context/userContext.jsx';
 import About from './components/About/About.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import WishListContextProvider from './context/userWishlist.jsx';
+import { Toaster } from 'react-hot-toast';
+import RateContextProvider from './context/userRate.jsx';
 function App() {
 
-
+  const queryClient = new QueryClient();
   let router = createHashRouter([
     {
       path: '', element: <Layout />, children: [
@@ -34,24 +38,29 @@ function App() {
         { path: 'resetPass', element: <ResetPassword /> },
         { path: 'profile', element: <Profile /> },
         { path: 'setting', element: <Setting /> },
-        {path: 'apartmentDetailes', element:  <ApartmentDetails/>},
-        {path: 'wishlist', element:  <Wishlist/>},
-        {path: 'about', element:  <About/>},
-  
+        { path: 'apartmentDetailes/:id', element: <ApartmentDetails /> },
+        { path: 'wishlist', element: <Wishlist /> },
+        { path: 'about', element: <About /> },
+
       ]
     },
-    {path: 'admin', element: <Admin/>},                 
-    {path: 'dashBoard', element: <DashBoard/>},   
+    { path: 'admin', element: <Admin /> },
+    { path: 'dashBoard', element: <DashBoard /> },
 
   ])
 
   return (
     <>
-
-
-      <UserContextProvider>
-      <RouterProvider router={router}></RouterProvider>
-      </UserContextProvider>
+      <RateContextProvider>
+        <WishListContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <UserContextProvider>
+              <RouterProvider router={router}></RouterProvider>
+              <Toaster />
+            </UserContextProvider>
+          </QueryClientProvider>
+        </WishListContextProvider>
+      </RateContextProvider>
 
     </>
   )

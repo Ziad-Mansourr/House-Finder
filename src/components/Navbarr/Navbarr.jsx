@@ -3,12 +3,11 @@ import { Dropdown, Navbar } from "flowbite-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 import * as lnk from "react-router-dom";
-import { usersContext } from "../../context/userContext";
 
 export default function Navbarr() {
   let navigate = useNavigate();
   const [token , setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):null);
-  let {name} =  useContext(usersContext)
+ 
   function logout() {
     localStorage.removeItem('token');
     setToken(null);
@@ -77,7 +76,7 @@ export default function Navbarr() {
               >
                 <Dropdown.Header>
                   <span className="block text-lg font-bold">Hello,</span>
-                  <span className="block truncate text-lg font-medium mr-14"> {name}</span>
+                  <span className="block truncate text-lg font-medium mr-14"> {localStorage.getItem('name')}</span>
                 </Dropdown.Header>
                 <div className="flex ay flex-col py-[4px] ">
                   <lnk.Link to={'/profile'} className=''>
