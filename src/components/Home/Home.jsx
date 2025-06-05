@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import aboutImage from "../../img/Homee.jpg";
 import img from "../../img/about.jpg";
-import logo from "../../img/Logo.png";
 import cairo from "../../img/Cairo University.png";
 import AinShams from "../../img/Ain Shams University.png";
 import Alexandria from "../../img/Alexandria University.png";
@@ -246,7 +245,7 @@ export default function Home() {
       <div id="about" className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
         <div>
           <div className="flex pt-16">
-            <img src={logo} className="w-[45px] h-[46px]" alt="" />
+           {/* <img src={logo} className="w-[45px] h-[46px]" alt="" /> */}
             <h1 className="text-[30px] md:text-[45px] text-[#054E98] font-title">About House Finder</h1>
           </div>
           <p className="text-[16px] md:text-[19px] text-[#054E98] pt-4 font-title font-normal max-w-[580px]">
@@ -261,9 +260,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Part three */}
+      {/* part three */}
+
       <div id="develop" className="p-10 w-[88%] mx-auto mb-9">
-        <h2 className="text-xl font-semibold mb-6">DEVELOPMENTS</h2>
+        <h2 className="text-2xl font-semibold mb-6 uppercase ">Most search</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {[
             { img: cairo, name: "Cairo University" },

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+
+import  { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-
 export default function ProfileSettings() {
   // Profile states
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState(false);
@@ -98,7 +98,7 @@ export default function ProfileSettings() {
               <div className="text-red-500 text-sm mt-1">{profileFormik.errors.phone}</div>
             ) : null}
             <p className="text-sm text-gray-500 mt-2">
-              This is the number for buyers' contacts, reminders, and other notifications.
+              This is the number for buyers&apos; contacts, reminders, and other notifications.
             </p>
           </div>
 
@@ -116,7 +116,7 @@ export default function ProfileSettings() {
               <div className="text-red-500 text-sm mt-1">{profileFormik.errors.email}</div>
             ) : null}
             <p className="text-sm text-gray-500 mt-2">
-              We won't reveal your email to anyone else nor use it to send you spam.
+              We won&apos;t reveal your email to anyone else nor use it to send you spam
             </p>
           </div>
         </div>

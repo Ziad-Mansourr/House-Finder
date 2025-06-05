@@ -1,22 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import  { useContext, useState } from "react";
+import { Link,  useNavigate } from "react-router-dom";
 import * as yp from 'yup';
 import { useFormik } from 'formik';
+import { usersContext } from "../../context/userContext";
 export default function Login() {
+  const navigate = useNavigate();
+  let {login} = useContext(usersContext);
+  const [load, setLoad] = useState(false);
   const [showPass, setShowPass] = useState(false);
-
   let validationSchema = yp.object().shape({
     email: yp.string().email('email invalid').required('email is required'),
     password: yp.string().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/, 'Password should be start with capital letter and min length is 8 chars').required('password is required'),
 
-
   });
 
 
-
-  function handleLogin(values) {
-    console.log(values);
-    
+// function handleLoginGoogle(){
+//   axiosInstance.get(`users/login/google`)
+//   .then((res)=>{
+//       console.log(res);
+//   }).catch((error)=>{
+//     console.log(error);
+//   })
+// }
+async function handleLogin(values) {
+    setLoad(true);
+    let data = await login(values);
+    if(data.status === 'success'){
+      localStorage.setItem('token', data.token);
+      setLoad(false);
+      navigate('/');
+    }else{
+      setLoad(false);
+    }
+    console.log(data);
   }
 
   let formik = useFormik(
@@ -25,7 +42,7 @@ export default function Login() {
         email: '',
         password: ''
       },
-      onSubmit: () => handleLogin(formik.values),
+      onSubmit: (values) => handleLogin(values),
       validationSchema: validationSchema
     }
   )
@@ -112,7 +129,7 @@ export default function Login() {
                 </div>
                 <div className="flex flex-col justify-center items-center">
                   <button className="text-white  bg-blue-700  w-[60%] mb-5 py-2.5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Login
+                  {load ? <i className='fas fa-spinner fa-spin px-2' ></i> : 'Login'}
                   </button>
                   <Link
                     to={"/forgetPassword"}
@@ -121,13 +138,13 @@ export default function Login() {
                     Forget Password?
                   </Link>
                   <div className="flex ">
-                    <span className="mr-2">Don't have an account?</span>
+                    <span className="mr-2">Don&apos;t have an account?</span>
                     <Link to={"/SignUp"} className="underline text-[#054E98]">
                       Sign Up
                     </Link>
                   </div>
                   <div className="flex justify-center items-center">
-                    <Link className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
+                    <Link to={'http://localhost:3000/api/users/login/google'} className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
                       {" "}
                       <i className="fa-brands fa-google  text-[#054E98]"></i>{" "}
                     </Link>

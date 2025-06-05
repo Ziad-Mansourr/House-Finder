@@ -1,15 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { Dropdown, Navbar } from "flowbite-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 import * as lnk from "react-router-dom";
 
 export default function Navbarr() {
   let navigate = useNavigate();
+  const [token , setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):null);
+ 
   function logout() {
-    navigate("/login");
+    localStorage.removeItem('token');
+    setToken(null);
   }
-
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      setToken(localStorage.getItem('token'));
+    }
+  } , [localStorage.getItem('token')]);
   const [activeNav, setActiveNav] = useState("home");
   let x = useLocation();
   useMemo(() => {
@@ -27,7 +34,7 @@ export default function Navbarr() {
     <>
       <Navbar
         fluid
-        className="fixed top-0 left-0 right-0 z-20 shadow-md bg-[#f0efef]  shadow-gray-400"
+        className="fixed top-0 left-0 right-0 z-30 shadow-md bg-[#f0efef]  shadow-gray-400"
       >
         <button className="bg-transparent p-0 m-0 text-start" onClick={home}>
           <Navbar.Brand>
@@ -38,22 +45,23 @@ export default function Navbarr() {
             />
             <div className="block mt-2">
               <p className="text-[27px] leading-[20px] font-serif text-[#054E98]">
-                House
+                College
               </p>
-              <span className="font-serif text-lg text-[#286EBE]">Finder</span>
+              <span className="font-serif text-lg text-[#286EBE]">Housing</span>
             </div>
           </Navbar.Brand>
         </button>
 
         {
+          token !== null ?
           <div className="flex vip md:order-2 z-30">
             <div className="md:flex hidden">
               <lnk.Link to={'/wishList'} className='mr-3'>
 
-                <button type="button" class="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white ">
+                <button type="button" className="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white ">
                   <i className='fa-regular fa-heart text-2xl text-[#156faf] '></i>
-                  <span class="sr-only">Notifications</span>
-                  <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">20</div>
+                  <span className="sr-only">Notifications</span>
+                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">20</div>
                 </button>
 
               </lnk.Link>
@@ -68,7 +76,7 @@ export default function Navbarr() {
               >
                 <Dropdown.Header>
                   <span className="block text-lg font-bold">Hello,</span>
-                  <span className="block truncate text-lg font-medium mr-14">House Finder</span>
+                  <span className="block truncate text-lg font-medium mr-14"> {localStorage.getItem('name')}</span>
                 </Dropdown.Header>
                 <div className="flex ay flex-col py-[4px] ">
                   <lnk.Link to={'/profile'} className=''>
@@ -93,36 +101,39 @@ export default function Navbarr() {
 
             <Navbar.Toggle />
           </div>
+         :
+          <div className="flex gap-3 vip md:order-2">
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={<i className="fa-regular fa-user text-xl"></i>}
+              className="rounded-br-3xl rounded-tl-3xl "
+            >
+              <Dropdown.Header className="flex-col flex px-12  ">
+                <NavLink to={"login"} className={"mb-3"}>
+                  Login
+                </NavLink>
+                <NavLink to={"signUp"}>Sign Up</NavLink>
+              </Dropdown.Header>
+            </Dropdown>
 
-          // <div className="flex vip md:order-2">
-          //   <Dropdown
-          //     arrowIcon={false}
-          //     inline
-          //     label={<i className="fa-regular fa-user text-xl"></i>}
-          //     className="rounded-br-3xl  rounded-tl-3xl "
-          //   >
-          //     <Dropdown.Header className="flex-col flex px-12  ">
-          //       <NavLink to={"login"} className={"mb-3"}>
-          //         Login
-          //       </NavLink>
-          //       <NavLink to={"signUp"}>Sign Up</NavLink>
-          //     </Dropdown.Header>
-          //   </Dropdown>
-
-          //   <Navbar.Toggle />
-          // </div>
+            <Navbar.Toggle />
+          </div>
         }
 
         <Navbar.Collapse>
+            
+            {
+              token !== null ?
           <div className="md:hidden flex justify-end mb-4">
             <lnk.Link to={"/wishList"} className="mr-3">
               <button
                 type="button"
-                class="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white "
+                className="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white "
               >
                 <i className="fa-regular fa-heart text-2xl text-[#156faf] "></i>
-                <span class="sr-only">Notifications</span>
-                <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                <span className="sr-only">Notifications</span>
+                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
                   20
                 </div>
               </button>
@@ -136,7 +147,7 @@ export default function Navbarr() {
               <Dropdown.Header>
                 <span className="block text-lg font-bold">Hello,</span>
                 <span className="block truncate text-lg font-medium mr-14">
-                  House Finder
+                  {name}
                 </span>
               </Dropdown.Header>
               <div className="flex ay flex-col py-[4px] ">
@@ -176,6 +187,8 @@ export default function Navbarr() {
               </div>
             </Dropdown>
           </div>
+          :null
+            }
 
           <button className="bg-transparent p-0 m-0">
             <Link
@@ -193,19 +206,19 @@ export default function Navbarr() {
             </Link>
           </button>
           <button className="bg-transparent p-0 m-0">
-            <Link
+            <lnk.Link
               onClick={() => active("about")}
               className={
                 x.pathname == '/' && activeNav == "about"
                   ? "active text-lg actLink mb-3 md:mb-0"
                   : "text-lg actLink mb-3 md:mb-0"
               }
-              to={"about"}
+              to={"/about"} 
               smooth={true}
               duration={500}
             >
               About
-            </Link>
+            </lnk.Link>
           </button>
           <button className="bg-transparent p-0 m-0">
             <Link
@@ -219,7 +232,7 @@ export default function Navbarr() {
               smooth={true}
               duration={500}
             >
-              Development
+              Most Search
             </Link>
           </button>
           <button className="bg-transparent p-0 m-0">

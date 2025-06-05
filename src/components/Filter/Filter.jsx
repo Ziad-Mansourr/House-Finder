@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
-import { Dropdown, Drawer, Button } from "flowbite-react";
+import {
+  Dropdown,
+  Drawer,
+  Button,
+  TextInput,
+  Label,
+  Popover,
+} from "flowbite-react";
 import { useFormik } from "formik";
+import { useState } from "react";
 export default function Filter() {
   const [filterRes, setFilterRes] = useState("Residential");
   const options = ["1", "2", "3", "4", "5", "6", "7", "8+"];
@@ -23,24 +31,34 @@ export default function Filter() {
   function filBat(word) {
     setActiveBt(word);
   }
-  function handlePrice(values){
-     console.log(values);
-     
+  function handlePrice(values) {
+    console.log(values);
   }
   let formik = useFormik({
-      initialValues :{
-        start : 0,
-        end : 0
-      },
-      onSubmit:(values)=>handlePrice(values), 
-      
-  })
+    initialValues: {
+      location: "",
+      start: "",
+      end: "",
+    },
+    onSubmit: (values) => handlePrice(values),
+    onReset: (values) => resetPrice(values),
+  });
+  function resetPrice(params) {
+    console.log(params);
+    params.start = "";
+    params.end = "";
+  }
+
   return (
     <>
       {/* Filter Laptop */}
       <div className="col-span-12 hidden lg:flex items-center ">
         <div className="w-[35%] relative mr-10">
           <input
+            value={formik.values.location}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            id="location"
             type="text"
             placeholder="Enter location"
             className="px-8 rounded-md w-full "
@@ -162,62 +180,87 @@ export default function Filter() {
             </Dropdown>
           </div>
 
-          <div className="ml-6">
-            <Dropdown
-              color=""
-              label={
-                <span className="text-blue-800 font-medium hover:underline flex items-center">
-                  Price (EGP)
-                </span>
+          <div className="ml-6 bg-[#e2e2e2] px-4 flex items-center rounded-lg">
+            <Popover
+              content={
+                <div className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-80 lg:w-96 p-3">
+                  <form>
+                    <div className="flex items-center">
+                      {/* Start Price Input */}
+                      <div className="w-full">
+                        <Label
+                          htmlFor="start"
+                          value="Start Price"
+                          className="text-gray-700 text-sm mb-1"
+                        />
+                        <TextInput
+                          value={formik.values.start}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          name="start"
+                          id="start"
+                          type="number"
+                          placeholder="0"
+                          className="w-full"
+                        />
+                      </div>
+
+                      <span className="mx-2 text-gray-500">to</span>
+
+                      {/* End Price Input */}
+                      <div className="w-full">
+                        <Label
+                          htmlFor="end"
+                          value="End Price"
+                          className="text-gray-700 text-sm mb-1"
+                        />
+                        <TextInput
+                          value={formik.values.end}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          name="end"
+                          id="end"
+                          type="number"
+                          placeholder="Any"
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-evenly mt-7">
+                      <button
+                        type="reset"
+                        onClick={() => resetPrice(formik.values)}
+                        className="px-4 py-2 hover:bg-gray-100 border-spacing-3 border-blue-800 w-[30%]"
+                      >
+                        Reset
+                      </button>
+
+                      <button
+                        type="button"
+                        className="px-4 py-2 text-white bg-blue-800 border-blue-900 w-[40%]"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  </form>
+                </div>
               }
-              dismissOnClick={false}
-              className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-80 lg:w-96"
             >
-              <form className="p-3" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
-                <div className="flex items-center">
-                  <input
-                    value={formik.values.start} onChange={ formik.handleChange} onBlur={formik.handleBlur}
-                    name="start"
-                    type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5"
-                    placeholder="0"
-                  />
-                  <span className="mx-2 text-gray-500">to</span>
-                  <input
-                    value={formik.values.end} onChange={formik.handleChange} onBlur={formik.handleBlur}
-                    name="end"
-                    type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5"
-                    placeholder="Any"
-                  />
-                </div>
-
-                <div className="flex justify-evenly mt-7">
-                  <button type="reset" className="px-4 py-2  hover:bg-gray-100 border-spacing-3 border-blue-800 w-[30%]" >
-                    Reset
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="px-4 py-2 text-white bg-blue-800 border-blue-900 w-[40%]"
-                  >
-                    Done
-                  </button>
-                </div>
-              </form>
-            </Dropdown>
+              <span className="text-blue-800 font-medium  flex items-center cursor-pointer">
+                Price (EGP)
+                <i className="fa-solid fa-angle-down ml-2"></i>
+              </span>
+            </Popover>
           </div>
-          <div className="ml-6">
+          <form className="ml-6" onSubmit={formik.handleSubmit}>
             <button
-              onClick={() => {
-                filBad("");
-                filBat("");
-              }}
+              type="submit"
               className=" px-5    border-spacing-3  text-white bg-blue-700 border-blue-900"
             >
               Search
             </button>
-          </div>
+          </form>
         </div>
 
         <div className="ml-8">
@@ -234,7 +277,7 @@ export default function Filter() {
           </Link>
         </div>
       </div>
-    
+
       {/* Button Filter Phone */}
       <div className="col-span-12 flex gap-2 mt-3 items-center">
         <div className="w-[85%] lg:hidden relative">
@@ -248,13 +291,12 @@ export default function Filter() {
 
         <div className="block lg:hidden text-center">
           <Button
-          color=""
+            color=""
             className="text-white flex items-center hover:bg-blue-800 bg-blue-700 font-medium rounded-lg text-md px-3 py-1 focus:outline-none focus:ring-0"
             onClick={toggleDrawer}
           >
             <div className="flex items-center">
-            <i className="fa-solid fa-sliders mr-2 "></i> Filters
-
+              <i className="fa-solid fa-sliders mr-2 "></i> Filters
             </div>
           </Button>
         </div>
@@ -396,55 +438,83 @@ export default function Filter() {
                 </Dropdown>
               </div>
 
-              <div className="mt-7">
-                <Dropdown
-                  label={
-                    <span className="text-blue-800 ml-1 font-medium text-sm flex items-center">
-                      Price (EGP)
-                    </span>
-                  }
-                  inline={true}
-                  className="z-10 bg-white divide-y divide-gray-100 rounded-lg  shadow-sm w-[85%] px-3"
-                >
-                  <div className="p-3">
+         <div className=" bg-[#e2e2e2] px-4 md:w-[30%] w-[58%] mt-6 py-2 flex items-center rounded-lg">
+            <Popover
+              content={
+                <div className="z-10 bg-white divide-y divide-gray-100 rounded-lg  shadow-sm w-full px-3">
+                  <form>
                     <div className="flex flex-col items-start">
-                      <div>
-                        <input
+                      {/* Start Price Input */}
+                      <div className="w-full">
+                        <Label
+                          htmlFor="start"
+                          value="Start Price"
+                          className="text-gray-700 text-sm mb-1"
+                        />
+                        <TextInput
+                          value={formik.values.start}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
                           name="start"
+                          id="start"
                           type="number"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                           placeholder="0"
+                          className="w-full"
                         />
                       </div>
+
                       <span className="mx-2 text-gray-500">to</span>
-                      <div>
-                        <input
+
+                      {/* End Price Input */}
+                      <div className="w-full">
+                        <Label
+                          htmlFor="end"
+                          value="End Price"
+                          className="text-gray-700 text-sm mb-1"
+                        />
+                        <TextInput
+                          value={formik.values.end}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
                           name="end"
+                          id="end"
                           type="number"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                           placeholder="Any"
+                          className="w-full"
                         />
                       </div>
                     </div>
-                    <button className="text-center p-0 py-1 w-[35%] border-spacing-2 border-blue-700 mt-7 hover:bg-gray-100">
-                      Reset
-                    </button>
-                    <button
-                      onClick={() => {
-                        filBad("");
-                        filBat("");
-                      }}
-                      className="px-4 mx-2 my-2 py-1 w-[40%] text-white bg-blue-800"
-                    >
-                      Done
-                    </button>
-                  </div>
-                </Dropdown>
-              </div>
+
+                    <div className="flex justify-evenly mt-7">
+                      <button
+                        type="reset"
+                        onClick={() => resetPrice(formik.values)}
+                        className="px-4 py-2 hover:bg-gray-100 border-spacing-3 border-blue-800 w-[40%]"
+                      >
+                        Reset
+                      </button>
+
+                      <button
+                        type="button"
+                        className="px-4 py-2 text-white bg-blue-800 border-blue-900 w-[40%]"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              }
+            >
+              <span className="text-blue-800 ml-1 font-semibold  text-base flex items-center">
+                Price (EGP)
+                <i className="fa-solid fa-angle-down ml-2"></i>
+              </span>
+            </Popover>
+          </div>
 
               <div className="ml-1 mt-5">
-                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-600 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white ">
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-600 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white ">
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
                     Search
                   </span>
                 </button>

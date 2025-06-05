@@ -1,25 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import  { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as yp from 'yup';
 import { useFormik } from 'formik';
+import { Button, Modal } from "flowbite-react";
+import axiosInstance from "../../services/axiosInstance";
 export default function SignUp() {
+  const navigate = useNavigate();
+  const [load, setLoad] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [showPass1, setShowPass1] = useState(false);
-
+  const [openModal, setOpenModal] = useState(false);
   let validationSchema = yp.object().shape(
     {
-    name: yp.string().min(3, 'name minlengh is 3').max(50, 'name maxlengh is 50').required('name is required'),
+    fullName: yp.string().min(3, 'name minlengh is 3').max(50, 'name maxlengh is 50').required('name is required'),
     email: yp.string().email('email invalid').required('email is required'),
     phone: yp.string().matches(/^01[0125][0-9]{8}$/, 'phone is invalid').required('phone is required'),
     password: yp.string().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/, 'Password should be start with capital letter and min length is 8 chars').required('password is required'),
-    rePassword: yp.string().oneOf([yp.ref('password')], 'password is invalid').required('Password is required')
+    passwordConfirm: yp.string().oneOf([yp.ref('password')], 'password is invalid').required('Password is required'),
   }
 );
 
 
 
-  function handleRegister(values) {
+  function handleVerify(values) {
+    setLoad(true);
+    axiosInstance.post(`users/verifyMe`, values)
+    .then(({data})=>{
+      console.log(data);
+      setOpenModal(false);
+      setLoad(false);
+      navigate('/login');
+    }).catch((error)=>{
+      console.log(error);
+      setLoad(false);
+        
+    })
     console.log(values);
+    
+  }
+
+  let formikVer = useFormik(
+    {
+      
+      initialValues: {
+        token:'',
+      },
+      onSubmit:(values)=> handleVerify(values),
+      
+    }
+  );
+  
+  function handleRegister(values) {
+    setLoad(true);
+    axiosInstance.post(`users/signup` , values)
+    .then(({data})=>{
+      console.log(data);
+      setOpenModal(true);
+      setLoad(false);
+    })
+    .catch((error)=>{
+      console.log(error);
+      setLoad(false);
+       
+    })
 
   }
 
@@ -27,13 +70,13 @@ export default function SignUp() {
     {
       
       initialValues: {
-        name: '',
+        fullName: '',
         email: '',
         phone: '',
         password: '',
-        rePassword: '',
+        passwordConfirm: '',
       },
-      onSubmit:()=> handleRegister(formik.values),
+      onSubmit:(values)=> handleRegister(values),
       validationSchema: validationSchema
       
     }
@@ -51,6 +94,32 @@ export default function SignUp() {
     <>
       <section className="bg-[#0c283c] min-h-screen">
         <div className="w-[90%] mx-auto px-[15px] items-center py-[30px] grid grid-cols-12">
+
+        <Modal
+            show={openModal}
+            size="md"
+            onClose={() => setOpenModal(false)}
+            popup
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <div className="text-center">
+                <h3 className="mb-5 text-lg  text-gray-900 dark:text-gray-400 font-semibold">
+                  Check your email to confirm your account
+                </h3>
+                <div className=" flex justify-center mb-5 items-center text-gray-700 text-lg">
+                  <input id="token" value={formikVer.values.token} onChange={formikVer.handleChange} onBlur={formikVer.handleBlur} type="text" placeholder="enter your code" className="rounded-md" />
+                </div>
+                <div className="flex justify-center gap-4">
+                  <Button color="blue" onClick={formikVer.handleSubmit}>
+                  {load ? <i className='fas fa-spinner fa-spin px-2' ></i> : 'Verify'}
+                  </Button>
+                
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+
           <div className="col-span-12 mb-5 lg:mb-0  text-center lg:text-start lg:col-span-7">
             <p className="text-[17px] md:text-3xl text-white font-normal mt-8 md:mt-14 mb-7">
               A leading real estate developer in Egypt
@@ -76,16 +145,16 @@ export default function SignUp() {
                     Full Name
                   </label>
                   <input
-                    value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                    value={formik.values.fullName} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type="text"
-                    id="name"
+                    id="fullName"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Ex: Fatma Ahmed"
                   />
                   
-                  {formik.errors.name != null && formik.touched.name ?
+                  {formik.errors.fullName != null && formik.touched.fullName ?
                     <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                      <span className="font-medium">{formik.errors.name}</span>
+                      <span className="font-medium">{formik.errors.fullName}</span>
                     </div> : null}
                 </div>
                 <div className="mb-5">
@@ -167,15 +236,15 @@ export default function SignUp() {
                 </div>
                 <div className="mb-5 relative">
                   <label
-                    htmlFor="ConfPassword"
+                    htmlFor="passwordConfirm"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Confirm password
                   </label>
                   <input
-                  value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                  value={formik.values.passwordConfirm} onChange={formik.handleChange} onBlur={formik.handleBlur}
                     type={showPass1 ? "text" : "password"}
-                    id="rePassword"
+                    id="passwordConfirm"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Confirm Password"
                   />
@@ -193,23 +262,23 @@ export default function SignUp() {
                       }
                     ></i>{" "}
                   </button>
-                  {formik.errors.rePassword != null && formik.touched.rePassword ?
+                  {formik.errors.passwordConfirm != null && formik.touched.passwordConfirm ?
                     <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                      <span className="font-medium">{formik.errors.rePassword}</span>
+                      <span className="font-medium">{formik.errors.passwordConfirm}</span>
                     </div> : null}
                 </div>
                 <div className="flex flex-col justify-center items-center">
                   <button type="submit" className="text-white  bg-blue-700  w-[60%] mb-4 py-2.5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Sign Up
+                  {load ? <i className='fas fa-spinner fa-spin px-2' ></i> : 'Sign Up'}
                   </button>
                   <div className="flex ">
-                    <span className="mr-2">Don't have an account?</span>
+                    <span className="mr-2">Don&apos;t have an account?</span>
                     <Link to={"/login"} className="underline text-[#054E98]">
                       Sign in
                     </Link>
                   </div>
                   <div className="flex justify-center items-center">
-                    <Link className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
+                    <Link to={'http://localhost:3000/api/users/login/google'} className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
                       {" "}
                       <i className="fa-brands fa-google  text-[#054E98]"></i>{" "}
                     </Link>
