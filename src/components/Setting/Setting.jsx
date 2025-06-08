@@ -11,8 +11,6 @@ export default function ProfileSettings() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState(false);
-
-
   // Update profile function
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
@@ -127,6 +125,7 @@ export default function ProfileSettings() {
   
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
+
       {/* Edit profile form */}
       <form onSubmit={handleProfileSubmit} className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm mb-8">
         <h1 className="text-2xl font-bold text-gray-800 mb-8">Edit Profile</h1>
@@ -140,6 +139,7 @@ export default function ProfileSettings() {
             placeholder="Enter Name" 
             className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
           />
+
         </div>
 
         <div className="mb-8">
@@ -149,6 +149,7 @@ export default function ProfileSettings() {
             <div className="flex items-center mb-2 w-full">
               <div className="inline-flex items-center w-full border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
                 <span className="bg-gray-100 px-3 py-3 text-gray-500 rounded-l-md">+20</span>
+
                 <input 
                   type="tel" 
                   value={phone} 
@@ -157,15 +158,20 @@ export default function ProfileSettings() {
                   className="w-full p-3 border-0 rounded-r-md focus:ring-0" 
                   pattern="[0-9]{10}" 
                   title="Please enter a 10-digit phone number" 
+
                 />
               </div>
             </div>
+            {profileFormik.touched.phone && profileFormik.errors.phone ? (
+              <div className="text-red-500 text-sm mt-1">{profileFormik.errors.phone}</div>
+            ) : null}
             <p className="text-sm text-gray-500 mt-2">
               This is the number for buyers' contacts, reminders, and other notifications.
             </p>
           </div>
 
           <div className="mb-6">
+
             <input 
               type="email" 
               value={email} 
@@ -173,6 +179,7 @@ export default function ProfileSettings() {
               placeholder="Enter Email Address" 
               className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
             />
+
             <p className="text-sm text-gray-500 mt-2">
               We won't reveal your email to anyone else nor use it to send you spam.
             </p>
@@ -180,11 +187,13 @@ export default function ProfileSettings() {
         </div>
 
         <div className="flex justify-end">
+
           <button 
             type="submit" 
             className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium"
           >
             Save Changes
+
           </button>
         </div>
       </form>
@@ -215,11 +224,13 @@ export default function ProfileSettings() {
           />
           <p className="mt-2 text-sm text-gray-500">
             Use a minimum of 8 characters with at least 1 number, 1 special character, and 1 letter.
+
           </p>
         </div>
 
         <div className="mb-8">
           <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+
           <input 
             type="password" 
             value={confirmPassword} 
@@ -232,6 +243,7 @@ export default function ProfileSettings() {
         <div className="flex justify-end mb-12">
           <button 
             type="submit" 
+
             className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium"
           >
             Update Password
@@ -253,12 +265,12 @@ export default function ProfileSettings() {
               checked={isDeleteConfirmed} 
               onChange={(e) => setIsDeleteConfirmed(e.target.checked)} 
               className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+
             />
             <span className="text-sm text-gray-700">
               I understand that all my data will be permanently deleted.
             </span>
           </div>
-
           <button 
             type="button" 
             onClick={handleDeleteAccount} 
@@ -266,6 +278,8 @@ export default function ProfileSettings() {
             className={`py-3 px-6 rounded-md font-semibold transition-colors ${
               isDeleteConfirmed ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
+
+
           >
             Delete Account
           </button>
