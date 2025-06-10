@@ -21,7 +21,7 @@ export default function View() {
   return (
     <div className="p-10 bg-gradient-to-br from-white via-gray-50 to-white min-h-screen">
       <h1 className="w-[90%]  font-serif mt-10 text-blue-900 text-2xl md:text-3xl lg:text-5xl">
-        🏡 Search Results
+       Discover Your Next Home
       </h1>
 
       {filteredUnits.length > 0 ? (
@@ -50,14 +50,14 @@ export default function View() {
                   <h3 className="text-xl font-bold text-gray-900 mb-1">{unit.title}</h3>
                   <p className="text-sm text-gray-600 mb-3 line-clamp-2">{unit.description}</p>
 
-                  <div className="flex justify-between items-center text-gray-700 text-sm border-t border-gray-200 pt-3">
+                  <div className="flex  items-center text-gray-700 text-sm border-t border-gray-200 pt-3">
                     <div className="flex items-center gap-2">
-                      <Ruler className="w-6 h-6 text-indigo-600 stroke-2" />
-                      <span className="font-medium">{unit.size} m²</span>
+                      <Ruler className="w-6 h-6  text-indigo-600 stroke-2" />
+                      <span className="font-medium pr-5">{unit.size} m²</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <BedDouble className="w-6 h-6 text-pink-600 stroke-2" />
-                      <span className="font-medium">{unit.bedrooms}</span>
+                      <span className="font-medium pr-5">{unit.bedrooms}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Bath className="w-6 h-6 text-blue-600 stroke-2" />
@@ -73,14 +73,17 @@ export default function View() {
                     <p><span className="font-semibold text-gray-800">🏷 Type:</span> {unit.category}</p>
                   </div>
 
-                  <a
-                    href={unit.location}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block w-full text-center mt-5 bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 rounded-xl text-sm font-medium hover:opacity-90 transition"
-                  >
-                    🌍 View on Map
-                  </a>
+    <a
+  href={unit.location}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block w-full text-center mt-5 bg-blue-900 text-white py-2 rounded-xl text-sm font-medium hover:bg-blue-800 transition-colors duration-300"
+>
+  <i className="fa-solid fa-map-pin pr-2"></i> View on Map
+</a>
+
+
+
                 </div>
               </div>
             ))}
