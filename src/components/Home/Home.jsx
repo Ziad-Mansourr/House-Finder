@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormik } from "formik";
+import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
 import aboutImage from "../../img/Homee.jpg";
 import img from "../../img/about.jpg";
@@ -13,11 +14,27 @@ import assiut from "../../img/Assiut University.png";
 import contactUs from "../../img/contact us.jpeg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "flowbite-react";
+import axiosInstance from "../../services/axiosInstance";
 
 export default function Home() {
   const [filterRes, setFilterRes] = useState("Residential");
   const [activeB, setActiveB] = useState("");
   const [activeBt, setActiveBt] = useState("");
+  const navigate = useNavigate();
+
+  const handleUniversityClick = async (universityName) => {
+    try {
+      const res = await axiosInstance.get("/units");
+      const allUnits = res.data.data.units;
+      const filtered = allUnits.filter((unit) =>
+        unit.description?.toLowerCase().includes(universityName.toLowerCase())
+      );
+
+      navigate("/view", { state: { filteredUnits: filtered } });
+    } catch (err) {
+      console.error("Error fetching units:", err);
+    }
+  };
 
   function filBad(word) {
     setActiveB(word);
@@ -241,29 +258,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Part two */}
-      <div id="about" className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[80%] mx-auto">
-        <div>
-          <div className="flex pt-16">
-           {/* <img src={logo} className="w-[45px] h-[46px]" alt="" /> */}
-            <h1 className="text-[30px] md:text-[45px] text-[#054E98] font-title">About House Finder</h1>
-          </div>
-          <p className="text-[16px] md:text-[19px] text-[#054E98] pt-4 font-title font-normal max-w-[580px]">
-            This project aims to create an innovative digital platform that directly connects students from outside their
-            hometowns in Egypt with property owners near various universities. The goal is to simplify the search for
-            housing that fits their needs and budgets. The platform provides detailed information about available
-            apartments in a clear and accessible way, eliminating the need for intermediaries or external parties.
-          </p>
-        </div>
-        <div className="pt-11 pb-11">
-          <img src={aboutImage} className="w-[460px] mx-auto object-cover" alt="" />
-        </div>
-      </div>
-
       {/* part three */}
-
       <div id="develop" className="p-10 w-[88%] mx-auto mb-9">
-        <h2 className="text-2xl font-semibold mb-6 uppercase ">Most search</h2>
+        <h2 className="text-2xl font-semibold mb-6 uppercase">Most search</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {[
             { img: cairo, name: "Cairo University" },
@@ -274,7 +271,11 @@ export default function Home() {
             { img: NCT, name: "New Cairo Technological University" },
             { img: assiut, name: "Assiut University" },
           ].map(({ img, name }) => (
-            <div key={name} className="relative group">
+            <div
+              key={name}
+              className="relative group cursor-pointer"
+              onClick={() => handleUniversityClick(name)}
+            >
               <img src={img} alt={name} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-50"></div>
               <div className="absolute left-4 bottom-[-20%] text-white text-lg font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-4 group-hover:opacity-100">

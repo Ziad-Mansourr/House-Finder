@@ -22,6 +22,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import WishListContextProvider from './context/userWishlist.jsx';
 import { Toaster } from 'react-hot-toast';
 import RateContextProvider from './context/userRate.jsx';
+import View from './components/View/View.jsx';
 function App() {
 
   const queryClient = new QueryClient();
@@ -41,6 +42,8 @@ function App() {
         { path: 'apartmentDetailes/:id', element: <ApartmentDetails /> },
         { path: 'wishlist', element: <Wishlist /> },
         { path: 'about', element: <About /> },
+        { path: 'view', element: <View/> },
+
 
       ]
     },

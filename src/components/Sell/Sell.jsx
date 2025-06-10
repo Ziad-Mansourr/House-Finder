@@ -279,7 +279,7 @@ export default function Sell() {
                   defaultChecked
                   id="bordered-radio-4"
                   type="radio"
-                  value={'Apartment'}
+                  value={'apartment'}
                   name="propertyType"
                   onChange={formik.handleChange}
                   checked={formik.values.propertyType === 'apartment'}
@@ -297,7 +297,7 @@ export default function Sell() {
                 <input
                   id="bordered-radio-2"
                   type="radio"
-                  value={'Room'}
+                  value={'room'}
                   name="propertyType"
                   onChange={formik.handleChange}
                   checked={formik.values.propertyType === 'room'}
@@ -315,7 +315,7 @@ export default function Sell() {
                 <input
                   id="bordered-radio-1"
                   type="radio"
-                  value={'Villa'}
+                  value={'villa'}
                   name="propertyType"
                   onChange={formik.handleChange}
                   checked={formik.values.propertyType === 'villa'}
@@ -333,7 +333,7 @@ export default function Sell() {
                 <input
                   id="bordered-radio-3"
                   type="radio"
-                  value={'Duplex'}
+                  value={'duplex'}
                   name="propertyType"
                   onChange={formik.handleChange}
                   checked={formik.values.propertyType === 'duplex'}
