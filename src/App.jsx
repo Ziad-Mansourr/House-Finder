@@ -40,6 +40,7 @@ function App() {
         { path: 'profile', element: <Profile /> },
         { path: 'setting', element: <Setting /> },
         { path: 'apartmentDetailes/:id', element: <ApartmentDetails /> },
+        { path: 'apartmentDetails/:id', element: <ApartmentDetails /> },
         { path: 'wishlist', element: <Wishlist /> },
         { path: 'about', element: <About /> },
         { path: 'view', element: <View/> },
