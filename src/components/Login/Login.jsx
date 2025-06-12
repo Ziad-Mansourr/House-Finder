@@ -4,6 +4,7 @@ import * as yp from 'yup';
 import { useFormik } from 'formik';
 import { usersContext } from "../../context/userContext";
 export default function Login() {
+  const [apiError, setApi] = useState('');
   const navigate = useNavigate();
   let {login} = useContext(usersContext);
   const [load, setLoad] = useState(false);
@@ -30,8 +31,15 @@ async function handleLogin(values) {
       localStorage.setItem('token', data.token);
       setLoad(false);
       navigate('/');
+      toast.success('Login successfully');
     }else{
       setLoad(false);
+      if(data?.response?.data?.message.includes('Cannot read properties of null')){ 
+      setApi('Account not found');
+      }else{
+
+        setApi(data?.response?.data?.message);
+      }
     }
     console.log(data);
   }
@@ -73,6 +81,12 @@ async function handleLogin(values) {
                 login
               </h2>
               <form className="max-w-sm md:max-w-lg  lg:max-w-sm mx-auto " onSubmit={formik.handleSubmit}>
+                {apiError != '' ?
+                  <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span className="font-medium">{apiError}</span>
+                  </div>
+                  : null
+                }
                 <div className="mb-5">
                   <label
                     htmlFor="email"

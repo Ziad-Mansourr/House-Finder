@@ -141,6 +141,8 @@ export default function Houses() {
                   >
                     <i className="fa-brands fa-whatsapp"></i>
                   </a>
+
+                  <i className="fa-solid text-yellow-300 fa-star ml-20 text-2xl mr-2 "></i> {unit?.rating}
                 </div>
               </div>
             </div>
