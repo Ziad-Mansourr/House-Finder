@@ -116,7 +116,6 @@ export default function View() {
                                     {unit.address}
                                 </p>
 
-                                {/* التقييم بعد اللوكيشن */}
                                 <RatingStars unit={unit} />
 
                                 <Link
