@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BedDouble, Bath, Ruler } from "lucide-react";
+import { wishListContext } from "../../context/userWishlist";
+import toast from "react-hot-toast";
 
 export default function View() {
     const location = useLocation();
     const { filteredUnits } = location.state || { filteredUnits: [] };
+
+    const [favStates, setFavStates] = useState({});
+    const { addWish, delWish } = useContext(wishListContext);
 
     const settings = {
         dots: true,
@@ -17,6 +22,28 @@ export default function View() {
         slidesToScroll: 1,
         arrows: false,
     };
+
+    async function handleWishList(id) {
+        const isFav = favStates[id];
+
+        if (isFav) {
+            toast.loading("Removing Apartment from Wishlist");
+            const { data } = await delWish(id);
+            if (data?.status === "success") {
+                toast.dismiss();
+                toast.success("Apartment Removed from Wishlist");
+                setFavStates(prev => ({ ...prev, [id]: false }));
+            }
+        } else {
+            toast.loading("Adding Apartment to Wishlist");
+            const { data } = await addWish(id);
+            if (data?.status === "success") {
+                toast.dismiss();
+                toast.success("Apartment Added to Wishlist");
+                setFavStates(prev => ({ ...prev, [id]: true }));
+            }
+        }
+    }
 
     return (
         <div className="space-y-10 mt-12 max-w-6xl mb-16">
@@ -29,7 +56,6 @@ export default function View() {
                     <p className="text-blue-800 font-serif text-3xl md:text-4xl lg:text-5xl font-medium mb-4">
                         No apartments found at the moment.
                     </p>
-
                 </div>
             ) : (
                 filteredUnits.map((unit, index) => (
@@ -37,7 +63,20 @@ export default function View() {
                         key={index}
                         className="bg-white rounded-2xl shadow-md p-9 flex flex-col md:flex-row items-start gap-6 border max-w-[800px] ml-4"
                     >
-                        <div className="w-full md:w-[340px] flex-shrink-0">
+                        <div className="relative w-full md:w-[340px] flex-shrink-0">
+                            <div
+                                onClick={() => handleWishList(unit._id)}
+                                className="absolute bottom-4 right-4 z-20 cursor-pointer"
+                            >
+                                <i
+                                    className={
+                                        favStates[unit._id]
+                                            ? "fa-solid fa-heart text-red-600 text-2xl"
+                                            : "fa-regular fa-heart text-white text-2xl"
+                                    }
+                                />
+                            </div>
+
                             <Slider {...settings}>
                                 {unit.images?.map((img, i) => (
                                     <img
@@ -122,8 +161,6 @@ export default function View() {
                     ← Back to Home
                 </Link>
             </div>
-
-
         </div>
     );
 }
