@@ -45,9 +45,9 @@ export default function Navbarr() {
             />
             <div className="block mt-2">
               <p className="text-[27px] leading-[20px] font-serif text-[#054E98]">
-                College
+                Student
               </p>
-              <span className="font-serif text-lg text-[#286EBE]">Housing</span>
+              <span className="font-serif text-xl text-[#286EBE]">Hostel</span>
             </div>
           </Navbar.Brand>
         </button>
