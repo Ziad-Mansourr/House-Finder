@@ -138,7 +138,8 @@ export default function ProfileSettings() {
             value={name} 
             onChange={(e) => setName(e.target.value)} 
             placeholder="Enter Name" 
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2
+             focus:ring-blue-500 focus:border-blue-500" 
           />
         </div>
 
@@ -147,7 +148,8 @@ export default function ProfileSettings() {
 
           <div className="mb-6">
             <div className="flex items-center mb-2 w-full">
-              <div className="inline-flex items-center w-full border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+              <div className="inline-flex items-center w-full border border-gray-300 
+              rounded-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
                 <span className="bg-gray-100 px-3 py-3 text-gray-500 rounded-l-md">+20</span>
                 <input 
                   type="tel" 
@@ -171,7 +173,8 @@ export default function ProfileSettings() {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               placeholder="Enter Email Address" 
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2
+               focus:ring-blue-500 focus:border-blue-500" 
             />
             <p className="text-sm text-gray-500 mt-2">
               We won't reveal your email to anyone else nor use it to send you spam.

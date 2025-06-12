@@ -75,7 +75,6 @@ export default function Profile() {
             </div>
           </div>
 
-
           <h3 className="text-lg font-semibold text-gray-700 mt-2">
             View your villa in New Zayed
           </h3>
@@ -160,8 +159,6 @@ export default function Profile() {
                hover:text-red-700 transition-colors duration-300"></i>
             </div>
           </div>
-
-
           <h3 className="text-lg font-semibold text-gray-700 mt-2">
             View your villa in New Zayed
           </h3>
