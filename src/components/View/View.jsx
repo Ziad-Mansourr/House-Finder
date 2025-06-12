@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -116,6 +116,9 @@ export default function View() {
                                     {unit.address}
                                 </p>
 
+                                {/* التقييم بعد اللوكيشن */}
+                                <RatingStars unit={unit} />
+
                                 <Link
                                     to={`/apartmentDetails/${unit._id}`}
                                     className="text-blue-700 mt-1 inline-block hover:underline text-sm"
@@ -160,6 +163,54 @@ export default function View() {
                 >
                     ← Back to Home
                 </Link>
+            </div>
+        </div>
+    );
+}
+
+// RatingStars Component
+function RatingStars({ unit }) {
+    const [userRating, setUserRating] = useState(null);
+    const [hoverRating, setHoverRating] = useState(null);
+    const LOCAL_KEY = "unit_ratings";
+
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem(LOCAL_KEY)) || {};
+        if (saved[unit._id]) {
+            setUserRating(saved[unit._id]);
+        }
+    }, [unit._id]);
+
+    const handleRate = (rate) => {
+        const saved = JSON.parse(localStorage.getItem(LOCAL_KEY)) || {};
+
+        if (saved[unit._id]) {
+            toast.error("You already rated this unit.");
+            return;
+        }
+
+        saved[unit._id] = rate;
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(saved));
+        setUserRating(rate);
+        toast.success(`You rated this unit ${rate}⭐`);
+    };
+
+    return (
+        <div className="mt-2">
+            <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <i
+                        key={star}
+                        className={`fa-star text-xl cursor-pointer transition ${
+                            (hoverRating || userRating || unit.rating) >= star
+                                ? "fa-solid text-yellow-400"
+                                : "fa-regular text-gray-400"
+                        }`}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(null)}
+                        onClick={() => handleRate(star)}
+                    ></i>
+                ))}
             </div>
         </div>
     );
