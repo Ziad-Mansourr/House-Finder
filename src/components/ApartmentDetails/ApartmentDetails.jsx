@@ -45,6 +45,9 @@ export default function ApartmentDetails() {
       toast.dismiss();
       toast.success("Rate Added Successfuly");
       setOpenModal(false);
+    }else{
+      toast.dismiss();
+      toast.error("Rate Adding Failed");
     }
   }
   useEffect(() => {
