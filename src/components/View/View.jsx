@@ -158,7 +158,8 @@ export default function View() {
             <div className="w-full flex justify-end pr-6 mt-10">
                 <Link
                     to="/"
-                    className="bg-blue-900 text-white px-5 py-3 rounded-full text-sm font-semibold shadow-md hover:bg-blue-800 transition"
+                    className="bg-blue-900 text-white px-5 py-3 rounded-full text-sm
+                     font-semibold shadow-md hover:bg-blue-800 transition"
                 >
                     ← Back to Home
                 </Link>

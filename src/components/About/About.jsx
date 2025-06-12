@@ -41,7 +41,43 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
+              />
+              <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
+                <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
+                <i className="fa-brands fa-linkedin absolute bottom-1 right-1 text-white hover:text-blue-800 text-2xl p-2"></i>
+                </a>
+              </div>
+            </div>
+            <h2 className="font-bold text-2xl font-title py-2 text-blue-800">
+              Fatma Ahmed
+            </h2>
+            <h3 className="text-lg text-gray-700 pb-2">Frontend Developer</h3>
+          </div>
+          <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
+            <div className="relative">
+              <img
+                src="src/img/basant.jpg"
+                alt=""
+                className="w-full object-cover h-[300px] rounded-t-3xl "
+              />
+              <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
+                <a href="https://www.linkedin.com/in/basant-mostafa-59a319265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="blank">
+                <i className="fa-brands fa-linkedin absolute bottom-1 right-1 text-white hover:text-blue-800 text-2xl p-2"></i>
+                </a>
+              </div>
+            </div>
+            <h2 className="font-bold text-2xl font-title py-2 text-blue-800">
+            Basant Mostafa
+            </h2>
+            <h3 className="text-lg text-gray-700 pb-2">Frontend Developer</h3>
+          </div>
+          <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
+            <div className="relative">
+              <img
+                src="src/img/fatma_1.jpg"
+                alt=""
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
@@ -59,7 +95,7 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
@@ -77,7 +113,7 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
@@ -95,7 +131,7 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
@@ -113,7 +149,7 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
@@ -131,7 +167,7 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
@@ -149,43 +185,7 @@ export default function About() {
               <img
                 src="src/img/fatma_1.jpg"
                 alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
-              />
-              <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
-                <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
-                <i className="fa-brands fa-linkedin absolute bottom-1 right-1 text-white hover:text-blue-800 text-2xl p-2"></i>
-                </a>
-              </div>
-            </div>
-            <h2 className="font-bold text-2xl font-title py-2 text-blue-800">
-              Fatma Ahmed
-            </h2>
-            <h3 className="text-lg text-gray-700 pb-2">Frontend Developer</h3>
-          </div>
-          <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
-            <div className="relative">
-              <img
-                src="src/img/fatma_1.jpg"
-                alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
-              />
-              <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
-                <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
-                <i className="fa-brands fa-linkedin absolute bottom-1 right-1 text-white hover:text-blue-800 text-2xl p-2"></i>
-                </a>
-              </div>
-            </div>
-            <h2 className="font-bold text-2xl font-title py-2 text-blue-800">
-              Fatma Ahmed
-            </h2>
-            <h3 className="text-lg text-gray-700 pb-2">Frontend Developer</h3>
-          </div>
-          <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
-            <div className="relative">
-              <img
-                src="src/img/fatma_1.jpg"
-                alt=""
-                className="w-full object-cover h-[260px] rounded-t-3xl "
+                className="w-full object-cover h-[300px] rounded-t-3xl "
               />
               <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-15 rounded-t-3xl hidden  group-hover:flex transition-all duration-500">
                 <a href="https://www.linkedin.com/in/fatma-ahmed-ab61b0238/" target="blank">
