@@ -3,11 +3,14 @@ import { Dropdown, Navbar } from "flowbite-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 import * as lnk from "react-router-dom";
+import { wishListContext } from "../../context/userWishlist";
 
 export default function Navbarr() {
   let navigate = useNavigate();
   const [token , setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):null);
- 
+  let {wish} = useContext(wishListContext);
+  // console.log(wish);
+  
   function logout() {
     localStorage.removeItem('token');
     setToken(null);
@@ -61,7 +64,7 @@ export default function Navbarr() {
                 <button type="button" className="relative inline-flex items-center mr-3  justify-center text-sm font-medium text-center text-white ">
                   <i className='fa-regular fa-heart text-2xl text-[#156faf] '></i>
                   <span className="sr-only">Notifications</span>
-                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">20</div>
+                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"> {wish?.body?.wishlist?.length}</div>
                 </button>
 
               </lnk.Link>
@@ -134,7 +137,7 @@ export default function Navbarr() {
                 <i className="fa-regular fa-heart text-2xl text-[#156faf] "></i>
                 <span className="sr-only">Notifications</span>
                 <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                  20
+                  {wish?.body?.length}
                 </div>
               </button>
             </lnk.Link>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
@@ -20,8 +20,9 @@ export default function Home() {
   const [filterRes, setFilterRes] = useState("Residential");
   const [activeB, setActiveB] = useState("");
   const [activeBt, setActiveBt] = useState("");
+  const [token , setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):null);
   const navigate = useNavigate();
-
+  
   const handleUniversityClick = async (universityName) => {
     try {
       const res = await axiosInstance.get("/units");
@@ -29,8 +30,7 @@ export default function Home() {
       const filtered = allUnits.filter((unit) =>
         unit.description?.toLowerCase().includes(universityName.toLowerCase())
       );
-
-      navigate("/view", { state: { filteredUnits: filtered } });
+      {token != null ?navigate("/view", { state: { filteredUnits: filtered } }) : navigate("/login")}
     } catch (err) {
       console.error("Error fetching units:", err);
     }
@@ -68,7 +68,6 @@ export default function Home() {
       console.log("Form Submitted:", values);
     },
   });
-
   return (
     <>
       {/* Part one */}
@@ -87,8 +86,9 @@ export default function Home() {
             <div className="grid grid-cols-3 gap-4 text-right items-center">
               <div className="col-span-3 flex flex-col sm:hidden items-center gap-2">
                 <input type="text" className="w-full p-2 border rounded text-black text-[12px]" placeholder="Enter location" />
+                
                 <Link
-                  to={"/apartment"}
+                  to={token == null ? '/login' : "/apartment"}
                   className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-center text-[14px] hover:bg-blue-900 duration-300"
                 >
                   Search
@@ -98,12 +98,15 @@ export default function Home() {
               <div className="col-span-3 hidden sm:flex items-center justify-start gap-2 mb-3">
                 <span className="w-[80px] lg:w-[120px] text-[#054E98] text-[23px] font-semibold pr-2">For Rent</span>
                 <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[14px]" placeholder="Enter location" />
+                {
+
                 <Link
-                  to={"/apartment"}
+                  to={token == null ? '/login' : "/apartment"}
                   className="text-white rounded-lg bg-[#054E98] px-10 py-3 text-[15px] ml-5 hover:bg-blue-800 duration-300"
                 >
                   Search
                 </Link>
+                }               
               </div>
 
               {/* Residential Dropdown */}

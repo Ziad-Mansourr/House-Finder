@@ -12,8 +12,8 @@ export default function Footer() {
             <div className="flex">
               <img src={logo} className=" h-14" alt="Logo" />
               <div className="block mt-2">
-                <p className="text-[27px] leading-[20px] font-serif text-[#054E98]">House</p>
-                <span className="font-serif text-lg text-[#286EBE]">Finder</span>
+                <p className="text-[27px] leading-[20px] font-serif text-[#054E98]">Student</p>
+                <span className="font-serif text-xl text-[#286EBE]">Hostel</span>
               </div>
             </div>
           </button>

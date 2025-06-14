@@ -7,38 +7,43 @@ import toast from "react-hot-toast";
 export default function Houses() {
   let { data, isLoading } = useUnit();
   console.log(data?.data?.data?.units);
-  // const isProductInWishlist = useMemo(
-    //   () => (id) => wish?.data?.some((product) => product.id === id),
-    //   [wish]
-    // );
+  
   const [addFav, setAddFav] = useState(false);
-  let { addWish, delWish } = useContext(wishListContext);
-  async function handleWishList(id) {
-    if (addFav) {
-      console.log(addFav);
-      toast.loading("Removing Appartment From WishList");
+  let {wish , addWish, delWish } = useContext(wishListContext);
+  console.log(wish);
+  
+  const isProductInWishlist = useMemo(
+    () => (id) => wish?.body?.wishlist?.some((product) => product.id === id),
+    [wish]
+  );
+   async function handleWishList(id) {
+    console.log(id);
+    
+    if (isProductInWishlist(id)) {
+      toast.loading("Removing Apartment From WishList");
       let { data } = await delWish(id);
-
       console.log(data);
+      
         if (data?.status === "success") {
           toast.dismiss();
-          toast.success("Appartment Removed From WishList");
-          setAddFav(false);
+          toast.success("Removed Apartment Successfully");
+        }else{
+          toast.dismiss();
+          toast.error("Removed Apartment Faild");
         }
     } else {
-      toast.loading("Adding Appartment From WishList");
+      toast.loading("Adding Apartment To WishList");
       let { data } = await addWish(id);
-      console.log(data);
         if (data?.status === "success") {
           toast.dismiss();
-          toast.success("Appartment Adding Successfuly");
-         
+          toast.success("Added Apartment To Wishlist Successfully");
+        }else{
+          toast.dismiss();
+          toast.error("Added Apartment To Wishlist Faild");
         }
-
-      setAddFav(true);
-
     }
   }
+  
 
   const settings = {
     dots: false,
@@ -51,26 +56,30 @@ export default function Houses() {
     slidesToScroll: 1,
   };
   if (isLoading) {
-    return <h1>Loading....</h1>
+    return <>
+     <div className="fixed w-full top-0 left-0 right-0 bottom-0 bg-white z-[9999999] flex justify-center items-center min-h-screen">
+        <span class="loader"></span>
+     </div>
+    </>
   }
   return (
     <>
       <div className="col-span-12 md:col-span-7">
         {
-          data?.data?.data?.units?.map((unit, index) => {
-            return <div key={unit._id} className=" shadow-md rounded-lg flex-wrap bg-[rgb(249,249,249)] flex mt-6 md:mt-8 lg:mt-10 mb-7  ">
+          data?.data?.data?.units?.map((unit) => {
+            return <div key={unit?.id} className=" shadow-md rounded-lg flex-wrap bg-[rgb(249,249,249)] flex mt-6 md:mt-8 lg:mt-10 mb-7  ">
               <div className="lg:w-[40%] h-[340px] w-[100%] relative ">
 
-                <div onClick={() => handleWishList(unit?._id)}>
+                <div onClick={() => handleWishList(unit?.id)}>
                   <i
                     className={
-                      addFav
+                      isProductInWishlist(unit?.id)
                         ? "fa-solid fa-heart text-white absolute bottom-12 right-2 z-30 text-2xl"
                         : "fa-regular fa-heart text-white absolute bottom-12 right-2 z-30 text-2xl"
                     }
                   />
                 </div>
-                <Link to={`/apartmentDetailes/${unit?._id}`}>
+                <Link to={`/apartmentDetailes/${unit?.id}`}>
                   <Slider {...settings}>
                     {
 

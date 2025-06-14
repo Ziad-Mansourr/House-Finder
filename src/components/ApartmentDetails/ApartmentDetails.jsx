@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button, Modal } from "flowbite-react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axiosInstance from "../../services/axiosInstance";
 import { wishListContext } from "../../context/userWishlist";
@@ -24,10 +24,9 @@ export default function ApartmentDetails() {
   }
   console.log(id);
   const [openModal, setOpenModal] = useState(false);
-
   const { addRateing } = useContext(RateContext);
-
   const [rate, setRate] = useState(0);
+  
   const addRate = (rate) => {
     setRate(rate);
   }
@@ -39,7 +38,7 @@ export default function ApartmentDetails() {
   async function addRa(id, rate) {
     toast.loading("Adding Rateing To Appartment");
     const { data } = await addRateing(id, rate);
-    console.log(data);
+    // console.log(data);
     
     if (data?.status === "success") {
       toast.dismiss();
@@ -61,36 +60,41 @@ export default function ApartmentDetails() {
   });
 
   const [addFav, setAddFav] = useState(false);
-  let { addWish, delWish } = useContext(wishListContext);
-  async function handleWishList(id) {
-    if (addFav) {
-      console.log(addFav);
-      toast.loading("Removing Appartment From WishList");
+  let {wish , addWish, delWish } = useContext(wishListContext);
+  // console.log(wish);
+  
+  const isProductInWishlist = useMemo(
+    () => (id) => wish?.body?.wishlist?.some((product) => product._id === id),
+    [wish]
+  );
+   async function handleWishList(id) {
+    if (isProductInWishlist(id)) {
+      toast.loading("Removing Apartment From WishList");
       let { data } = await delWish(id);
-
-      console.log(data);
-      if (data?.status === "success") {
-        toast.dismiss();
-        toast.success("Appartment Removed From WishList");
-        setAddFav(false);
-      }
+      // console.log(data);
+      
+        if (data?.status === "success") {
+          toast.dismiss();
+          toast.success("Removed Apartment Successfully");
+        }else{
+          toast.dismiss();
+          toast.error("Removed Apartment Faild");
+        }
     } else {
-      toast.loading("Adding Appartment To WishList");
+      toast.loading("Adding Apartment To WishList");
       let { data } = await addWish(id);
-      console.log(data);
-      if (data?.status === "success") {
-        toast.dismiss();
-        toast.success("Appartment Adding Successfuly");
-
-      }
-
-      setAddFav(true);
-
+        if (data?.status === "success") {
+          toast.dismiss();
+          toast.success("Added Apartment To Wishlist Successfully");
+        }else{
+          toast.dismiss();
+          toast.error("Added Apartment To Wishlist Faild");
+        }
     }
   }
 
-  console.log(formattedDate); // January 29, 2025
-  console.log(getAppart);
+  // console.log(formattedDate);
+  // console.log(getAppart);
   return (
     <div className=" w-[92%] md:w-[87%] mx-auto pt-7">
       {/* Image Gallery */}
@@ -148,7 +152,7 @@ export default function ApartmentDetails() {
             onClick={() => handleWishList(id)}
             className="absolute bottom-3 right-4 z-20  text-red-600 text-3xl p-0 bg-transparent"
           >
-            <i className={addFav ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+            <i className={isProductInWishlist(id) ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
           </button>
 
           <Modal
@@ -171,7 +175,7 @@ export default function ApartmentDetails() {
                   <i onClick={() => addRate(5)} className={rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
                 </div>
                 <div className="flex justify-center gap-4">
-                  <Button color="blue" onClick={() =>  addRa(id, rate)}>
+                  <Button color="blue" onClick={() => addRa(id, rate)}>
                     {"Add my rate"}
                   </Button>
 
