@@ -31,11 +31,12 @@ async function handleLogin(values) {
       localStorage.setItem('token', data.token);
       setLoad(false);
       navigate('/');
+      window.location.reload();
       toast.success('Login successfully');
     }else{
       setLoad(false);
       if(data?.response?.data?.message.includes('Cannot read properties of null')){ 
-      setApi('Account not found');
+      setApi('Your account is not activated or not found yet.');
       }else{
 
         setApi(data?.response?.data?.message);
@@ -155,16 +156,6 @@ async function handleLogin(values) {
                     <span className="mr-2">Don&apos;t have an account?</span>
                     <Link to={"/SignUp"} className="underline text-[#054E98]">
                       Sign Up
-                    </Link>
-                  </div>
-                  <div className="flex justify-center items-center">
-                    <Link to={'http://localhost:3000/api/users/login/google'} className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
-                      {" "}
-                      <i className="fa-brands fa-google  text-[#054E98]"></i>{" "}
-                    </Link>
-                    <Link className="border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200">
-                      {" "}
-                      <i className="fa-brands fa-facebook  text-[#054E98]"></i>{" "}
                     </Link>
                   </div>
                 </div>

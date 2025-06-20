@@ -23,6 +23,7 @@ import WishListContextProvider from './context/userWishlist.jsx';
 import { Toaster } from 'react-hot-toast';
 import RateContextProvider from './context/userRate.jsx';
 import View from './components/View/View.jsx';
+import UnitContextProvider from './context/UnitContext.jsx';
 function App() {
 
   const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <>
+    <UnitContextProvider>
       <RateContextProvider>
         <WishListContextProvider>
           <QueryClientProvider client={queryClient}>
@@ -65,6 +67,7 @@ function App() {
           </QueryClientProvider>
         </WishListContextProvider>
       </RateContextProvider>
+    </UnitContextProvider>
 
     </>
   )

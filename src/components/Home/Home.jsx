@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
@@ -15,14 +15,22 @@ import contactUs from "../../img/contact us.jpeg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "flowbite-react";
 import axiosInstance from "../../services/axiosInstance";
+import PricingCard from "../PricingCard/PricingCard";
+import { UnitContext } from "../../context/UnitContext";
 
 export default function Home() {
   const [filterRes, setFilterRes] = useState("Residential");
   const [activeB, setActiveB] = useState("");
   const [activeBt, setActiveBt] = useState("");
-  const [token , setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):null);
+  const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : null);
   const navigate = useNavigate();
-  
+
+   let {getUnit , setUnit} = useContext(UnitContext);
+   async function handlePrice(values) {
+    console.log(values);
+    let {data} = await getUnit(values.location , filterRes , activeB, activeBt, values.start, values.end);
+    setUnit(data?.data?.units);
+  }
   const handleUniversityClick = async (universityName) => {
     try {
       const res = await axiosInstance.get("/units");
@@ -30,7 +38,7 @@ export default function Home() {
       const filtered = allUnits.filter((unit) =>
         unit.description?.toLowerCase().includes(universityName.toLowerCase())
       );
-      {token != null ?navigate("/view", { state: { filteredUnits: filtered } }) : navigate("/login")}
+      { token != null ? navigate("/view", { state: { filteredUnits: filtered } }) : navigate("/login") }
     } catch (err) {
       console.error("Error fetching units:", err);
     }
@@ -86,7 +94,7 @@ export default function Home() {
             <div className="grid grid-cols-3 gap-4 text-right items-center">
               <div className="col-span-3 flex flex-col sm:hidden items-center gap-2">
                 <input type="text" className="w-full p-2 border rounded text-black text-[12px]" placeholder="Enter location" />
-                
+
                 <Link
                   to={token == null ? '/login' : "/apartment"}
                   className="text-white w-full px-5 py-4 rounded-lg bg-[#054E98] text-center text-[14px] hover:bg-blue-900 duration-300"
@@ -100,13 +108,13 @@ export default function Home() {
                 <input type="text" className="flex-1 p-2 border rounded z-10 text-black text-[14px]" placeholder="Enter location" />
                 {
 
-                <Link
-                  to={token == null ? '/login' : "/apartment"}
-                  className="text-white rounded-lg bg-[#054E98] px-10 py-3 text-[15px] ml-5 hover:bg-blue-800 duration-300"
-                >
-                  Search
-                </Link>
-                }               
+                  <Link
+                    to={token == null ? '/login' : "/apartment"}
+                    className="text-white rounded-lg bg-[#054E98] px-10 py-3 text-[15px] ml-5 hover:bg-blue-800 duration-300"
+                  >
+                    Search
+                  </Link>
+                }
               </div>
 
               {/* Residential Dropdown */}
@@ -130,9 +138,8 @@ export default function Home() {
                     ].map(({ name, width }) => (
                       <li
                         key={name}
-                        className={`border-2 rounded-3xl ${width} mb-3 ${
-                          filterRes === name ? "bg-blue-200 border-blue-500" : "hover:bg-gray-100"
-                        }`}
+                        className={`border-2 rounded-3xl ${width} mb-3 ${filterRes === name ? "bg-blue-200 border-blue-500" : "hover:bg-gray-100"
+                          }`}
                       >
                         <button onClick={() => setFilterRes(name)} className="block bg-transparent px-4 py-2 w-full">
                           {name}
@@ -172,9 +179,8 @@ export default function Home() {
                       {["1", "2", "3", "4", "5", "6+"].map((num) => (
                         <li
                           key={num}
-                          className={`border-2 rounded-3xl ${
-                            activeB === num ? "bg-blue-200 border-blue-500" : "hover:bg-gray-100"
-                          }`}
+                          className={`border-2 rounded-3xl ${activeB === num ? "bg-blue-200 border-blue-500" : "hover:bg-gray-100"
+                            }`}
                         >
                           <button onClick={() => filBad(num)} className="block bg-transparent px-3 py-1 w-full">
                             {num}
@@ -188,9 +194,8 @@ export default function Home() {
                       {["1", "2", "3", "4", "5", "6"].map((num) => (
                         <li
                           key={num}
-                          className={`border-2 rounded-3xl ${
-                            activeBt === num ? "bg-blue-200 border-blue-500" : "hover:bg-gray-100"
-                          }`}
+                          className={`border-2 rounded-3xl ${activeBt === num ? "bg-blue-200 border-blue-500" : "hover:bg-gray-100"
+                            }`}
                         >
                           <button onClick={() => filBat(num)} className="block bg-transparent px-3 py-1 w-full">
                             {num}
@@ -247,7 +252,7 @@ export default function Home() {
                       </button>
 
                       <button
-                        onClick={() => {}}
+                        onClick={() => { }}
                         className="px-4 py-2 text-white bg-blue-800 border-blue-900 w-[40%]"
                       >
                         Done
@@ -288,7 +293,74 @@ export default function Home() {
           ))}
         </div>
       </div>
+      {/* Pricing */}
+      <section className="w-[90%]  lg:w-[75%] m-auto grid grid-cols-12 gap-6 pb-10 mt-[30px]">
+        <div className=" col-span-12">
+          <h1 className="text-[30px] text-primary text-center  ">Pricing Packages</h1>
+          <p className="text-[15px] text-color text-center mt-[8px] ">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor.</p>
+        </div>
+        <div className="col-span-12 mt-[20px] flex justify-center flex-col items-center">
+          <h2 className="text-[16px]">Save up to 10%</h2>
+          <div className="text-[14px] text-color flex gap-x-5 mt-[9px] justify-center items-center">
+            Monthly
+            <label className="inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" defaultChecked disabled />
+              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
+            </label>
 
+            AnnualSave
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 mt-[30px]  ">
+          <PricingCard head='Basic' salary='199' unit={1} />
+        </div>
+
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 mt-[30px]  ">
+
+          <div className="w-full max-w-sm p-4 bg-white border border-[#1967D2] rounded-lg shadow-2xl sm:p-8 ">
+            <div className="flex justify-between">
+              <h5 className="mb-4 text-[18px] font-medium text-primary ">Standard</h5>
+              <h6 className="text-[13px] px-6 h-[30px] text-[#34A853] flex items-center bg-[#E1F2E5] rounded-4xl">Recommended</h6>
+            </div>
+
+            <div className="flex items-baseline text-gray-900 ">
+
+              <span className="text-[30px] font-semibold tracking-tight">EGP 449</span>
+              <span className="ms-2 text-[18px] text-color ">/ monthly</span>
+            </div>
+            <ul role="list" className="space-y-7 mt-7 ">
+              <li className="flex items-center text-center ">
+                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.7657 0.687453C15.4533 0.375016 14.9468 0.375016 14.6343 0.687453L5.04982 10.272L1.3657 6.58791C1.0533 6.27548 0.546796 6.27551 0.234328 6.58791C-0.0781093 6.90032 -0.0781093 7.40682 0.234328 7.71926L4.48414 11.969C4.79645 12.2814 5.30332 12.2812 5.61551 11.969L15.7657 1.81883C16.0781 1.50642 16.0781 0.99989 15.7657 0.687453Z" fill="#202124" />
+                </svg>
+
+                <span className="text-[17px] flex justify-center w-[60%] leading-tight text-color  ms-3">4 Unit posting</span>
+              </li>
+              <li className="flex">
+                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.7657 0.687453C15.4533 0.375016 14.9468 0.375016 14.6343 0.687453L5.04982 10.272L1.3657 6.58791C1.0533 6.27548 0.546796 6.27551 0.234328 6.58791C-0.0781093 6.90032 -0.0781093 7.40682 0.234328 7.71926L4.48414 11.969C4.79645 12.2814 5.30332 12.2812 5.61551 11.969L15.7657 1.81883C16.0781 1.50642 16.0781 0.99989 15.7657 0.687453Z" fill="#202124" />
+                </svg>
+
+                <span className="text-[14px] flex justify-center w-[60%] leading-tight text-color  ms-3">Unit displayed for 30 days</span>
+              </li>
+              <li className="flex">
+                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.7657 0.687453C15.4533 0.375016 14.9468 0.375016 14.6343 0.687453L5.04982 10.272L1.3657 6.58791C1.0533 6.27548 0.546796 6.27551 0.234328 6.58791C-0.0781093 6.90032 -0.0781093 7.40682 0.234328 7.71926L4.48414 11.969C4.79645 12.2814 5.30332 12.2812 5.61551 11.969L15.7657 1.81883C16.0781 1.50642 16.0781 0.99989 15.7657 0.687453Z" fill="#202124" />
+                </svg>
+
+                <span className="text-[14px] flex justify-center w-[60%] leading-tight text-color  ms-3">Premium Support 24/7</span>
+              </li>
+            </ul>
+            <Link to='https://wa.me/+201155223832' className="text-white mt-[48px] bg-primary font-medium rounded-lg text-[15px] px-5 py-2.5 inline-flex justify-center w-full text-center ">Contact Us</Link>
+          </div>
+        </div>
+
+
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 mt-[30px]  ">
+
+          <PricingCard head='Extended' salary='799' unit={6} />
+        </div>
+      </section>
       {/* Part four - Contact Form */}
       <div className="flex min-h-screen bg-gray-100 p-10 justify-center items-center" id="contact">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden flex max-w-5xl w-full">

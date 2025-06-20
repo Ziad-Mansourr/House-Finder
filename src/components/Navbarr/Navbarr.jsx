@@ -37,7 +37,7 @@ export default function Navbarr() {
     <>
       <Navbar
         fluid
-        className="fixed top-0 left-0 right-0 z-30 shadow-md bg-[#f0efef]  shadow-gray-400"
+        className="fixed top-0 left-0 right-0 z-[35] shadow-md bg-[#f0efef]  shadow-gray-400"
       >
         <button className="bg-transparent p-0 m-0 text-start" onClick={home}>
           <Navbar.Brand>
@@ -82,12 +82,7 @@ export default function Navbarr() {
                   <span className="block truncate text-lg font-medium mr-14"> {localStorage.getItem('name')}</span>
                 </Dropdown.Header>
                 <div className="flex ay flex-col py-[4px] ">
-                  <lnk.Link to={'/profile'} className=''>
-                    <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
-                      <img className='w-6' src="src/assets/building-check-svgrepo-com.svg" alt="" />
-                      My Ads
-                    </div>
-                  </lnk.Link>
+                  
                   <lnk.Link to={'/setting'}>
                     <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
                       <img className='w-6' src="src/assets/setting-4-svgrepo-com.svg" alt="" />
@@ -154,19 +149,6 @@ export default function Navbarr() {
                 </span>
               </Dropdown.Header>
               <div className="flex ay flex-col py-[4px] ">
-                <lnk.Link to={'/profile'}>
-                  <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
-                    <img
-                      className="w-6"
-                      src="src/assets/building-check-svgrepo-com.svg"
-                      alt=""
-                    />
-
-                    My Ads
-
-                  </div>
-
-                </lnk.Link>
                 <lnk.Link to={'/setting'}>
                   <div className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 transition-all duration-200">
                     <img

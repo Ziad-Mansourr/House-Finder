@@ -10,6 +10,8 @@ export default function UserContextProvider({children}) {
        return axiosInstance.post(`users/login`, values)
             .then(({ data }) => {
                 localStorage.setItem('name',data.body.user.fullName);
+                localStorage.setItem('phone',data.body.user.phone);
+                localStorage.setItem('email',data.body.user.email);
                 console.log(data.body.user.fullName);
                 return data;
             })

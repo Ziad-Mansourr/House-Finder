@@ -1,15 +1,8 @@
 
-import { Link } from "react-router-dom";
-import {
-  Dropdown,
-  Drawer,
-  Button,
-  TextInput,
-  Label,
-  Popover,
-} from "flowbite-react";
+import { Dropdown, Drawer, Button,TextInput,Label,Popover} from "flowbite-react";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UnitContext } from "../../context/UnitContext";
 export default function Filter() {
   const [filterRes, setFilterRes] = useState("Residential");
   const options = ["1", "2", "3", "4", "5", "6", "7", "8+"];
@@ -17,7 +10,11 @@ export default function Filter() {
   const [activeB, setActiveB] = useState("");
   const [activeBt, setActiveBt] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(filterRes, activeB, activeBt);
+    let {getUnit , setUnit} = useContext(UnitContext);
+    // console.log(unit);
+     
+  
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
@@ -31,8 +28,10 @@ export default function Filter() {
   function filBat(word) {
     setActiveBt(word);
   }
-  function handlePrice(values) {
+  async function handlePrice(values) {
     console.log(values);
+    let {data} = await getUnit(values.location , filterRes , activeB, activeBt, values.start, values.end);
+    setUnit(data?.data?.units);
   }
   let formik = useFormik({
     initialValues: {
@@ -48,7 +47,6 @@ export default function Filter() {
     params.start = "";
     params.end = "";
   }
-
   return (
     <>
       {/* Filter Laptop */}
@@ -79,10 +77,10 @@ export default function Filter() {
             >
               <ul className="py-2 flex flex-wrap gap-x-2 text-center text-sm text-gray-700">
                 {[
-                  { name: "Apartment", width: "w-1/2" },
-                  { name: "Room", width: "w-[35%]" },
-                  { name: "Villa", width: "w-[35%]" },
-                  { name: "Duplex", width: "w-[40%]" },
+                  { name: "apartment", width: "w-1/2" },
+                  { name: "room", width: "w-[35%]" },
+                  { name: "villa", width: "w-[35%]" },
+                  { name: "duplex", width: "w-[40%]" },
                 ].map(({ name, width }) => (
                   <li
                     key={name}
@@ -263,19 +261,7 @@ export default function Filter() {
           </form>
         </div>
 
-        <div className="ml-8">
-          <Link to={"/sell"}>
-            <button
-              onClick={() => {
-                filBad("");
-                filBat("");
-              }}
-              className=" px-6    border-spacing-3  text-white bg-blue-700 border-blue-900"
-            >
-              Sell
-            </button>
-          </Link>
-        </div>
+
       </div>
 
       {/* Button Filter Phone */}
@@ -518,15 +504,6 @@ export default function Filter() {
                     Search
                   </span>
                 </button>
-              </div>
-
-              <div className="ml-1 mt-5">
-                <Link
-                  to="/sell"
-                  className="text-white bg-gradient-to-r px-20 flex justify-center mt-3 text-lg from-cyan-700 to-blue-700 hover:bg-gradient-to-bl rounded-lg py-2.5"
-                >
-                  Sell
-                </Link>
               </div>
             </div>
           </div>

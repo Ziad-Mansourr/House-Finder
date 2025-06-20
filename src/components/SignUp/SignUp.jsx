@@ -305,16 +305,6 @@ export default function SignUp() {
                       Sign in
                     </Link>
                   </div>
-                  <div className="flex justify-center items-center">
-                    <Link to={'http://localhost:3000/api/users/login/google'} className=" border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200 ">
-                      {" "}
-                      <i className="fa-brands fa-google  text-[#054E98]"></i>{" "}
-                    </Link>
-                    <Link className="border-[2px]  mt-3 mr-2 hover:bg-slate-100 border-blue-400 w-[40px] flex items-center justify-center h-[40px] rounded-full transition-all duration-200">
-                      {" "}
-                      <i className="fa-brands fa-facebook  text-[#054E98]"></i>{" "}
-                    </Link>
-                  </div>
                 </div>
               </form>
             </div>

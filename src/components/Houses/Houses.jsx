@@ -4,9 +4,11 @@ import Slider from "react-slick";
 import useUnit from "../../hooks/useUnit";
 import { wishListContext } from "../../context/userWishlist";
 import toast from "react-hot-toast";
+import { UnitContext } from "../../context/UnitContext";
 export default function Houses() {
   let { data, isLoading } = useUnit();
-  console.log(data?.data?.data?.units);
+  let {unit} = useContext(UnitContext);
+  console.log(unit);
   
   const [addFav, setAddFav] = useState(false);
   let {wish , addWish, delWish } = useContext(wishListContext);
@@ -58,7 +60,7 @@ export default function Houses() {
   if (isLoading) {
     return <>
      <div className="fixed w-full top-0 left-0 right-0 bottom-0 bg-white z-[9999999] flex justify-center items-center min-h-screen">
-        <span class="loader"></span>
+        <span className="loader"></span>
      </div>
     </>
   }
@@ -66,7 +68,7 @@ export default function Houses() {
     <>
       <div className="col-span-12 md:col-span-7">
         {
-          data?.data?.data?.units?.map((unit) => {
+          unit?.map((unit) => {
             return <div key={unit?.id} className=" shadow-md rounded-lg flex-wrap bg-[rgb(249,249,249)] flex mt-6 md:mt-8 lg:mt-10 mb-7  ">
               <div className="lg:w-[40%] h-[340px] w-[100%] relative ">
 
@@ -158,7 +160,7 @@ export default function Houses() {
 
           })
         }
-
+        {/* <Pagination /> */}
       </div>
     </>
   );

@@ -39,7 +39,7 @@ export default function About() {
           <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
             <div className="relative">
               <img
-                src="src/img/fatma_1.jpg"
+                src="fatma_1.jpg"
                 alt=""
                 className="w-full object-cover h-[300px] rounded-t-3xl "
               />
@@ -57,7 +57,7 @@ export default function About() {
           <div className="rounded-3xl shadow-lg text-center col-span-6 lg:col-span-4 bg-white hover:scale-105  group transition-all duration-500">
             <div className="relative">
               <img
-                src="src/img/basant.jpg"
+                src="basant.jpg"
                 alt=""
                 className="w-full object-cover h-[300px] rounded-t-3xl "
               />

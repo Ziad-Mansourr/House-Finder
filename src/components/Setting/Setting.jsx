@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from "../../services/axiosInstance";
 import { Toaster, toast } from 'react-hot-toast';
 export default function ProfileSettings() {
+
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState(localStorage.getItem('name') || '');
+  const [phone, setPhone] = useState(localStorage.getItem('phone') || '');
+  const [email, setEmail] = useState(localStorage.getItem('email') || '');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -42,6 +43,7 @@ export default function ProfileSettings() {
         setTimeout(() => {
           localStorage.removeItem('token');
           navigate('/login');
+          window.location.reload(); // Reload the page to reflect changes
         }, 2000); 
       } else {
         toast.error('Failed to update profile. Please try again.');

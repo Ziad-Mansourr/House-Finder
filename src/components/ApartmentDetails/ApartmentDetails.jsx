@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button, Modal } from "flowbite-react";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../services/axiosInstance";
 import { wishListContext } from "../../context/userWishlist";
 import toast from "react-hot-toast";
@@ -34,6 +34,21 @@ export default function ApartmentDetails() {
     let { data } = await getApp();
     setAppart(data);
   }
+
+  const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : null);
+      const navigate = useNavigate();
+    const handleUniversityClick = async (universityName) => {
+      try {
+        const res = await axiosInstance.get("/units");
+        const allUnits = res.data.data.units;
+        const filtered = allUnits.filter((unit) =>
+          unit.description?.toLowerCase().includes(universityName.toLowerCase())
+        );
+        { token != null ? navigate("/view", { state: { filteredUnits: filtered } }) : navigate("/login") }
+      } catch (err) {
+        console.error("Error fetching units:", err);
+      }
+    };
 
   async function addRa(id, rate) {
     toast.loading("Adding Rateing To Appartment");
@@ -95,6 +110,13 @@ export default function ApartmentDetails() {
 
   // console.log(formattedDate);
   // console.log(getAppart);
+  if(!getAppart?.data?.unit) {
+    return <>
+     <div className="fixed w-full top-0 left-0 right-0 bottom-0 bg-white z-[9999999] flex justify-center items-center min-h-screen">
+        <span className="loader"></span>
+     </div>
+    </>
+  }
   return (
     <div className=" w-[92%] md:w-[87%] mx-auto pt-7">
       {/* Image Gallery */}
@@ -164,21 +186,12 @@ export default function ApartmentDetails() {
             <Modal.Header />
             <Modal.Body>
               <div className="text-center">
-                <h3 className="mb-5 text-lg  text-gray-500 dark:text-gray-400 font-semibold">
+                <h3 className="mb-5 text-lg flex justify-center items-center flex-col text-gray-500 dark:text-gray-400 font-semibold">
                   Add your Rate
                 </h3>
-                <div className=" flex justify-center mb-5 items-center text-gray-700 text-lg">
-                  <i onClick={() => addRate(1)} className={rate == 1 || rate == 2 || rate == 3 || rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
-                  <i onClick={() => addRate(2)} className={rate == 2 || rate == 3 || rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
-                  <i onClick={() => addRate(3)} className={rate == 3 || rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
-                  <i onClick={() => addRate(4)} className={rate == 4 || rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
-                  <i onClick={() => addRate(5)} className={rate == 5 ? "fa-solid text-yellow-300 fa-star ml-1" : "fa-solid fa-star ml-1"} />
-                </div>
-                <div className="flex justify-center gap-4">
-                  <Button color="blue" onClick={() => addRa(id, rate)}>
-                    {"Add my rate"}
-                  </Button>
+                <div className=" flex justify-center items-center">
 
+                <RatingStars unit={id} />
                 </div>
               </div>
             </Modal.Body>
@@ -240,23 +253,22 @@ export default function ApartmentDetails() {
               Recommended searches
             </h2>
             <div className="p-4 ">
-              <a href="" className="text-gray-600">
-                {" "}
-                <p className="pt-3">New Cairo Technological University</p>
-              </a>
-              <a href="" className="text-gray-600">
-                <p className="pt-3">Cairo University</p>
-              </a>
-              <a href="" className="text-gray-600">
-                <p className="pt-3">Ain Shams University</p>
-              </a>
-              <a href="" className="text-gray-600">
-                <p className="pt-3">Helwan University</p>
-              </a>
-              <a href="" className="text-gray-600">
-                <p className="pt-3">Alexandria University</p>
-              </a>
-            </div>
+            {[
+              {  name: "Cairo University" },
+              {  name: "Ain Shams University" },
+              {  name: "Alexandria University" },
+              {  name: "Aswan University" },
+              {  name: "Helwan University" },
+              {  name: "New Cairo Technological University" },
+              {  name: "Assiut University" },
+            ].map(({ i,  name }) => (
+              <div key={i} className="cursor-pointer" onClick={() => handleUniversityClick(name)} >
+                <p className="pt-3 text-gray-600">
+                  {name}
+                </p>
+              </div>
+            ))}
+          </div>
           </div>
         </aside>
 
@@ -344,4 +356,50 @@ export default function ApartmentDetails() {
       </div>
     </div>
   );
+}
+function RatingStars({ unit }) {
+    const [userRating, setUserRating] = useState(null);
+    const [hoverRating, setHoverRating] = useState(null);
+    const LOCAL_KEY = "unit_ratings";
+
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem(LOCAL_KEY)) || {};
+        if (saved[unit._id]) {
+            setUserRating(saved[unit._id]);
+        }
+    }, [unit._id]);
+
+    const handleRate = (rate) => {
+        const saved = JSON.parse(localStorage.getItem(LOCAL_KEY)) || {};
+
+        if (saved[unit._id]) {
+            toast.error("You already rated this unit.");
+            return;
+        }
+
+        saved[unit._id] = rate;
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(saved));
+        setUserRating(rate);
+        toast.success(`You rated this unit ${rate}⭐`);
+    };
+
+    return (
+        <div className="mt-2">
+            <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <i
+                        key={star}
+                        className={`fa-star text-xl cursor-pointer transition ${
+                            (hoverRating || userRating || unit.rating) >= star
+                                ? "fa-solid text-yellow-400"
+                                : "fa-regular text-gray-400"
+                        }`}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(null)}
+                        onClick={() => handleRate(star)}
+                    ></i>
+                ))}
+            </div>
+        </div>
+    );
 }
