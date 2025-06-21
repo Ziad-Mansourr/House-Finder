@@ -45,7 +45,7 @@ export default function Apartment() {
               {  name: "Helwan University" },
               {  name: "New Cairo Technological University" },
               {  name: "Assiut University" },
-            ].map(({ i,  name }) => (
+            ].map(({ i ,  name }) => (
               <div key={i} className="cursor-pointer" onClick={() => handleUniversityClick(name)} >
                 <p className="pt-3 text-gray-600">
                   {name}
@@ -57,9 +57,6 @@ export default function Apartment() {
 
         <Houses/>
       </section>
-      <div className="mb-5 ">
-        <Pagination />
-      </div>
 
     </>
   );
