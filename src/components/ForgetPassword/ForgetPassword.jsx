@@ -1,79 +1,103 @@
-import {  useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import * as yp from 'yup';
-import { useFormik } from 'formik';
-import axiosInstance from '../../services/axiosInstance';
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { object, string } from "yup";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate, Link } from "react-router-dom";
 export default function ForgetPassword() {
   const navigate = useNavigate();
-  const [load, setLoad] = useState(false);
-  let validationSchema = yp.object().shape({
-    email: yp.string().email('email invalid').required('email is required'),
+  const [apiError, setApiError] = useState(null);
+
+  const validationSchema = object({
+    email: string()
+      .required("Email is required")
+      .email("Email is invalid"),
   });
 
+async function sendForgetPassword(values) {
+  let toastId = toast.loading("Sending request...");
 
+  try {
+    const response = await axios.patch(
+      "/api/v1/auth/forget-password",
+      values
+    );
 
-  function handleLogin(values) {
-    setLoad(true);
-    axiosInstance.post(`users/forgotPassword` , values)
-    .then(({data})=>{
-      console.log(data);
-      setLoad(false);
-      navigate('/resetPass');
-    })
-    .catch((errors)=>{
-      console.log(errors);
-      setLoad(false);
-       
-    })
-    console.log(values);
-     
-  }
+    if (response.status === 200) {
+      toast.success("Check your email ✌️");
 
-  let formik = useFormik(
-    {
-      initialValues: {
-        email: '',
-      },
-      onSubmit: (values) => handleLogin(values),
-      validationSchema: validationSchema
+      setTimeout(() => {
+        navigate("/resetPassword");
+      }, 1500);
     }
-  )
+  } catch (error) {
+    const status = error.response?.status;
+    if (status === 404) {
+      toast.error("This email is not registered.");
+    } else {
+      toast.error("Something went wrong. Please try again.");
+    }
+  } finally {
+    toast.dismiss(toastId);
+  }
+}
+
+
+  const formik = useFormik({
+    initialValues: { email: "" },
+    validationSchema,
+    onSubmit: sendForgetPassword,
+  });
 
   return (
-    <>
-      <section className="bg-[#0c283c] min-h-screen">
-        <div className="w-[90%] md:w-[60%] lg:w-[40%] grid grid-cols-12 m-auto pt-28" >
-          <h1 className='col-span-12 text-center text-3xl md:text-4xl lg:text-5xl text-white'>Forgot Your Password?</h1>
-          <h2 className='col-span-12 text-center text-white text-xl mt-6'>Your password will be reset by email</h2>
-          <div className="col-span-12 mb-5 mt-11" >
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-white dark:text-white"
-            >
-              Your email
-            </label>
+    <section className="min-h-screen bg-sky-200 flex items-center justify-center">
+      <div className="bg-white w-[320px] rounded-3xl shadow-lg px-6 py-8 relative">
+
+        <span className="w-3 h-3 bg-sky-200 rounded-full absolute top-6 left-6"></span>
+        <span className="w-4 h-4 border border-sky-300 rounded-full absolute top-10 right-8"></span>
+
+        <h2 className="text-center text-2xl font-semibold text-gray-800 mb-1">
+          Forget Password
+        </h2>
+        <p className="text-center text-sm text-gray-400 mb-6">
+          Enter your email to reset your password
+        </p>
+
+        <form className="space-y-4" onSubmit={formik.handleSubmit}>
+          <div>
             <input
-              value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}
               type="email"
-              id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@gmail.com"
-
+              name="email"
+              placeholder="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="w-full px-4 py-2.5 text-sm rounded-lg border border-gray-200 focus:outline-none focus:border-sky-300 placeholder-gray-400"
             />
-
-            {formik.errors.email != null && formik.touched.email ?
-              <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                <span className="font-medium">{formik.errors.email}</span>
-              </div> : null}
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-red-500 text-sm mt-1">{formik.errors.email}</p>
+            )}
           </div>
-          <div className="col-span-12 flex justify-center items-center">
-            <button className='p-0 w-[40%] bg-blue-700 text-white mb-5 py-2.5 hover:bg-blue-800 font-medium rounded-lg text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' onClick={formik.handleSubmit}>
-              
-            {load ? <i className='fas fa-spinner fa-spin px-2' ></i> : 'Submit'}
-             
-            </button>
 
-          </div>
-        </div>
-      </section>
-    </>
-  )
+          {apiError && (
+            <p className="text-red-500 text-sm mt-1">{apiError}</p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full mt-4 bg-gray-200 text-gray-700 py-2 rounded-full font-medium hover:bg-[#a7d3e6] hover:text-white transition"
+          >
+            Send Reset Link
+          </button>
+        </form>
+
+        <p className="text-center text-xs text-gray-400 mt-5">
+          Remembered your password?{" "}
+          <Link to="/login" className="text-sky-500 font-medium">
+            Log In
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
 }

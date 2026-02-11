@@ -1,74 +1,57 @@
 import './App.css'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 import "flowbite";
-import Home from './components/Home/Home'
-import Apartment from './components/Apartment/Apartment.jsx'
 import Login from './components/Login/Login'
-import SignUp from './components/SignUp/SignUp'
-import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 import Layout from './components/Layout/Layout'
-import VerifyCode from './components/VerifyCode/VerifyCode'
-import ResetPassword from './components/ResetPassword/ResetPassword'
-import ApartmentDetails from './components/ApartmentDetails/ApartmentDetails.jsx'
-import Profile from './components/Profile/Profile.jsx'
-import Setting from './components/Setting/Setting.jsx'
-import Sell from './components/sell/sell.jsx'
-import Wishlist from './components/Wishlist/Wishlist.jsx';
-import Admin from './components/Admin/Admin.jsx'
-import DashBoard from './components/DashBoard/DashBoard.jsx'
-import UserContextProvider from './context/userContext.jsx';
-import About from './components/About/About.jsx';
+//import UserContextProvider from './context/userContext.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import WishListContextProvider from './context/userWishlist.jsx';
+//import WishListContextProvider from './context/userWishlist.jsx';
 import { Toaster } from 'react-hot-toast';
-import RateContextProvider from './context/userRate.jsx';
-import View from './components/View/View.jsx';
-import UnitContextProvider from './context/UnitContext.jsx';
-function App() {
+//import RateContextProvider from './context/userRate.jsx';
+//import UnitContextProvider from './context/UnitContext.jsx';
+import Signup from './components/SignUp/SignUp.jsx';
+import Home from './components/Home/Home.jsx';
+import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail.jsx';
+import Logout from './components/Logout/Logout.jsx';
+import About from './components/About/About.jsx';
+import { Settings } from 'lucide-react';
+import Profile from './components/Profile/Profile.jsx';
+import Messages from './components/Messages/Messages.jsx';
+import ForgetPassword from './components/ForgetPassword/ForgetPassword.jsx';
+import ResetPassword from './components/ResetPassword/ResetPassword.jsx';
+import ProfileSettings from './components/ProfileSettings/ProfileSettings.jsx';
+import SendMessage from './components/SendMessage/SendMessage.jsx';
+import MessagesList from './components/MessagesList/MessagesList.jsx';
 
+function App() {
   const queryClient = new QueryClient();
   let router = createHashRouter([
     {
       path: '', element: <Layout />, children: [
-        { index: true, element: <Home /> },
-        { path: 'apartment', element: <Apartment /> },
-        { path: 'sell', element: <Sell /> },
-        { path: 'forgetPassword', element: <ForgetPassword /> },
+        { index: true, element: <Signup/> },
         { path: 'login', element: <Login /> },
-        { path: 'signUp', element: <SignUp /> },
-        { path: 'verifyCode', element: <VerifyCode /> },
-        { path: 'resetPass', element: <ResetPassword /> },
-        { path: 'profile', element: <Profile /> },
-        { path: 'setting', element: <Setting /> },
-        { path: 'apartmentDetailes/:id', element: <ApartmentDetails /> },
-        { path: 'apartmentDetails/:id', element: <ApartmentDetails /> },
-        { path: 'wishlist', element: <Wishlist /> },
-        { path: 'about', element: <About /> },
-        { path: 'view', element: <View/> },
+        { path: 'Logout', element: <Logout/> },  
+        { path: 'About', element: <About/> },
+        { path: 'Home', element: <Home/> },
+        { path: 'ConfirmEmail', element: <ConfirmEmail/> },
+        { path: 'profile', element: <Profile/> },
+        { path: 'Messages', element: <Messages/> },
+        { path: 'ForgetPassword', element: <ForgetPassword/> },
+        { path: 'resetPassword', element: <ResetPassword /> },
+        { path: 'ProfileSettings', element: <ProfileSettings /> },
+        { path: 'SendMessage', element: <SendMessage/> },
+        { path: 'MessagesList', element: <MessagesList/> },
 
 
-      ]
-    },
-    { path: 'admin', element: <Admin /> },
-    { path: 'dashBoard', element: <DashBoard /> },
 
+      ]},
   ])
-
   return (
     <>
-    <UnitContextProvider>
-      <RateContextProvider>
-        <WishListContextProvider>
           <QueryClientProvider client={queryClient}>
-            <UserContextProvider>
               <RouterProvider router={router}></RouterProvider>
               <Toaster />
-            </UserContextProvider>
           </QueryClientProvider>
-        </WishListContextProvider>
-      </RateContextProvider>
-    </UnitContextProvider>
-
     </>
   )
 }
